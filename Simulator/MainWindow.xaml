@@ -1,0 +1,682 @@
+﻿<Window x:Class="Simulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simulator"
+        xmlns:controls="clr-namespace:Simulator.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="490" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <controls:HeaderControl/>
+        <!-- Main -->
+        <TabControl Grid.Row="1">
+            <TabItem Header="LTE">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="190"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- MainArea -->
+                    <!-- Common -->
+                    <FlowDocumentScrollViewer Name="lteCommonDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Serial Number -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Message Type -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Time Stamp -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- GNSS Data -->
+                                <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123456789012
+                                </Run>
+                                <LineBreak/>
+                                <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- FW Major Rev -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- FW Minor Rev -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- FW Build -->
+                                <Run Background="Red" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Modem FW Minor -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Modem FW Minor -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Modem FW Build -->
+                                <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- LTE Connection Failure Status -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Update Failure Status -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Get Mailbox Failure Status -->
+                                <Run Background="Red" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Get Firmware Failure Status -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Battery Voltage -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    0123456789012
+                                </Run>
+                                <!-- RMS Modem Current -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    0123456789012
+                                </Run>
+                                <LineBreak/>
+                                <!-- Peak Modem Current -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    0123456789012
+                                </Run>
+                                <!-- TSMFW -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    01
+                                </Run>
+                                <!-- MODFW -->
+                                <Run Background="Red" FontFamily="Courier New" FontSize="28">
+                                    01
+                                </Run>
+                                <!-- Fault Codes -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Reserved -->
+                                <Run Background="Black" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Serial Number</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Message Type</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Time Stamp</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>GNSS Data</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>FW Major Rev</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>FW Minor Rev</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>FW Build</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Modem FW Major</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Modem FW Minor</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Modem FW Build</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>LTE Connection Failure Status</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Uploads Failure Status</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Get Mailbox Failure Status</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Get Firmware Failure Status</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Battery Voltage</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>RMS Modem Current</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Peak Modem Current</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>TSMFW</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>MODFW</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Fault Codes</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- Measurements -->
+                    <FlowDocumentScrollViewer Grid.Row="1" Name="lteMeasurementDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>SAT</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Measurement</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Gain</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Type</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <Button Content="Send" Margin="10 10 10 30"
+                      Command="{Binding SelectedEmployee.SaveCommand,Mode=OneWay}"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Log">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- MainArea -->
+                    <!-- Common -->
+                    <FlowDocumentScrollViewer Name="logCommonDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Serial Number -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Message Type -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Time Stamp -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Reserved -->
+                                <Run Background="Black" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Serial Number</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Message Type</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Time Stamp</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- Logs -->
+                    <FlowDocumentScrollViewer Grid.Row="1" Name="logMessageDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Log Data (ASCII) -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123456789012
+                                </Run>
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123456789012
+                                </Run>
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123456789012
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Log Data</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Config">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- MainArea -->
+                    <!-- Common -->
+                    <FlowDocumentScrollViewer Name="configCommonDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Serial Number -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Message Type -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Effective Time Stamp -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Reserved -->
+                                <Run Background="Black" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Serial Number</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Message Type</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Effective Time Stamp</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- Config -->
+                    <FlowDocumentScrollViewer Grid.Row="1" Name="configDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Len -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Major Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Minor Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Undefined -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    ????????
+                                </Run>
+                                <LineBreak/>
+                                <!-- Len -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Major Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Minor Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Undefined -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    ????????
+                                </Run>
+                                <LineBreak/>
+                                <!-- Len -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Major Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Minor Type -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <!-- Undefined -->
+                                <Run Background="White" FontFamily="Courier New" FontSize="28">
+                                    ????????
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Length</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Major Type</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Minor Type</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Satelite">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- MainArea -->
+                    <!-- Common -->
+                    <FlowDocumentScrollViewer Name="sateliteCommonDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- Serial Number -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Message Type -->
+                                <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
+                                    01234567
+                                </Run>
+                                <LineBreak/>
+                                <!-- Time Stamp -->
+                                <Run Background="Green" FontFamily="Courier New" FontSize="28">
+                                    0123456789012345678901234
+                                </Run>
+                                <!-- Battery Voltage -->
+                                <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
+                                    0123
+                                </Run>
+                                <!-- Fault Codes -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    0123
+                                </Run>
+                                <LineBreak/>
+                                <!-- Fault Codes -->
+                                <Run Background="Pink" FontFamily="Courier New" FontSize="28">
+                                    0123
+                                </Run>
+                                <!-- Reserved -->
+                                <Run Background="Black" FontFamily="Courier New" FontSize="28">
+                                    01234567890123456789012345678
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>Serial Number</TextBlock>
+                            <TextBox
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Message Type</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Time Stamp</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Battery Voltage</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Fault Codes</TextBlock>
+                            <TextBox 
+                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- Measurements -->
+                    <FlowDocumentScrollViewer Grid.Row="1" Name="sateliteDisplay" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                                <LineBreak/>
+                                <!-- SAT -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    0
+                                </Run>
+                                <!-- Measurement -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012345678901234567890123
+                                </Run>
+                                <!-- Gain -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    012
+                                </Run>
+                                <!-- Type -->
+                                <Run Background="Orange" FontFamily="Courier New" FontSize="28">
+                                    01234
+                                </Run>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                    <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <TextBlock>SAT</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Measurement</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Gain</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>Type</TextBlock>
+                            <TextBox
+                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
