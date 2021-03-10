@@ -1,26 +1,25 @@
 ﻿using Simulator.Common.DataProviders;
 using Simulator.Common.Models;
-using System;
 
 namespace Simulator.ViewModel
 {
     public class LTEViewModel : ViewModelBase
     {
-        private readonly LTE _lte;
-        private readonly ILTEDataProvider _lteDataProvider;
-        public LTEViewModel(LTE lte, ILTEDataProvider lteDataProvider)
+        private readonly LTECommon _lteCommon;
+        private readonly ILTECommonDataProvider _lteCommonDataProvider;
+        public LTEViewModel(LTECommon lteCommon, ILTECommonDataProvider lteCommonDataProvider)
         {
-            _lte = lte;
-            _lteDataProvider = lteDataProvider;
+            _lteCommon = lteCommon;
+            _lteCommonDataProvider = lteCommonDataProvider;
         }
         public uint SerialNumber
         {
-            get => _lte.SerialNumber;
+            get => _lteCommon.SerialNumber;
             set
             {
-                if (_lte.SerialNumber != value)
+                if (_lteCommon.SerialNumber != value)
                 {
-                    _lte.SerialNumber = value;
+                    _lteCommon.SerialNumber = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
@@ -28,248 +27,229 @@ namespace Simulator.ViewModel
         }
         public byte MessageType
         {
-            get => _lte.MessageType;
+            get => _lteCommon.MessageType;
             set
             {
-                if (_lte.MessageType != value)
+                if (_lteCommon.MessageType != value)
                 {
-                    _lte.MessageType = value;
+                    _lteCommon.MessageType = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public uint TimeStamp
         {
-            get => _lte.TimeStamp;
+            get => _lteCommon.TimeStamp;
             set
             {
-                if (_lte.TimeStamp != value)
+                if (_lteCommon.TimeStamp != value)
                 {
-                    _lte.TimeStamp = value;
+                    _lteCommon.TimeStamp = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
+                }
+            }
+        }
+        public byte[] GNSS
+        {
+            get => _lteCommon.GNSS;
+            set
+            {
+                if (_lteCommon.GNSS != value)
+                {
+                    _lteCommon.GNSS = value;
+                    RaisePropertyChanged();
                 }
             }
         }
         public byte FWMajorRev
         {
-            get => _lte.FWMajorRev;
+            get => _lteCommon.FWMajorRev;
             set
             {
-                if (_lte.FWMajorRev != value)
+                if (_lteCommon.FWMajorRev != value)
                 {
-                    _lte.FWMajorRev = value;
+                    _lteCommon.FWMajorRev = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte FWMinorRev
         {
-            get => _lte.FWMinorRev;
+            get => _lteCommon.FWMinorRev;
             set
             {
-                if (_lte.FWMinorRev != value)
+                if (_lteCommon.FWMinorRev != value)
                 {
-                    _lte.FWMinorRev = value;
+                    _lteCommon.FWMinorRev = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte FWBuild
         {
-            get => _lte.FWBuild;
+            get => _lteCommon.FWBuild;
             set
             {
-                if (_lte.FWBuild != value)
+                if (_lteCommon.FWBuild != value)
                 {
-                    _lte.FWBuild = value;
+                    _lteCommon.FWBuild = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte ModemFWMajor
         {
-            get => _lte.ModemFWMajor;
+            get => _lteCommon.ModemFWMajor;
             set
             {
-                if (_lte.ModemFWMajor != value)
+                if (_lteCommon.ModemFWMajor != value)
                 {
-                    _lte.ModemFWMajor = value;
+                    _lteCommon.ModemFWMajor = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte ModemFWMinor
         {
-            get => _lte.ModemFWMinor;
+            get => _lteCommon.ModemFWMinor;
             set
             {
-                if (_lte.ModemFWMinor != value)
+                if (_lteCommon.ModemFWMinor != value)
                 {
-                    _lte.ModemFWMinor = value;
+                    _lteCommon.ModemFWMinor = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte ModemFWBuild
         {
-            get => _lte.ModemFWBuild;
+            get => _lteCommon.ModemFWBuild;
             set
             {
-                if (_lte.ModemFWBuild != value)
+                if (_lteCommon.ModemFWBuild != value)
                 {
-                    _lte.ModemFWBuild = value;
+                    _lteCommon.ModemFWBuild = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte LTEConnectionFailureStatus
         {
-            get => _lte.LTEConnectionFailureStatus;
+            get => _lteCommon.LTEConnectionFailureStatus;
             set
             {
-                if (_lte.LTEConnectionFailureStatus != value)
+                if (_lteCommon.LTEConnectionFailureStatus != value)
                 {
-                    _lte.LTEConnectionFailureStatus = value;
+                    _lteCommon.LTEConnectionFailureStatus = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte UnloadsFailureStatus
         {
-            get => _lte.UnloadsFailureStatus;
+            get => _lteCommon.UnloadsFailureStatus;
             set
             {
-                if (_lte.UnloadsFailureStatus != value)
+                if (_lteCommon.UnloadsFailureStatus != value)
                 {
-                    _lte.UnloadsFailureStatus = value;
+                    _lteCommon.UnloadsFailureStatus = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte GetMailboxFailureStatus
         {
-            get => _lte.GetMailboxFailureStatus;
+            get => _lteCommon.GetMailboxFailureStatus;
             set
             {
-                if (_lte.GetMailboxFailureStatus != value)
+                if (_lteCommon.GetMailboxFailureStatus != value)
                 {
-                    _lte.GetMailboxFailureStatus = value;
+                    _lteCommon.GetMailboxFailureStatus = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte GetFirmwareFailureStatus
         {
-            get => _lte.GetFirmwareFailureStatus;
+            get => _lteCommon.GetFirmwareFailureStatus;
             set
             {
-                if (_lte.GetFirmwareFailureStatus != value)
+                if (_lteCommon.GetFirmwareFailureStatus != value)
                 {
-                    _lte.GetFirmwareFailureStatus = value;
+                    _lteCommon.GetFirmwareFailureStatus = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public ushort BatteryVoltage
         {
-            get => _lte.BatteryVoltage;
+            get => _lteCommon.BatteryVoltage;
             set
             {
-                if (_lte.BatteryVoltage != value)
+                if (_lteCommon.BatteryVoltage != value)
                 {
-                    _lte.BatteryVoltage = value;
+                    _lteCommon.BatteryVoltage = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public ushort RMSModemCurrent
         {
-            get => _lte.RMSModemCurrent;
+            get => _lteCommon.RMSModemCurrent;
             set
             {
-                if (_lte.RMSModemCurrent != value)
+                if (_lteCommon.RMSModemCurrent != value)
                 {
-                    _lte.RMSModemCurrent = value;
+                    _lteCommon.RMSModemCurrent = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public ushort PeakModemCurrent
         {
-            get => _lte.PeakModemCurrent;
+            get => _lteCommon.PeakModemCurrent;
             set
             {
-                if (_lte.PeakModemCurrent != value)
+                if (_lteCommon.PeakModemCurrent != value)
                 {
-                    _lte.PeakModemCurrent = value;
+                    _lteCommon.PeakModemCurrent = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte TSMFW
         {
-            get => _lte.TSMFW;
+            get => _lteCommon.TSMFW;
             set
             {
-                if (_lte.TSMFW != value)
+                if (_lteCommon.TSMFW != value)
                 {
-                    _lte.TSMFW = value;
+                    _lteCommon.TSMFW = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte MODFW
         {
-            get => _lte.MODFW;
+            get => _lteCommon.MODFW;
             set
             {
-                if (_lte.MODFW != value)
+                if (_lteCommon.MODFW != value)
                 {
-                    _lte.MODFW = value;
+                    _lteCommon.MODFW = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte FaultCodes
         {
-            get => _lte.FaultCodes;
+            get => _lteCommon.FaultCodes;
             set
             {
-                if (_lte.FaultCodes != value)
+                if (_lteCommon.FaultCodes != value)
                 {
-                    _lte.FaultCodes = value;
+                    _lteCommon.FaultCodes = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
-                }
-            }
-        }
-        public uint[] Measurements
-        {
-            get => _lte.Measurements;
-            set
-            {
-                if (_lte.Measurements != value)
-                {
-                    _lte.Measurements = value;
-                    RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }

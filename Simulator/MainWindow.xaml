@@ -135,64 +135,64 @@
                         <StackPanel>
                             <TextBlock>Serial Number</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Message Type</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Time Stamp</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.TimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>GNSS Data</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.GNSS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>FW Major Rev</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.FWMajorRev,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>FW Minor Rev</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.FWMinorRev,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>FW Build</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.FWBuild,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Modem FW Major</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.ModemFWMajor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Modem FW Minor</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.ModemFWMinor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Modem FW Build</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.ModemFWBuild,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>LTE Connection Failure Status</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.LTEConnectionFailureStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Uploads Failure Status</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.UnloadsFailureStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Get Mailbox Failure Status</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.GetMailboxFailureStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Get Firmware Failure Status</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.GetFirmwareFailureStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Battery Voltage</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.BatteryVoltage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>RMS Modem Current</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.RMSModemCurrent,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Peak Modem Current</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.PeakModemCurrent,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>TSMFW</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.TSMFW,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>MODFW</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.MODFW,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Fault Codes</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LTECommonViewModel.FaultCodes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </ScrollViewer>
                     <!-- Measurements -->
@@ -346,13 +346,13 @@
                         <StackPanel>
                             <TextBlock>Serial Number</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LogCommonViewModel.SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Message Type</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LogCommonViewModel.MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Time Stamp</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding LogCommonViewModel.TimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </ScrollViewer>
                     <!-- Logs -->
@@ -420,13 +420,13 @@
                         <StackPanel>
                             <TextBlock>Serial Number</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigCommonViewModel.SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Message Type</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigCommonViewModel.MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Effective Time Stamp</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigCommonViewModel.EffectiveTimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </ScrollViewer>
                     <!-- Config -->
@@ -490,13 +490,13 @@
                         <StackPanel>
                             <TextBlock>Length</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Major Type</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Minor Type</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -553,19 +553,19 @@
                         <StackPanel>
                             <TextBlock>Serial Number</TextBlock>
                             <TextBox
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding SateliteCommonViewModel.SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Message Type</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding SateliteCommonViewModel.MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Time Stamp</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock>Battery Voltage</TextBlock>
+                   Text="{Binding SateliteCommonViewModel.TimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock>GNSS</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding SateliteCommonViewModel.GNSS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock>Fault Codes</TextBlock>
                             <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding SateliteCommonViewModel.FaultCodes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </ScrollViewer>
                     <!-- Measurements -->

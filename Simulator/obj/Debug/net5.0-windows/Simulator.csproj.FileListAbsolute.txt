@@ -28,3 +28,7 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulat
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.pdb
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.csproj.CopyComplete
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.Common.dll
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.ViewModel.dll
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.ViewModel.pdb
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.Common.pdb

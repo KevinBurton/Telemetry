@@ -1,10 +1,5 @@
 ﻿using Simulator.Common.DataProviders;
 using Simulator.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simulator.ViewModel
 {
@@ -19,40 +14,49 @@ namespace Simulator.ViewModel
         }
         public uint SerialNumber
         {
-            get => _log.SerialNumber;
+            get => _log.Common.SerialNumber;
             set
             {
-                if (_log.SerialNumber != value)
+                if (_log.Common.SerialNumber != value)
                 {
-                    _log.SerialNumber = value;
+                    _log.Common.SerialNumber = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte MessageType
         {
-            get => _log.MessageType;
+            get => _log.Common.MessageType;
             set
             {
-                if (_log.MessageType != value)
+                if (_log.Common.MessageType != value)
                 {
-                    _log.MessageType = value;
+                    _log.Common.MessageType = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public uint TimeStamp
         {
-            get => _log.TimeStamp;
+            get => _log.Common.TimeStamp;
             set
             {
-                if (_log.TimeStamp != value)
+                if (_log.Common.TimeStamp != value)
                 {
-                    _log.TimeStamp = value;
+                    _log.Common.TimeStamp = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
+                }
+            }
+        }
+        public string Message
+        {
+            get => _log.Message;
+            set
+            {
+                if (_log.Message != value)
+                {
+                    _log.Message = value;
+                    RaisePropertyChanged();
                 }
             }
         }

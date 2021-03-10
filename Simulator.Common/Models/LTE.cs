@@ -9,45 +9,29 @@ namespace Simulator.Common.Models
 {
     public class LTE
     {
-        public uint SerialNumber { get; set; }
-        public byte MessageType { get; set; }
-        public uint TimeStamp { get; set; }
-        public byte[] GNSS { get; set; }
-        public byte FWMajorRev { get; set; }
-        public byte FWMinorRev { get; set; }
-        public byte FWBuild { get; set; }
-        public byte ModemFWMajor { get; set; }
-        public byte ModemFWMinor { get; set; }
-        public byte ModemFWBuild { get; set; }
-        public byte LTEConnectionFailureStatus { get; set; }
-        public byte UnloadsFailureStatus { get; set; }
-        public byte GetMailboxFailureStatus { get; set; }
-        public byte GetFirmwareFailureStatus { get; set; }
-        public ushort BatteryVoltage { get; set; }
-        public ushort RMSModemCurrent { get; set; }
-        public ushort PeakModemCurrent { get; set; }
-        public byte TSMFW { get; set; }
-        public byte MODFW { get; set; }
-        public byte FaultCodes { get; set; }
-        public uint[] Measurements { get; set; }
+        public LTECommon Common { get; }
+        public List<LTEItem> Items { get; }
         public uint CRC { get; protected set; }
-        public int Padding { get; }
-        public int BlockLength { get; }
+        public int Padding { get; protected set; }
+        public int BlockLength { get; protected set; }
         public string BitString { get; protected set; }
         public byte[] Block { get; protected set; }
-        public LTE(int n)
+        public LTE()
         {
-            Measurements = new uint[n];
-            GNSS = new byte[8];
+        }
+        public void Initialize()
+        {
             // Pad to 16 byte boundary for encoding
-            Padding = (32 + n * 4) % 16;
-            if(Padding != 0)
+            Padding = (32 + Items.Count * 4) % 16;
+            if (Padding != 0)
             {
                 Padding = 16 - Padding;
             }
-            BlockLength = Padding + 36 + n * 4;
+            BlockLength = Padding + 36 + Items.Count * 4;
+
+            AddCrc();
         }
-        public void AddCrc()
+        private void AddCrc()
         {
             var initialString = BuildBitString();
             var message = ConvertToByteArray(initialString.Substring(0, initialString.Length - 4));
@@ -56,7 +40,7 @@ namespace Simulator.Common.Models
             //var splitString = new string(SplitString(BitString).ToArray());
             Block = ConvertToByteArray(BitString);
         }
-        IEnumerable<char> SplitString(string input)
+        private IEnumerable<char> SplitString(string input)
         {
             for (int i = 0; i < input.Length; i++)
             {
@@ -71,43 +55,46 @@ namespace Simulator.Common.Models
         private string BuildBitString()
         {
             var result = "";
-            result += Convert.ToString(SerialNumber & 0xFFFFFF).PadLeft(24, '0');
-            result += Convert.ToString(MessageType).PadLeft(8, '0');
+            result += Convert.ToString(Common.SerialNumber & 0xFFFFFF).PadLeft(24, '0');
+            result += Convert.ToString(Common.MessageType).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(TimeStamp & 0xFFFFFF).PadLeft(24, '0');
+            result += Convert.ToString(Common.TimeStamp & 0xFFFFFF).PadLeft(24, '0');
             for (int i = 0; i < 8; i++)
             {
                 if (i == 0)
                 {
                     //result += "\n";
                 }
-                result += Convert.ToString(GNSS[i]).PadLeft(8, '0');
+                result += Convert.ToString(Common.GNSS[i]).PadLeft(8, '0');
             }
-            result += Convert.ToString(FWMajorRev).PadLeft(8, '0');
+            result += Convert.ToString(Common.FWMajorRev).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(FWMinorRev).PadLeft(8, '0');
-            result += Convert.ToString(FWBuild).PadLeft(8, '0');
-            result += Convert.ToString(ModemFWMajor).PadLeft(8, '0');
-            result += Convert.ToString(ModemFWMinor).PadLeft(8, '0');
+            result += Convert.ToString(Common.FWMinorRev).PadLeft(8, '0');
+            result += Convert.ToString(Common.FWBuild).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWMajor).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWMinor).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(ModemFWBuild).PadLeft(8, '0');
-            result += Convert.ToString(LTEConnectionFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(UnloadsFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(GetMailboxFailureStatus).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWBuild).PadLeft(8, '0');
+            result += Convert.ToString(Common.LTEConnectionFailureStatus).PadLeft(8, '0');
+            result += Convert.ToString(Common.UnloadsFailureStatus).PadLeft(8, '0');
+            result += Convert.ToString(Common.GetMailboxFailureStatus).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(GetFirmwareFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(BatteryVoltage & 0xFFF).PadLeft(12, '0');
-            result += Convert.ToString(RMSModemCurrent & 0xFFF).PadLeft(12, '0');
+            result += Convert.ToString(Common.GetFirmwareFailureStatus).PadLeft(8, '0');
+            result += Convert.ToString(Common.BatteryVoltage & 0xFFF).PadLeft(12, '0');
+            result += Convert.ToString(Common.RMSModemCurrent & 0xFFF).PadLeft(12, '0');
             //result += "\n";
-            result += Convert.ToString(PeakModemCurrent & 0xFFF).PadLeft(12, '0');
-            result += Convert.ToString(TSMFW & 0x3).PadLeft(2, '0');
-            result += Convert.ToString(MODFW & 0x3).PadLeft(2, '0');
-            result += Convert.ToString(FaultCodes).PadLeft(8, '0');
+            result += Convert.ToString(Common.PeakModemCurrent & 0xFFF).PadLeft(12, '0');
+            result += Convert.ToString(Common.TSMFW & 0x3).PadLeft(2, '0');
+            result += Convert.ToString(Common.MODFW & 0x3).PadLeft(2, '0');
+            result += Convert.ToString(Common.FaultCodes).PadLeft(8, '0');
             result += Convert.ToString(0x0).PadLeft(8, '0');
             //result += "\n";
-            for (int i = 0; i < Measurements.Length; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                result += Convert.ToString(Measurements[i]).PadLeft(32, '0');
+                result += Convert.ToString(Items[i].SAT & 0x1);
+                result += Convert.ToString(Items[i].Measurement & 0x7FFFFF).PadLeft(23, '0');
+                result += Convert.ToString(Items[i].Gain & 0x7).PadLeft(3, '0');
+                result += Convert.ToString(Items[i].Type & 0x1F).PadLeft(5, '0');
                 //result += "\n";
             }
             for (int i = 0; i < Padding; i++)

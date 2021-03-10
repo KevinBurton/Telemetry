@@ -8,16 +8,11 @@ namespace Simulator.Common.Models
 {
     public class Satelite
     {
-        public uint SerialNumber { get; set; }
-        public byte MessageType { get; set; }
-        public uint TimeStamp { get; set; }
-        public byte BatteryVoltage { get; set; }
-        public byte FaultCodes { get; set; }
-        public uint[] Measurements { get; set; }
+        SateliteCommon Common { get; }
+        List<SateliteItem> Items { get; }
         public uint CRC { get; set; }
         public Satelite()
         {
-            Measurements = new uint[5];
         }
     }
 }

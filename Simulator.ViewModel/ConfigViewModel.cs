@@ -1,60 +1,58 @@
 ﻿using Simulator.Common.DataProviders;
 using Simulator.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simulator.ViewModel
 {
     public class ConfigViewModel : ViewModelBase
     {
         private readonly Config _config;
-        private readonly IConfigDataProvider _configDataProvider;
-        public ConfigViewModel(Config config, IConfigDataProvider configDataProvider)
+        private readonly IConfigCommonDataProvider _configCommonDataProvider;
+        public ConfigViewModel(Config config, IConfigCommonDataProvider configCommonDataProvider)
         {
             _config = config;
-            _configDataProvider = configDataProvider;
+            _configCommonDataProvider = configCommonDataProvider;
         }
         public uint SerialNumber
         {
-            get => _config.SerialNumber;
+            get => _config.Common.SerialNumber;
             set
             {
-                if (_config.SerialNumber != value)
+                if (_config.Common.SerialNumber != value)
                 {
-                    _config.SerialNumber = value;
+                    _config.Common.SerialNumber = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public byte MessageType
         {
-            get => _config.MessageType;
+            get => _config.Common.MessageType;
             set
             {
-                if (_config.MessageType != value)
+                if (_config.Common.MessageType != value)
                 {
-                    _config.MessageType = value;
+                    _config.Common.MessageType = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }
         public uint EffectiveTimeStamp
         {
-            get => _config.EffectiveTimeStamp;
+            get => _config.Common.EffectiveTimeStamp;
             set
             {
-                if (_config.EffectiveTimeStamp != value)
+                if (_config.Common.EffectiveTimeStamp != value)
                 {
-                    _config.EffectiveTimeStamp = value;
+                    _config.Common.EffectiveTimeStamp = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
+        }
+        public ConfigItem AddItem()
+        {
+            var item = new ConfigItem();
+            _config.Items.Add(item);
+            return item;
         }
     }
 }

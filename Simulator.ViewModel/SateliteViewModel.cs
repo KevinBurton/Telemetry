@@ -10,21 +10,21 @@ namespace Simulator.ViewModel
 {
     public class SateliteViewModel : ViewModelBase
     {
-        private readonly Satelite _satelite;
-        private readonly ISateliteDataProvider _sateliteDataProvider;
-        public SateliteViewModel(Satelite satelite, ISateliteDataProvider sateliteDataProvider)
+        private readonly SateliteCommon _sateliteCommon;
+        private readonly ISateliteCommonDataProvider _sateliteCommonDataProvider;
+        public SateliteViewModel(SateliteCommon sateliteCommon, ISateliteCommonDataProvider sateliteCommonDataProvider)
         {
-            _satelite = satelite;
-            _sateliteDataProvider = sateliteDataProvider;
+            _sateliteCommon = sateliteCommon;
+            _sateliteCommonDataProvider = sateliteCommonDataProvider;
         }
         public uint SerialNumber
         {
-            get => _satelite.SerialNumber;
+            get => _sateliteCommon.SerialNumber;
             set
             {
-                if (_satelite.SerialNumber != value)
+                if (_sateliteCommon.SerialNumber != value)
                 {
-                    _satelite.SerialNumber = value;
+                    _sateliteCommon.SerialNumber = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
@@ -32,12 +32,12 @@ namespace Simulator.ViewModel
         }
         public byte MessageType
         {
-            get => _satelite.MessageType;
+            get => _sateliteCommon.MessageType;
             set
             {
-                if (_satelite.MessageType != value)
+                if (_sateliteCommon.MessageType != value)
                 {
-                    _satelite.MessageType = value;
+                    _sateliteCommon.MessageType = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
@@ -45,12 +45,12 @@ namespace Simulator.ViewModel
         }
         public uint TimeStamp
         {
-            get => _satelite.TimeStamp;
+            get => _sateliteCommon.TimeStamp;
             set
             {
-                if (_satelite.TimeStamp != value)
+                if (_sateliteCommon.TimeStamp != value)
                 {
-                    _satelite.TimeStamp = value;
+                    _sateliteCommon.TimeStamp = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
@@ -58,12 +58,12 @@ namespace Simulator.ViewModel
         }
         public byte BatteryVoltage
         {
-            get => _satelite.BatteryVoltage;
+            get => _sateliteCommon.BatteryVoltage;
             set
             {
-                if (_satelite.BatteryVoltage != value)
+                if (_sateliteCommon.BatteryVoltage != value)
                 {
-                    _satelite.BatteryVoltage = value;
+                    _sateliteCommon.BatteryVoltage = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
@@ -71,25 +71,12 @@ namespace Simulator.ViewModel
         }
         public byte FaultCodes
         {
-            get => _satelite.FaultCodes;
+            get => _sateliteCommon.FaultCodes;
             set
             {
-                if (_satelite.FaultCodes != value)
+                if (_sateliteCommon.FaultCodes != value)
                 {
-                    _satelite.FaultCodes = value;
-                    RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
-                }
-            }
-        }
-        public uint[] Measurements
-        {
-            get => _satelite.Measurements;
-            set
-            {
-                if (_satelite.Measurements != value)
-                {
-                    _satelite.Measurements = value;
+                    _sateliteCommon.FaultCodes = value;
                     RaisePropertyChanged();
                     //RaisePropertyChanged(nameof(CanSave));
                 }
