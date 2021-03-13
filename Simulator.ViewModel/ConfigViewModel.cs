@@ -5,12 +5,9 @@ namespace Simulator.ViewModel
 {
     public class ConfigViewModel : ViewModelBase
     {
-        private readonly Config _config;
-        private readonly IConfigCommonDataProvider _configCommonDataProvider;
-        public ConfigViewModel(Config config, IConfigCommonDataProvider configCommonDataProvider)
+        Config _config = new Config();
+        public ConfigViewModel()
         {
-            _config = config;
-            _configCommonDataProvider = configCommonDataProvider;
         }
         public uint SerialNumber
         {

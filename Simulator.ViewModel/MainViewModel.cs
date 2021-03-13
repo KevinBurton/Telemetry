@@ -8,10 +8,14 @@ namespace Simulator.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public ConfigViewModel ConfigCommonViewModel { get; }
+        public MainViewModel()
+        {
+            LTEViewModel = new LTEViewModel(new Common.Models.LTECommon());
+            SateliteViewModel = new SateliteViewModel(new Common.Models.SateliteCommon());
+        }
+        public SateliteViewModel SateliteViewModel { get; }
         public ConfigViewModel ConfigViewModel { get; }
         public LogViewModel LogViewModel { get; }
         public LTEViewModel LTEViewModel { get; }
-        public SateliteViewModel SateliteViewModel { get; }
     }
 }

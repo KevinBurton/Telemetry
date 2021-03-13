@@ -6,11 +6,9 @@ namespace Simulator.ViewModel
     public class LTEViewModel : ViewModelBase
     {
         private readonly LTECommon _lteCommon;
-        private readonly ILTECommonDataProvider _lteCommonDataProvider;
-        public LTEViewModel(LTECommon lteCommon, ILTECommonDataProvider lteCommonDataProvider)
+        public LTEViewModel(LTECommon lteCommon)
         {
             _lteCommon = lteCommon;
-            _lteCommonDataProvider = lteCommonDataProvider;
         }
         public uint SerialNumber
         {
@@ -21,7 +19,6 @@ namespace Simulator.ViewModel
                 {
                     _lteCommon.SerialNumber = value;
                     RaisePropertyChanged();
-                    //RaisePropertyChanged(nameof(CanSave));
                 }
             }
         }

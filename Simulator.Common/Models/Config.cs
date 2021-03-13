@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Simulator.Common.Models
 {
     public class Config
     {
-        public ConfigCommon Common { get; set; }
+        public ConfigCommon Common { get; } = new();
         public List<ConfigItem> Items { get; } = new();
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }

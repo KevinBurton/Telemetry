@@ -1,14 +1,20 @@
-﻿using Simulator.Common.DataProviders;
-using Simulator.Common.Models;
+﻿using Simulator.Common.Models;
+using Simulator.ViewModel.Command;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Simulator.ViewModel
+namespace Simulator.Controls
 {
     public class LogViewModel : ViewModelBase
     {
-        private readonly Log _log;
+        readonly Log _log;
         public LogViewModel(Log log)
         {
             _log = log;
+            AddCommand = new DelegateCommand(Add);
         }
         public uint SerialNumber
         {
@@ -19,7 +25,15 @@ namespace Simulator.ViewModel
                 {
                     _log.Common.SerialNumber = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged("SerialNumberBitString");
                 }
+            }
+        }
+        public string SerialNumberBitString
+        {
+            get
+            {
+                return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
             }
         }
         public byte MessageType
@@ -31,7 +45,15 @@ namespace Simulator.ViewModel
                 {
                     _log.Common.MessageType = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged("MessageTypeBitString");
                 }
+            }
+        }
+        public string MessageTypeBitString
+        {
+            get
+            {
+                return Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
             }
         }
         public uint TimeStamp
@@ -43,8 +65,20 @@ namespace Simulator.ViewModel
                 {
                     _log.Common.TimeStamp = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged("TimeStampBitString");
                 }
             }
+        }
+        public string TimeStampBitString
+        {
+            get
+            {
+                return Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
+            }
+        }
+        public DelegateCommand AddCommand { get; }
+        public void Add()
+        {
         }
         public string Message
         {
@@ -55,6 +89,7 @@ namespace Simulator.ViewModel
                 {
                     _log.Message = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged("MessageBitString");
                 }
             }
         }

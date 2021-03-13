@@ -11,11 +11,9 @@ namespace Simulator.ViewModel
     public class SateliteViewModel : ViewModelBase
     {
         private readonly SateliteCommon _sateliteCommon;
-        private readonly ISateliteCommonDataProvider _sateliteCommonDataProvider;
-        public SateliteViewModel(SateliteCommon sateliteCommon, ISateliteCommonDataProvider sateliteCommonDataProvider)
+        public SateliteViewModel(SateliteCommon sateliteCommon)
         {
             _sateliteCommon = sateliteCommon;
-            _sateliteCommonDataProvider = sateliteCommonDataProvider;
         }
         public uint SerialNumber
         {

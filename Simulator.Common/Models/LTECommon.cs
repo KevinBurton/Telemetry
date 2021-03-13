@@ -11,7 +11,7 @@ namespace Simulator.Common.Models
         public uint SerialNumber { get; set; }
         public byte MessageType { get; set; }
         public uint TimeStamp { get; set; }
-        public byte[] GNSS { get; set; }
+        public string GNSS { get; set; }
         public byte FWMajorRev { get; set; }
         public byte FWMinorRev { get; set; }
         public byte FWBuild { get; set; }

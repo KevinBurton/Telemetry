@@ -9,8 +9,8 @@ namespace Simulator.Common.Models
 {
     public class LTE
     {
-        public LTECommon Common { get; }
-        public List<LTEItem> Items { get; }
+        public LTECommon Common { get; } = new();
+        public List<LTEItem> Items { get; } = new();
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
         public int BlockLength { get; protected set; }

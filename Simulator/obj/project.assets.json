@@ -15,19 +15,6 @@
           "bin/placeholder/Simulator.Common.dll": {}
         }
       },
-      "Simulator.ViewModel/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Simulator.Common": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Simulator.ViewModel.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Simulator.ViewModel.dll": {}
-        }
-      },
       "Utility/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -46,11 +33,6 @@
       "path": "../Simulator.Common/Simulator.Common.csproj",
       "msbuildProject": "../Simulator.Common/Simulator.Common.csproj"
     },
-    "Simulator.ViewModel/1.0.0": {
-      "type": "project",
-      "path": "../Simulator.ViewModel/Simulator.ViewModel.csproj",
-      "msbuildProject": "../Simulator.ViewModel/Simulator.ViewModel.csproj"
-    },
     "Utility/1.0.0": {
       "type": "project",
       "path": "../Utility/Utility.csproj",
@@ -59,7 +41,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
-      "Simulator.ViewModel >= 1.0.0",
+      "Simulator.Common >= 1.0.0",
       "Utility >= 1.0.0"
     ]
   },
@@ -94,8 +76,8 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.ViewModel\\Simulator.ViewModel.csproj": {
-              "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.ViewModel\\Simulator.ViewModel.csproj"
+            "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.Common\\Simulator.Common.csproj": {
+              "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.Common\\Simulator.Common.csproj"
             },
             "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Utility\\Utility.csproj": {
               "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Utility\\Utility.csproj"
@@ -130,7 +112,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

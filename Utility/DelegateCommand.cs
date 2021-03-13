@@ -1,0 +1,37 @@
+﻿using System;
+using System.Windows.Input;
+
+namespace Simulator.ViewModel.Command
+{
+  // https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.platformui.delegatecommand?view=visualstudiosdk-2019
+  public class DelegateCommand : ICommand
+  {
+    private readonly Action _execute;
+    private readonly Func<bool> _canExecute;
+
+    public DelegateCommand(Action execute, Func<bool> canExecute = null)
+    {
+      _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+      _canExecute = canExecute;
+    }
+
+    public event EventHandler CanExecuteChanged;
+
+    public void RaiseCanExecuteChanged()
+    {
+      CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public bool CanExecute(object parameter)
+    {
+      return _canExecute == null
+        ? true
+        : _canExecute();
+    }
+
+    public void Execute(object parameter)
+    {
+      _execute();
+    }
+  }
+}

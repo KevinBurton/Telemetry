@@ -1,5 +1,4 @@
-﻿using Simulator.ViewModel;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Simulator
 {
@@ -11,7 +10,7 @@ namespace Simulator
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

@@ -8,13 +8,13 @@ namespace Simulator.Common.Models
 {
     public class Log
     {
-        public LogCommon Common { get; }
+        public LogCommon Common { get; } = new();
         public string Message { get; set; }
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
         public int BlockLength { get; protected set; }
 
-        public Log(string logMessage)
+        public Log()
         {
         }
         public void Initialize()

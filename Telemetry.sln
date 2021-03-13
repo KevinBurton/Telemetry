@@ -13,13 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "Simulator\Simu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utility\Utility.csproj", "{7254A22D-4936-4368-AE42-C082768A93AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.ViewModel", "Simulator.ViewModel\Simulator.ViewModel.csproj", "{507ABC2E-7928-4DE7-8C2A-ADBD99A6F46C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.Common", "Simulator.Common\Simulator.Common.csproj", "{D7354734-6E47-4AA9-9CA5-8C544488C8AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.DataAccess", "Simulator.Data\Simulator.DataAccess.csproj", "{05F22960-09FB-41B5-AD1C-D3E2B8DE312E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialCommunication", "SerialCommunication\SerialCommunication.csproj", "{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialCommunication", "SerialCommunication\SerialCommunication.csproj", "{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{7254A22D-4936-4368-AE42-C082768A93AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7254A22D-4936-4368-AE42-C082768A93AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7254A22D-4936-4368-AE42-C082768A93AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{507ABC2E-7928-4DE7-8C2A-ADBD99A6F46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{507ABC2E-7928-4DE7-8C2A-ADBD99A6F46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{507ABC2E-7928-4DE7-8C2A-ADBD99A6F46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{507ABC2E-7928-4DE7-8C2A-ADBD99A6F46C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7354734-6E47-4AA9-9CA5-8C544488C8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7354734-6E47-4AA9-9CA5-8C544488C8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7354734-6E47-4AA9-9CA5-8C544488C8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
