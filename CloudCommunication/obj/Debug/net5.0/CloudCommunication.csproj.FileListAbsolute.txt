@@ -1,0 +1,11 @@
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\bin\Debug\net5.0\CloudCommunication.deps.json
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\bin\Debug\net5.0\CloudCommunication.dll
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\bin\Debug\net5.0\ref\CloudCommunication.dll
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\bin\Debug\net5.0\CloudCommunication.pdb
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.AssemblyInfoInputs.cache
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.AssemblyInfo.cs
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.csproj.CoreCompileInputs.cache
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.dll
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\ref\CloudCommunication.dll
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.pdb

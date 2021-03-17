@@ -1,11 +1,6 @@
 ﻿using Simulator.Common.Models;
 using Simulator.Controls;
 using Simulator.ViewModel.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simulator
 {
@@ -17,6 +12,7 @@ namespace Simulator
             SateliteViewModel = new SateliteViewModel(sateliteModel);
             LogViewModel = new LogViewModel(logModel);
             ConfigViewModel = new ConfigViewModel(configModel);
+
             SendCommand = new DelegateCommand(Send);
         }
 
@@ -32,6 +28,10 @@ namespace Simulator
         public DelegateCommand SendCommand { get; }
         public void Send()
         {
+            lteModel.Initialize();
+            sateliteModel.Initialize();
+
+            System.Diagnostics.Debug.WriteLine("Sending");
         }
     }
 }

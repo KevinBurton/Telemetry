@@ -10,7 +10,7 @@ namespace Simulator.Common.Models
     public class LTE
     {
         public LTECommon Common { get; } = new();
-        public List<LTEItem> Items { get; } = new();
+        public List<LTEMeasurementItem> Items { get; } = new();
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
         public int BlockLength { get; protected set; }
@@ -34,78 +34,77 @@ namespace Simulator.Common.Models
         private void AddCrc()
         {
             var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(0, initialString.Length - 4));
+            var message = ConvertToByteArray(initialString.Substring(4));
             CRC = Crc32.Compute(message);
             BitString = BuildBitString();
             //var splitString = new string(SplitString(BitString).ToArray());
             Block = ConvertToByteArray(BitString);
         }
-        private IEnumerable<char> SplitString(string input)
-        {
-            for (int i = 0; i < input.Length; i++)
-            {
-                if(i % 4 == 0)
-                {
-                    yield return '\r';
-                    yield return '\n';
-                }
-                yield return input[i];
-            }
-        }
         private string BuildBitString()
         {
             var result = "";
-            result += Convert.ToString(Common.SerialNumber & 0xFFFFFF).PadLeft(24, '0');
-            result += Convert.ToString(Common.MessageType).PadLeft(8, '0');
+            result += Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
+            result += Convert.ToString(Common.MessageType, 2).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(Common.TimeStamp & 0xFFFFFF).PadLeft(24, '0');
-            for (int i = 0; i < 8; i++)
+            result += Convert.ToString((uint)(Common.TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
+
+            var pad = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+            if (Common.GNSS != null)
             {
-                if (i == 0)
+                var values = Encoding.ASCII.GetBytes(Common.GNSS);
+                for (int i = 0; i < values.Length && i < pad.Length; i++)
                 {
-                    //result += "\n";
+                    pad[i] = values[i];
                 }
-                result += Convert.ToString(Common.GNSS[i]).PadLeft(8, '0');
             }
-            result += Convert.ToString(Common.FWMajorRev).PadLeft(8, '0');
+            result += Convert.ToString((byte)(pad[0] & 0xFFFF), 2).PadLeft(8, '0');
+            result += Convert.ToString((byte)(pad[1] & 0xFFFF), 2).PadLeft(8, '0') +
+                      Convert.ToString((byte)(pad[2] & 0xFFFF), 2).PadLeft(8, '0') +
+                      Convert.ToString((byte)(pad[3] & 0xFFFF), 2).PadLeft(8, '0') +
+                      Convert.ToString((byte)(pad[4] & 0xFFFF), 2).PadLeft(8, '0');
+            result += Convert.ToString((byte)(pad[5] & 0xFFFF), 2).PadLeft(8, '0') +
+                      Convert.ToString((byte)(pad[6] & 0xFFFF), 2).PadLeft(8, '0') +
+                      Convert.ToString((byte)(pad[7] & 0xFFFF), 2).PadLeft(8, '0');
+
+            result += Convert.ToString(Common.FWMajorRev, 2).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(Common.FWMinorRev).PadLeft(8, '0');
-            result += Convert.ToString(Common.FWBuild).PadLeft(8, '0');
-            result += Convert.ToString(Common.ModemFWMajor).PadLeft(8, '0');
-            result += Convert.ToString(Common.ModemFWMinor).PadLeft(8, '0');
+            result += Convert.ToString(Common.FWMinorRev, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.FWBuild, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWMajor, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWMinor, 2).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(Common.ModemFWBuild).PadLeft(8, '0');
-            result += Convert.ToString(Common.LTEConnectionFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(Common.UnloadsFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(Common.GetMailboxFailureStatus).PadLeft(8, '0');
+            result += Convert.ToString(Common.ModemFWBuild, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.LTEConnectionFailureStatus, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.UnloadsFailureStatus, 2).PadLeft(8, '0');
+            result += Convert.ToString(Common.GetMailboxFailureStatus, 2).PadLeft(8, '0');
             //result += "\n";
-            result += Convert.ToString(Common.GetFirmwareFailureStatus).PadLeft(8, '0');
-            result += Convert.ToString(Common.BatteryVoltage & 0xFFF).PadLeft(12, '0');
-            result += Convert.ToString(Common.RMSModemCurrent & 0xFFF).PadLeft(12, '0');
+            result += Convert.ToString(Common.GetFirmwareFailureStatus, 2).PadLeft(8, '0');
+            result += Convert.ToString((ushort)(Common.BatteryVoltage & 0xFFF), 2).PadLeft(12, '0');
+            result += Convert.ToString((ushort)(Common.RMSModemCurrent & 0xFFF), 2).PadLeft(12, '0');
             //result += "\n";
-            result += Convert.ToString(Common.PeakModemCurrent & 0xFFF).PadLeft(12, '0');
-            result += Convert.ToString(Common.TSMFW & 0x3).PadLeft(2, '0');
-            result += Convert.ToString(Common.MODFW & 0x3).PadLeft(2, '0');
-            result += Convert.ToString(Common.FaultCodes).PadLeft(8, '0');
-            result += Convert.ToString(0x0).PadLeft(8, '0');
+            result += Convert.ToString((ushort)(Common.PeakModemCurrent & 0xFFF), 2).PadLeft(12, '0');
+            result += Convert.ToString((byte)(Common.TSMFW & 0x3), 2).PadLeft(2, '0');
+            result += Convert.ToString((byte)(Common.MODFW & 0x3), 2).PadLeft(2, '0');
+            result += Convert.ToString(Common.FaultCodes, 2).PadLeft(8, '0');
+            result += Convert.ToString(0x0, 2).PadLeft(8, '0');
             //result += "\n";
             for (int i = 0; i < Items.Count; i++)
             {
-                result += Convert.ToString(Items[i].SAT & 0x1);
-                result += Convert.ToString(Items[i].Measurement & 0x7FFFFF).PadLeft(23, '0');
-                result += Convert.ToString(Items[i].Gain & 0x7).PadLeft(3, '0');
-                result += Convert.ToString(Items[i].Type & 0x1F).PadLeft(5, '0');
+                result += Convert.ToString((byte)(Items[i].SAT & 0x1), 2).PadLeft(1, '0');
+                result += Convert.ToString((uint)(Items[i].Measurement & 0x7FFFFF), 2).PadLeft(23, '0');
+                result += Convert.ToString((byte)(Items[i].Gain & 0x7), 2).PadLeft(3, '0');
+                result += Convert.ToString((byte)(Items[i].Type & 0x1F), 2).PadLeft(5, '0');
                 //result += "\n";
             }
             for (int i = 0; i < Padding; i++)
             {
-                result += Convert.ToString((byte)0x0).PadLeft(8, '0');
+                result += Convert.ToString((byte)0x0, 2).PadLeft(8, '0');
                 if ((i + 1) % 4 == 0)
                 {
                     //result += "\n";
                 }
             }
-            result += Convert.ToString(CRC).PadLeft(32, '0');
+            result += Convert.ToString(CRC, 2).PadLeft(32, '0');
             return result;
         }
         private byte[] ConvertToByteArray(string inputBitString)
