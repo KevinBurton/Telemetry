@@ -1,6 +1,4 @@
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.csprojAssemblyReference.cache
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigItemInputView.g.cs
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigItemView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\HeaderControl.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogView.g.cs
@@ -29,8 +27,6 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulat
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.Common.pdb
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.pdb
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigItemInputView.baml
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigItemView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\HeaderControl.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogView.baml
@@ -54,3 +50,7 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogMessageView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogCommonView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogMessageView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigCommonView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigDetailView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigCommonView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigDetailView.g.cs

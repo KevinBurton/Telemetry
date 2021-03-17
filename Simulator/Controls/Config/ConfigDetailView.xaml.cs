@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Simulator.Controls
 {
     /// <summary>
-    /// Interaction logic for ConfigItemInputView.xaml
+    /// Interaction logic for ConfigDetailView.xaml
     /// </summary>
-    public partial class ConfigItemInputView : UserControl
+    public partial class ConfigDetailView : UserControl
     {
-        public ConfigItemInputView()
+        public ConfigDetailView()
         {
             InitializeComponent();
         }

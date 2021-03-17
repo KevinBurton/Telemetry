@@ -9,3 +9,4 @@ C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudC
 C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.dll
 C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\ref\CloudCommunication.dll
 C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.pdb
+C:\Users\Kevin\source\repos\Telemetry\CloudCommunication\obj\Debug\net5.0\CloudCommunication.csprojAssemblyReference.cache
