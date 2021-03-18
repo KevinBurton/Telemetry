@@ -23,7 +23,7 @@ namespace Simulator.Controls
                 {
                     _configItem.Len = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("LenTypeBitString");
+                    RaisePropertyChanged("LenBitString");
                 }
             }
         }
@@ -34,7 +34,7 @@ namespace Simulator.Controls
                 return Convert.ToString((byte)(Len & 0xFFFF), 2).PadLeft(8, '0');
             }
         }
-        public byte MajorType
+        public byte Major
         {
             get => _configItem.MajorType;
             set
@@ -43,18 +43,18 @@ namespace Simulator.Controls
                 {
                     _configItem.MajorType = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("MajorTypeBitString");
+                    RaisePropertyChanged("MajorBitString");
                 }
             }
         }
-        public string MajorTypeBitString
+        public string MajorBitString
         {
             get
             {
-                return Convert.ToString((byte)(MajorType & 0xFFFF), 2).PadLeft(8, '0');
+                return Convert.ToString((byte)(Major & 0xFFFF), 2).PadLeft(8, '0');
             }
         }
-        public byte MinorType
+        public byte Minor
         {
             get => _configItem.MinorType;
             set
@@ -63,15 +63,15 @@ namespace Simulator.Controls
                 {
                     _configItem.MinorType = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("MinorTypeBitString");
+                    RaisePropertyChanged("MinorBitString");
                 }
             }
         }
-        public string MinorTypeBitString
+        public string MinorBitString
         {
             get
             {
-                return Convert.ToString((byte)(MinorType & 0xFFFF), 2).PadLeft(8, '0');
+                return Convert.ToString((byte)(Minor & 0xFFFF), 2).PadLeft(8, '0');
             }
         }
     }

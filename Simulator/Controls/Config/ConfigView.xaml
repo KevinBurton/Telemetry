@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Simulator.Controls"
+             xmlns:controls="clr-namespace:Simulator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,126 +11,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
-        </Grid.ColumnDefinitions>
         <!-- MainArea -->
         <!-- Common -->
-        <FlowDocumentScrollViewer Name="configCommonDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- Serial Number -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Message Type -->
-                    <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <LineBreak/>
-                    <!-- Effective Time Stamp -->
-                    <Run Background="Green" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Reserved -->
-                    <Run Background="Black" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>Serial Number</TextBlock>
-                <TextBox
-                   Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Message Type</TextBlock>
-                <TextBox 
-                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Effective Time Stamp</TextBlock>
-                <TextBox 
-                   Text="{Binding EffectiveTimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </ScrollViewer>
-        <!-- Config -->
-        <FlowDocumentScrollViewer Grid.Row="1" Name="configDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- Len -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Major Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Minor Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Undefined -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        ????????
-                    </Run>
-                    <LineBreak/>
-                    <!-- Len -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Major Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Minor Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Undefined -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        ????????
-                    </Run>
-                    <LineBreak/>
-                    <!-- Len -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Major Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Minor Type -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <!-- Undefined -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        ????????
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>Config Items</TextBlock>
-                <ListView
-                ItemsSource="{Binding ConfigItems,Mode=OneWay}"
-                SelectedItem="{Binding SelectedConfigItem,Mode=TwoWay}"
-                DisplayMemberPath="Len"/>
-                <TextBlock>Length</TextBlock>
-                <TextBox
-                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Major Type</TextBlock>
-                <TextBox
-                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Minor Type</TextBlock>
-                <TextBox
-                   Text="{Binding ConfigViewModel.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Content="Add" Background="LightBlue" Margin="10"
-                      Command="{Binding AddCommand,Mode=OneWay}"
-                      VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-            </StackPanel>
+        <controls:ConfigCommonView DataContext="{Binding ConfigCommonViewModel}"/>
+        <!-- Measurements -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+            <controls:ConfigDetailView DataContext="{Binding ConfigDetailViewModel}"/>
         </ScrollViewer>
     </Grid>
-
 </UserControl>
