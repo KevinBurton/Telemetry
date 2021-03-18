@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Simulator.Controls"
+             xmlns:controls="clr-namespace:Simulator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,170 +11,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
-        </Grid.ColumnDefinitions>
         <!-- MainArea -->
         <!-- Common -->
-        <FlowDocumentScrollViewer Name="sateliteCommonDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- Serial Number -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Message Type -->
-                    <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <LineBreak/>
-                    <!-- Time Stamp -->
-                    <Run Background="Green" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Battery Voltage -->
-                    <Run Background="LightBlue" FontFamily="Courier New" FontSize="28">
-                        0123
-                    </Run>
-                    <!-- Fault Codes -->
-                    <Run Background="Pink" FontFamily="Courier New" FontSize="28">
-                        0123
-                    </Run>
-                    <LineBreak/>
-                    <!-- Fault Codes -->
-                    <Run Background="Pink" FontFamily="Courier New" FontSize="28">
-                        0123
-                    </Run>
-                    <!-- Reserved -->
-                    <Run Background="Black" FontFamily="Courier New" FontSize="28">
-                        01234567890123456789012345678
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>Serial Number</TextBlock>
-                <TextBox
-                   Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Message Type</TextBlock>
-                <TextBox 
-                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Time Stamp</TextBlock>
-                <TextBox 
-                   Text="{Binding TimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Fault Codes</TextBlock>
-                <TextBox 
-                   Text="{Binding FaultCodes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </ScrollViewer>
+        <controls:SateliteCommonView DataContext="{Binding SateliteCommonViewModel}"/>
         <!-- Measurements -->
-        <FlowDocumentScrollViewer Grid.Row="1" Name="sateliteDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- SAT -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0
-                    </Run>
-                    <!-- Measurement -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123
-                    </Run>
-                    <!-- Gain -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012
-                    </Run>
-                    <!-- Type -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        01234
-                    </Run>
-                    <LineBreak/>
-                    <!-- SAT -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0
-                    </Run>
-                    <!-- Measurement -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123
-                    </Run>
-                    <!-- Gain -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012
-                    </Run>
-                    <!-- Type -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        01234
-                    </Run>
-                    <LineBreak/>
-                    <!-- SAT -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0
-                    </Run>
-                    <!-- Measurement -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123
-                    </Run>
-                    <!-- Gain -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012
-                    </Run>
-                    <!-- Type -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        01234
-                    </Run>
-                    <LineBreak/>
-                    <!-- SAT -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0
-                    </Run>
-                    <!-- Measurement -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123
-                    </Run>
-                    <!-- Gain -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012
-                    </Run>
-                    <!-- Type -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        01234
-                    </Run>
-                    <LineBreak/>
-                    <!-- SAT -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0
-                    </Run>
-                    <!-- Measurement -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123
-                    </Run>
-                    <!-- Gain -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        012
-                    </Run>
-                    <!-- Type -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        01234
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>SAT</TextBlock>
-                <TextBox
-                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Measurement</TextBlock>
-                <TextBox
-                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Gain</TextBlock>
-                <TextBox
-                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Type</TextBlock>
-                <TextBox
-                       Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+            <controls:SateliteMeasurementView DataContext="{Binding SateliteMeasurementViewModel}"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

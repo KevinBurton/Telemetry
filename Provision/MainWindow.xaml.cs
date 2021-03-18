@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Simulator.Controls
+namespace Provision
 {
     /// <summary>
-    /// Interaction logic for SteliteMeasurementView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class SteliteMeasurementView : UserControl
+    public partial class MainWindow : Window
     {
-        public SteliteMeasurementView()
+        public MainWindow()
         {
             InitializeComponent();
         }

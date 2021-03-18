@@ -5,9 +5,7 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTECommonView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEMeasurementView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEView.g.cs
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteMeasurementInputView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteView.g.cs
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SteliteMeasurementView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator_Content.g.cs
@@ -32,9 +30,7 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Log\LogView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEMeasurementView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEView.baml
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteMeasurementInputView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteView.baml
-C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SteliteMeasurementView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\MainWindow.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.g.resources
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.GeneratedMSBuildEditorConfig.editorconfig
@@ -54,3 +50,7 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigDetailView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigCommonView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Config\ConfigDetailView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteCommonView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteCommonView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteMeasurementView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteMeasurementView.baml

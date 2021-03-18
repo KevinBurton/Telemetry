@@ -14,6 +14,7 @@ namespace Simulator
             ConfigViewModel = new ConfigViewModel(configModel);
 
             SendCommand = new DelegateCommand(Send);
+            SendSateliteCommand = new DelegateCommand(SendSatelite);
         }
 
         LTE lteModel = new();
@@ -26,12 +27,19 @@ namespace Simulator
         public LogViewModel LogViewModel { get; }
         public ConfigViewModel ConfigViewModel { get; }
         public DelegateCommand SendCommand { get; }
+        public DelegateCommand SendSateliteCommand { get; }
         public void Send()
         {
             lteModel.Initialize();
             sateliteModel.Initialize();
 
-            System.Diagnostics.Debug.WriteLine("Sending");
+            System.Diagnostics.Debug.WriteLine("Sending LTE");
+        }
+        public void SendSatelite()
+        {
+            sateliteModel.Initialize();
+
+            System.Diagnostics.Debug.WriteLine("Sending Satelite");
         }
     }
 }

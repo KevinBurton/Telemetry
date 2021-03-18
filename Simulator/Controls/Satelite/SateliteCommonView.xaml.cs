@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Simulator.Controls
 {
     /// <summary>
-    /// Interaction logic for SateliteMeasurementInputView.xaml
+    /// Interaction logic for SateliteCommonView.xaml
     /// </summary>
-    public partial class SateliteMeasurementInputView : UserControl
+    public partial class SateliteCommonView : UserControl
     {
-        public SateliteMeasurementInputView()
+        public SateliteCommonView()
         {
             InitializeComponent();
         }
