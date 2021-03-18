@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Simulator.Controls"
+             xmlns:controls="clr-namespace:Simulator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,74 +11,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
-        </Grid.ColumnDefinitions>
         <!-- MainArea -->
         <!-- Common -->
-        <FlowDocumentScrollViewer Name="logCommonDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- Serial Number -->
-                    <Run Background="Orange" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Message Type -->
-                    <Run Background="Yellow" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                    <LineBreak/>
-                    <!-- Time Stamp -->
-                    <Run Background="Green" FontFamily="Courier New" FontSize="28">
-                        0123456789012345678901234
-                    </Run>
-                    <!-- Reserved -->
-                    <Run Background="Black" FontFamily="Courier New" FontSize="28">
-                        01234567
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>Serial Number</TextBlock>
-                <TextBox
-                   Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Message Type</TextBlock>
-                <TextBox 
-                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock>Time Stamp</TextBlock>
-                <TextBox 
-                   Text="{Binding TimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </ScrollViewer>
-        <!-- Logs -->
-        <FlowDocumentScrollViewer Grid.Row="1" Name="logMessageDisplay" Margin="10">
-            <FlowDocument>
-                <Paragraph>
-                    <!-- Log Data (ASCII) -->
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123456789012
-                    </Run>
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123456789012
-                    </Run>
-                    <Run Background="White" FontFamily="Courier New" FontSize="28">
-                        012345678901234567890123456789012
-                    </Run>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
-            <StackPanel>
-                <TextBlock>Log Data</TextBlock>
-                <TextBox 
-                   Text="{Binding SelectedEmployee.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Content="Add" Background="LightBlue" Margin="10"
-                      Command="{Binding AddCommand,Mode=OneWay}"
-                      VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-            </StackPanel>
+        <controls:LogCommonView DataContext="{Binding LogCommonViewModel}"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+            <controls:LogMessageView DataContext="{Binding LogMessageViewModel}"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

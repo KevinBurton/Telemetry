@@ -6,6 +6,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <!-- MainArea -->
+        <!-- Common -->
+        <FlowDocumentScrollViewer Margin="10">
+            <FlowDocument>
+                <Paragraph>
+                    <!-- Serial Number -->
+                    <Run Text="{Binding SerialNumberBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="Orange" FontFamily="Courier New" FontSize="28">
+                    </Run>
+                    <!-- Message Type -->
+                    <Run Text="{Binding MessageTypeBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="Yellow" FontFamily="Courier New" FontSize="28">
+                    </Run>
+                    <LineBreak/>
+                    <!-- Time Stamp -->
+                    <Run Text="{Binding TimeStampBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="Green" FontFamily="Courier New" FontSize="28">
+                    </Run>
+                    <!-- Reserved -->
+                    <Run Background="Black" FontFamily="Courier New" FontSize="28">
+                        00000000
+                    </Run>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
+            <StackPanel>
+                <TextBlock>Serial Number</TextBlock>
+                <TextBox
+                   Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                <TextBlock>Message Type</TextBlock>
+                <TextBox 
+                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                <TextBlock>Time Stamp</TextBlock>
+                <TextBox 
+                   Text="{Binding TimeStamp,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
