@@ -41,8 +41,10 @@
                 <TextBox
                    Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                 <TextBlock>Message Type</TextBlock>
-                <TextBox 
-                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                <ComboBox ItemsSource="{Binding MessageTypeValues}" 
+                                          SelectedValue="{Binding MessageType, Mode=TwoWay}" 
+                                          SelectedValuePath="Value" 
+                                          DisplayMemberPath="Display" />
                 <TextBlock>Time Stamp</TextBlock>
                 <TextBox 
                    Text="{Binding TimeStamp,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>

@@ -1,9 +1,7 @@
 ﻿using Simulator.Common.Models;
+using Simulator.Common.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Simulator.Controls
 {
@@ -12,6 +10,7 @@ namespace Simulator.Controls
         public ConfigCommonViewModel(ConfigCommon common)
         {
             Common = common;
+            MessageTypeValues = MessageTypeDescription.ObservableCollection();
         }
         public uint SerialNumber
         {
@@ -33,6 +32,7 @@ namespace Simulator.Controls
                 return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
             }
         }
+        public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
             get => Common.MessageType;

@@ -1,6 +1,8 @@
 ﻿using Simulator.Common.Models;
+using Simulator.Common.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,11 @@ namespace Simulator.Controls
         public SateliteItemViewModel(SateliteMeasurementItem measurementItem)
         {
             MeasurementItem = measurementItem;
+            GainValues = RangeDescription.ObservableCollection();
+            SaturationValues = SaturationDescription.ObservableCollection();
         }
         public SateliteMeasurementItem MeasurementItem { get; }
+        public ObservableCollection<SaturationDescription> SaturationValues { get; }
         public byte SAT
         {
             get => MeasurementItem.SAT;
@@ -54,6 +59,7 @@ namespace Simulator.Controls
                 return Convert.ToString((uint)(Measurement & 0x7FFFFF), 2).PadLeft(23, '0');
             }
         }
+        public ObservableCollection<RangeDescription> GainValues { get; }
         public byte Gain
         {
             get => MeasurementItem.Gain;

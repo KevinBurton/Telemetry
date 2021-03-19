@@ -1,5 +1,7 @@
 ﻿using Simulator.Common.Models;
+using Simulator.Common.ViewModels;
 using System;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Simulator.Controls
@@ -9,6 +11,7 @@ namespace Simulator.Controls
         public LTECommonViewModel(LTECommon lteCommon)
         {
             LteCommon = lteCommon;
+            MessageTypeValues = MessageTypeDescription.ObservableCollection();
         }
         public LTECommon LteCommon { get; }
         public uint SerialNumber
@@ -31,6 +34,7 @@ namespace Simulator.Controls
                 return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
             }
         }
+        public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
             get => LteCommon.MessageType;

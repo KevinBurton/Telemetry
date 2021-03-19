@@ -41,8 +41,10 @@
                 <TextBox
                    Text="{Binding SerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock>Message Type</TextBlock>
-                <TextBox 
-                   Text="{Binding MessageType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox ItemsSource="{Binding MessageTypeValues}" 
+                                          SelectedValue="{Binding MessageType, Mode=TwoWay}" 
+                                          SelectedValuePath="Value" 
+                                          DisplayMemberPath="Display" />
                 <TextBlock>Effective Time Stamp</TextBlock>
                 <TextBox 
                    Text="{Binding EffectiveTimeStamp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

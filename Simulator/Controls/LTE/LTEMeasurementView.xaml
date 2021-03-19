@@ -44,15 +44,19 @@
                         <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
                             <StackPanel>
                                 <TextBlock>Saturation</TextBlock>
-                                <TextBox
-                   Text="{Binding SAT,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                <ComboBox ItemsSource="{Binding SaturationValues}" 
+                                          SelectedValue="{Binding SAT, Mode=TwoWay}" 
+                                          SelectedValuePath="Value" 
+                                          DisplayMemberPath="Display" />
                                 <TextBlock>Measurement</TextBlock>
                                 <TextBox 
                    Text="{Binding Measurement,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                                 <TextBlock>Gain</TextBlock>
-                                <TextBox 
-                   Text="{Binding Gain,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                                <TextBlock>Type</TextBlock>
+                                <ComboBox ItemsSource="{Binding GainValues}" 
+                                          SelectedValue="{Binding Gain, Mode=TwoWay}" 
+                                          SelectedValuePath="Value" 
+                                          DisplayMemberPath="Display" />
+                               <TextBlock>Type</TextBlock>
                                 <TextBox 
                    Text="{Binding Type,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                             </StackPanel>

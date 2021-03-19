@@ -1,6 +1,8 @@
 ﻿using Simulator.Common.Models;
+using Simulator.Common.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace Simulator.Controls
         public SateliteCommonViewModel(SateliteCommon common)
         {
             Common = common;
+            MessageTypeValues = MessageTypeDescription.ObservableCollection();
         }
         public uint SerialNumber
         {
@@ -34,6 +37,7 @@ namespace Simulator.Controls
                 return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
             }
         }
+        public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
             get => Common.MessageType;
