@@ -9,4 +9,3 @@ C:\Users\Kevin\source\repos\Telemetry\PacketCommunication\obj\Debug\net5.0\Packe
 C:\Users\Kevin\source\repos\Telemetry\PacketCommunication\obj\Debug\net5.0\PacketCommunication.dll
 C:\Users\Kevin\source\repos\Telemetry\PacketCommunication\obj\Debug\net5.0\ref\PacketCommunication.dll
 C:\Users\Kevin\source\repos\Telemetry\PacketCommunication\obj\Debug\net5.0\PacketCommunication.pdb
-C:\Users\Kevin\source\repos\Telemetry\PacketCommunication\obj\Debug\net5.0\PacketCommunication.csprojAssemblyReference.cache

@@ -57,8 +57,10 @@
                                           SelectedValuePath="Value" 
                                           DisplayMemberPath="Display" />
                                <TextBlock>Type</TextBlock>
-                                <TextBox 
-                   Text="{Binding Type,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                <ComboBox ItemsSource="{Binding MeasurementTypeValues}" 
+                                          SelectedValue="{Binding Type, Mode=TwoWay}" 
+                                          SelectedValuePath="Value" 
+                                          DisplayMemberPath="Display" />
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>

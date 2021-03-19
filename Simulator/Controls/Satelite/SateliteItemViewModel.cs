@@ -16,6 +16,7 @@ namespace Simulator.Controls
             MeasurementItem = measurementItem;
             GainValues = RangeDescription.ObservableCollection();
             SaturationValues = SaturationDescription.ObservableCollection();
+            MeasurementTypeValues = MeasurementTypeDescription.ObservableCollection();
         }
         public SateliteMeasurementItem MeasurementItem { get; }
         public ObservableCollection<SaturationDescription> SaturationValues { get; }
@@ -80,6 +81,7 @@ namespace Simulator.Controls
                 return Convert.ToString((byte)(Gain & 0x7), 2).PadLeft(3, '0');
             }
         }
+        public ObservableCollection<MeasurementTypeDescription> MeasurementTypeValues { get; }
         public byte Type
         {
             get => MeasurementItem.Type;

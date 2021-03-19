@@ -9,4 +9,3 @@ C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.csproj.Co
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\ref\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.pdb
-C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.csprojAssemblyReference.cache
