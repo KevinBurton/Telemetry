@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketCommunication", "PacketCommunication\PacketCommunication.csproj", "{23E92620-E1B7-4F92-9ED0-00E45DD0402C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudCommunication", "CloudCommunication\CloudCommunication.csproj", "{911C3A4F-3C02-4986-87FD-2A84C80CEF47}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation", "Validation\Validation.csproj", "{4288AE32-C628-4A03-889E-CBC9972039C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "Simulator\Simulator.csproj", "{95905A4A-E073-4A46-A61D-3E03C1ADE20A}"
@@ -17,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.Common", "Simulat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.DataAccess", "Simulator.Data\Simulator.DataAccess.csproj", "{05F22960-09FB-41B5-AD1C-D3E2B8DE312E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialCommunication", "SerialCommunication\SerialCommunication.csproj", "{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provision", "Provision\Provision.csproj", "{023C407B-04D2-4FFA-BD9A-4D526788B43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provision", "Provision\Provision.csproj", "{023C407B-04D2-4FFA-BD9A-4D526788B43E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{243B53B7-0B92-4C61-9ACC-911CD41A6497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{23E92620-E1B7-4F92-9ED0-00E45DD0402C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E92620-E1B7-4F92-9ED0-00E45DD0402C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E92620-E1B7-4F92-9ED0-00E45DD0402C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{911C3A4F-3C02-4986-87FD-2A84C80CEF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{911C3A4F-3C02-4986-87FD-2A84C80CEF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{911C3A4F-3C02-4986-87FD-2A84C80CEF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{911C3A4F-3C02-4986-87FD-2A84C80CEF47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4288AE32-C628-4A03-889E-CBC9972039C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4288AE32-C628-4A03-889E-CBC9972039C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4288AE32-C628-4A03-889E-CBC9972039C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,14 +49,14 @@ Global
 		{05F22960-09FB-41B5-AD1C-D3E2B8DE312E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05F22960-09FB-41B5-AD1C-D3E2B8DE312E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F22960-09FB-41B5-AD1C-D3E2B8DE312E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FAE08B0-1B12-49BB-A0F9-5B02650BD2A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{023C407B-04D2-4FFA-BD9A-4D526788B43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{023C407B-04D2-4FFA-BD9A-4D526788B43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{023C407B-04D2-4FFA-BD9A-4D526788B43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{023C407B-04D2-4FFA-BD9A-4D526788B43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{243B53B7-0B92-4C61-9ACC-911CD41A6497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{243B53B7-0B92-4C61-9ACC-911CD41A6497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{243B53B7-0B92-4C61-9ACC-911CD41A6497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{243B53B7-0B92-4C61-9ACC-911CD41A6497}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
