@@ -24,18 +24,14 @@
                         <FlowDocumentScrollViewer>
                             <FlowDocument>
                                 <Paragraph>
-                                    <!-- Len -->
+                                    <!-- Length -->
                                     <Run Text="{Binding LengthBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="White" FontFamily="Courier New" FontSize="20">
                                     </Run>
-                                    <!-- Major Type -->
+                                    <!-- Parameter -->
                                     <Run Text="{Binding ParameterBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="White" FontFamily="Courier New" FontSize="20">
                                     </Run>
-                                    <!-- Minor Type -->
+                                    <!-- Payload -->
                                     <Run Text="{Binding PayloadBitString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Background="White" FontFamily="Courier New" FontSize="20">
-                                    </Run>
-                                    <!-- Undefined -->
-                                    <Run Background="Black" FontFamily="Courier New" FontSize="20">
-                                        00000000
                                     </Run>
                                 </Paragraph>
                             </FlowDocument>
@@ -43,8 +39,7 @@
                         <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" Margin="10">
                             <StackPanel>
                                 <TextBlock>Length</TextBlock>
-                                <TextBox
-                   Text="{Binding Length,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                <TextBlock Text="{Binding Length,Mode=TwoWay}"/>
                                 <TextBlock>Major Type</TextBlock>
                                 <TextBox
                    Text="{Binding Parameter,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>

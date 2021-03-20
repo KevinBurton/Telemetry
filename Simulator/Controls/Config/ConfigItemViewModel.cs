@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility;
 
 namespace Simulator.Controls
 {
@@ -16,7 +17,7 @@ namespace Simulator.Controls
         }
         public byte Length
         {
-            get => _configItem.Length;
+            get => (byte)(StringManipulation.StringToByteArray(Payload).Count() + 2);
             set
             {
                 if (_configItem.Length != value)
@@ -44,7 +45,7 @@ namespace Simulator.Controls
         }
         public string ParameterBitString => Convert.ToString((byte)(Parameter & 0xFF), 2).PadLeft(8, '0');
 
-        public byte Payload
+        public string Payload
         {
             get => _configItem.Payload;
             set
@@ -53,10 +54,17 @@ namespace Simulator.Controls
                 {
                     _configItem.Payload = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged("Length");
                     RaisePropertyChanged("PayloadBitString");
                 }
             }
         }
-        public string PayloadBitString => Convert.ToString((byte)(Payload & 0xFF), 2).PadLeft(8, '0');
+        public string PayloadBitString
+        {
+            get
+            {
+                return StringManipulation.StringToByteArray(Payload).Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
+            }
+        }
     }
 }
