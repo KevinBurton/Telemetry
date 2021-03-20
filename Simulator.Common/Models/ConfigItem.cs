@@ -1,8 +1,8 @@
 ﻿namespace Simulator.Common.Models
 {
     public class ConfigItem
-    {   public byte Len { get; set; }
-        public byte MajorType { get; set; }
-        public byte MinorType { get; set; }
+    {   public byte Length { get; set; }
+        public byte Parameter { get; set; }
+        public byte Payload { get; set; }
     }
 }

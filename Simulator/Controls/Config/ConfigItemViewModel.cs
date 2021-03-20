@@ -14,65 +14,49 @@ namespace Simulator.Controls
         {
             _configItem = configItem;
         }
-        public byte Len
+        public byte Length
         {
-            get => _configItem.Len;
+            get => _configItem.Length;
             set
             {
-                if (_configItem.Len != value)
+                if (_configItem.Length != value)
                 {
-                    _configItem.Len = value;
+                    _configItem.Length = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("LenBitString");
+                    RaisePropertyChanged("LengthBitString");
                 }
             }
         }
-        public string LenBitString
+        public string LengthBitString => Convert.ToString((byte)(Length & 0xFF), 2).PadLeft(8, '0');
+
+        public byte Parameter
         {
-            get
-            {
-                return Convert.ToString((byte)(Len & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
-        public byte Major
-        {
-            get => _configItem.MajorType;
+            get => _configItem.Parameter;
             set
             {
-                if (_configItem.MajorType != value)
+                if (_configItem.Parameter != value)
                 {
-                    _configItem.MajorType = value;
+                    _configItem.Parameter = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("MajorBitString");
+                    RaisePropertyChanged("ParameterBitString");
                 }
             }
         }
-        public string MajorBitString
+        public string ParameterBitString => Convert.ToString((byte)(Parameter & 0xFF), 2).PadLeft(8, '0');
+
+        public byte Payload
         {
-            get
-            {
-                return Convert.ToString((byte)(Major & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
-        public byte Minor
-        {
-            get => _configItem.MinorType;
+            get => _configItem.Payload;
             set
             {
-                if (_configItem.MinorType != value)
+                if (_configItem.Payload != value)
                 {
-                    _configItem.MinorType = value;
+                    _configItem.Payload = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged("MinorBitString");
+                    RaisePropertyChanged("PayloadBitString");
                 }
             }
         }
-        public string MinorBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(Minor & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string PayloadBitString => Convert.ToString((byte)(Payload & 0xFF), 2).PadLeft(8, '0');
     }
 }

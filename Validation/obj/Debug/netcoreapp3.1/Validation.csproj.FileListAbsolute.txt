@@ -93,3 +93,4 @@ C:\Users\Kevin\source\repos\Telemetry\Validation\obj\Debug\netcoreapp3.1\Validat
 C:\Users\Kevin\source\repos\Telemetry\Validation\obj\Debug\netcoreapp3.1\Validation.dll
 C:\Users\Kevin\source\repos\Telemetry\Validation\obj\Debug\netcoreapp3.1\Validation.pdb
 C:\Users\Kevin\source\repos\Telemetry\Validation\obj\Debug\netcoreapp3.1\Validation.genruntimeconfig.cache
+C:\Users\Kevin\source\repos\Telemetry\Validation\obj\Debug\netcoreapp3.1\Validation.csprojAssemblyReference.cache

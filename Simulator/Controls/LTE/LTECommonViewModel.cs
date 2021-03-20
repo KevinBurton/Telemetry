@@ -27,13 +27,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string SerialNumberBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string SerialNumberBitString => Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
+
         public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
@@ -48,13 +43,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string MessageTypeBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string MessageTypeBitString => Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
+
         public uint TimeStamp
         {
             get => LteCommon.TimeStamp;
@@ -68,13 +58,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string TimeStampBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string TimeStampBitString => Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
+
         public string GNSS
         {
             get => LteCommon.GNSS;
@@ -158,13 +143,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string FWMajorRevBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(FWMajorRev & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string FWMajorRevBitString => Convert.ToString((byte)(FWMajorRev & 0xFF), 2).PadLeft(8, '0');
+
         public byte FWMinorRev
         {
             get => LteCommon.FWMinorRev;
@@ -178,13 +158,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string FWMinorRevBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(FWMinorRev & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string FWMinorRevBitString => Convert.ToString((byte)(FWMinorRev & 0xFF), 2).PadLeft(8, '0');
+
         public byte FWBuild
         {
             get => LteCommon.FWBuild;
@@ -198,13 +173,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string FWBuildBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(FWBuild & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string FWBuildBitString => Convert.ToString((byte)(FWBuild & 0xFF), 2).PadLeft(8, '0');
+
         public byte ModemFWMajor
         {
             get => LteCommon.ModemFWMajor;
@@ -218,13 +188,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string ModemFWMajorBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(ModemFWMajor & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string ModemFWMajorBitString => Convert.ToString((byte)(ModemFWMajor & 0xFF), 2).PadLeft(8, '0');
+
         public byte ModemFWMinor
         {
             get => LteCommon.ModemFWMinor;
@@ -238,13 +203,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string ModemFWMinorBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(ModemFWMinor & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string ModemFWMinorBitString => Convert.ToString((byte)(ModemFWMinor & 0xFF), 2).PadLeft(8, '0');
+
         public byte ModemFWBuild
         {
             get => LteCommon.ModemFWBuild;
@@ -258,13 +218,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string ModemFWBuildBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(ModemFWBuild & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string ModemFWBuildBitString => Convert.ToString((byte)(ModemFWBuild & 0xFF), 2).PadLeft(8, '0');
+
         public byte LTEConnectionFailureStatus
         {
             get => LteCommon.LTEConnectionFailureStatus;
@@ -278,13 +233,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string LTEConnectionFailureStatusBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(LTEConnectionFailureStatus & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string LTEConnectionFailureStatusBitString => Convert.ToString((byte)(LTEConnectionFailureStatus & 0xFF), 2).PadLeft(8, '0');
+
         public byte UploadsFailureStatus
         {
             get => LteCommon.UnloadsFailureStatus;
@@ -298,13 +248,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string UploadsFailureStatusBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(UploadsFailureStatus & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string UploadsFailureStatusBitString => Convert.ToString((byte)(UploadsFailureStatus & 0xFF), 2).PadLeft(8, '0');
+
         public byte GetMailboxFailureStatus
         {
             get => LteCommon.GetMailboxFailureStatus;
@@ -318,13 +263,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string GetMailboxFailureStatusBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(GetMailboxFailureStatus & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string GetMailboxFailureStatusBitString => Convert.ToString((byte)(GetMailboxFailureStatus & 0xFF), 2).PadLeft(8, '0');
+
         public byte GetFirmwareFailureStatus
         {
             get => LteCommon.GetFirmwareFailureStatus;
@@ -338,13 +278,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string GetFirmwareFailureStatusBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(GetFirmwareFailureStatus & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string GetFirmwareFailureStatusBitString => Convert.ToString((byte)(GetFirmwareFailureStatus & 0xFF), 2).PadLeft(8, '0');
+
         public ushort BatteryVoltage
         {
             get => LteCommon.BatteryVoltage;
@@ -358,13 +293,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string BatteryVoltageBitString
-        {
-            get
-            {
-                return Convert.ToString((ushort)(BatteryVoltage & 0x3FFF), 2).PadLeft(12, '0');
-            }
-        }
+        public string BatteryVoltageBitString => Convert.ToString((ushort)(BatteryVoltage & 0x3FFF), 2).PadLeft(12, '0');
+
         public ushort RMSModemCurrent
         {
             get => LteCommon.RMSModemCurrent;
@@ -378,13 +308,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string RMSModemCurrentBitString
-        {
-            get
-            {
-                return Convert.ToString((ushort)(RMSModemCurrent & 0x3FFF), 2).PadLeft(12, '0');
-            }
-        }
+        public string RMSModemCurrentBitString => Convert.ToString((ushort)(RMSModemCurrent & 0x3FFF), 2).PadLeft(12, '0');
+
         public ushort PeakModemCurrent
         {
             get => LteCommon.PeakModemCurrent;
@@ -398,13 +323,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string PeakModemCurrentBitString
-        {
-            get
-            {
-                return Convert.ToString((ushort)(PeakModemCurrent & 0x3FFF), 2).PadLeft(12, '0');
-            }
-        }
+        public string PeakModemCurrentBitString => Convert.ToString((ushort)(PeakModemCurrent & 0x3FFF), 2).PadLeft(12, '0');
+
         public byte TSMFW
         {
             get => LteCommon.TSMFW;
@@ -418,13 +338,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string TSMFWBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(TSMFW & 0x3), 2).PadLeft(2, '0');
-            }
-        }
+        public string TSMFWBitString => Convert.ToString((byte)(TSMFW & 0x3), 2).PadLeft(2, '0');
+
         public byte MODFW
         {
             get => LteCommon.MODFW;
@@ -438,13 +353,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string MODFWBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(MODFW & 0x3), 2).PadLeft(2, '0');
-            }
-        }
+        public string MODFWBitString => Convert.ToString((byte)(MODFW & 0x3), 2).PadLeft(2, '0');
+
         public byte FaultCodes
         {
             get => LteCommon.FaultCodes;
@@ -458,12 +368,6 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string FaultCodesBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(FaultCodes & 0xFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string FaultCodesBitString => Convert.ToString((byte)(FaultCodes & 0xFF), 2).PadLeft(8, '0');
     }
 }

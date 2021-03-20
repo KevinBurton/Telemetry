@@ -4,7 +4,7 @@ using Utility.DamienG.Security.Cryptography;
 
 namespace Simulator.Common.Models
 {
-    public class Satelite
+    public class Satelite : TSMBase
     {
         public SateliteCommon Common { get; } = new();
         public List<SateliteMeasurementItem> Items { get; } = new List<SateliteMeasurementItem>()
@@ -59,23 +59,6 @@ namespace Simulator.Common.Models
             }
             result += Convert.ToString(CRC, 2).PadLeft(32, '0');
             return result;
-        }
-        private byte[] ConvertToByteArray(string inputBitString)
-        {
-            List<byte> byteList = new List<byte>();
-            for (int i = inputBitString.Length - 1; i >= 0; i -= 8)
-            {
-                string byteString = "";
-                for (int j = 0; (i - j) >= 0 && j < 8; j++)
-                {
-                    byteString = inputBitString[i - j] + byteString;
-                }
-                if (byteString != "")
-                {
-                    byteList.Add(Convert.ToByte(byteString, 2));
-                }
-            }
-            return byteList.ToArray();
         }
         public override string ToString()
         {

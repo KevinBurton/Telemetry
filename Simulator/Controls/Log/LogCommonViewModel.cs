@@ -27,13 +27,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string SerialNumberBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string SerialNumberBitString => Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
+
         public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
@@ -48,13 +43,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string MessageTypeBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string MessageTypeBitString => Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
+
         public uint TimeStamp
         {
             get => Common.TimeStamp;
@@ -68,12 +58,6 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string TimeStampBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string TimeStampBitString => Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
     }
 }

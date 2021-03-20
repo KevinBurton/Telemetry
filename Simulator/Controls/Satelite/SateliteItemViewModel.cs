@@ -33,13 +33,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string SATBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(SAT & 0x1), 2).PadLeft(1, '0');
-            }
-        }
+        public string SATBitString => Convert.ToString((byte)(SAT & 0x1), 2).PadLeft(1, '0');
+
         public uint Measurement
         {
             get => MeasurementItem.Measurement;
@@ -53,13 +48,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string MeasurementBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(Measurement & 0x7FFFFF), 2).PadLeft(23, '0');
-            }
-        }
+        public string MeasurementBitString => Convert.ToString((uint)(Measurement & 0x7FFFFF), 2).PadLeft(23, '0');
+
         public ObservableCollection<RangeDescription> GainValues { get; }
         public byte Gain
         {
@@ -74,13 +64,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string GainBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(Gain & 0x7), 2).PadLeft(3, '0');
-            }
-        }
+        public string GainBitString => Convert.ToString((byte)(Gain & 0x7), 2).PadLeft(3, '0');
+
         public ObservableCollection<MeasurementTypeDescription> MeasurementTypeValues { get; }
         public byte Type
         {
@@ -95,12 +80,6 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string TypeBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(Type & 0x1F), 2).PadLeft(5, '0');
-            }
-        }
+        public string TypeBitString => Convert.ToString((byte)(Type & 0x1F), 2).PadLeft(5, '0');
     }
 }

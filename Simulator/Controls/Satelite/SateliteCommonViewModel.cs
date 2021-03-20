@@ -30,13 +30,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string SerialNumberBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string SerialNumberBitString => Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
+
         public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
@@ -51,13 +46,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string MessageTypeBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
-            }
-        }
+        public string MessageTypeBitString => Convert.ToString((byte)(MessageType & 0xFFFF), 2).PadLeft(8, '0');
+
         public uint TimeStamp
         {
             get => Common.TimeStamp;
@@ -71,13 +61,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string TimeStampBitString
-        {
-            get
-            {
-                return Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
-            }
-        }
+        public string TimeStampBitString => Convert.ToString((uint)(TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
+
         public byte BatteryVoltage
         {
             get => Common.BatteryVoltage;
@@ -91,13 +76,8 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string BatteryVoltageBitString
-        {
-            get
-            {
-                return Convert.ToString((byte)(BatteryVoltage & 0xF), 2).PadLeft(4, '0');
-            }
-        }
+        public string BatteryVoltageBitString => Convert.ToString((byte)(BatteryVoltage & 0xF), 2).PadLeft(4, '0');
+
         public byte FaultCodes
         {
             get => Common.FaultCodes;
@@ -112,19 +92,7 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string FaultCodesBitString1
-        {
-            get
-            {
-                return Convert.ToString((byte)((FaultCodes & 0xF0)>>4), 2).PadLeft(4, '0');
-            }
-        }
-        public string FaultCodesBitString2
-        {
-            get
-            {
-                return Convert.ToString((byte)(FaultCodes & 0x0F), 2).PadLeft(4, '0');
-            }
-        }
+        public string FaultCodesBitString1 => Convert.ToString((byte)((FaultCodes & 0xF0) >> 4), 2).PadLeft(4, '0');
+        public string FaultCodesBitString2 => Convert.ToString((byte)(FaultCodes & 0x0F), 2).PadLeft(4, '0');
     }
 }

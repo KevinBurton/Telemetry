@@ -23,10 +23,10 @@ namespace Utility
         /// </summary>
         public UUDecode(string theBase64EncodedString)
         {
-            byte[] theData = Convert.FromBase64String(theBase64EncodedString);
+            var theData = Convert.FromBase64String(theBase64EncodedString);
             using (MemoryStream ms = new MemoryStream(theData))
             {
-                BinaryReader theReader = new BinaryReader(ms);
+                var theReader = new BinaryReader(ms);
                 Decode(theReader);
             }
         }
@@ -34,48 +34,42 @@ namespace Utility
         private void Decode(BinaryReader theReader)
         {
             //Position the reader to get the file size.
-            byte[] headerData = new byte[FIXED_HEADER];
+            var headerData = new byte[FIXED_HEADER];
             headerData = theReader.ReadBytes(headerData.Length);
 
             fileSize = (int)theReader.ReadUInt32();
             decodeNameLength = (int)theReader.ReadUInt32() * 2;
 
-            byte[] fileNameBytes = theReader.ReadBytes(decodeNameLength);
+            var fileNameBytes = theReader.ReadBytes(decodeNameLength);
             //InfoPath uses UTF8 encoding.
-            Encoding enc = Encoding.Unicode;
+            var enc = Encoding.Unicode;
             decodeName = enc.GetString(fileNameBytes, 0, decodeNameLength - 2);
             decoded = theReader.ReadBytes(fileSize);
         }
 
         public void SaveDecoded(string saveLocation)
         {
-            string fullFileName = saveLocation;
-            if (!fullFileName.EndsWith(Path.DirectorySeparatorChar))
-            {
-                fullFileName += Path.DirectorySeparatorChar;
-            }
-
-            fullFileName += decodeName;
+            var fullFileName = Path.Combine(saveLocation, decodeName);
 
             if (File.Exists(fullFileName))
                 File.Delete(fullFileName);
 
-            FileStream fs = new FileStream(fullFileName, FileMode.CreateNew);
-            BinaryWriter bw = new BinaryWriter(fs);
-            bw.Write(decoded);
-
-            bw.Close();
-            fs.Close();
+            FileStream fs = null;
+            BinaryWriter bw = null;
+            try
+            {
+                fs = new FileStream(fullFileName, FileMode.CreateNew);
+                bw = new BinaryWriter(fs);
+                bw.Write(decoded);
+            }
+            finally
+            {               
+                if(bw != null) bw.Close();
+                if(fs != null) fs.Close();
+            }
         }
 
-        public string Filename
-        {
-            get { return decodeName; }
-        }
-
-        public byte[] Decoded
-        {
-            get { return decoded; }
-        }
+        public string Filename => decodeName;
+        public byte[] Decoded => decoded;
     }
 }

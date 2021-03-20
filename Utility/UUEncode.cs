@@ -38,16 +38,16 @@ namespace Utility
                 return base64EncodedFile;
 
             // This memory stream will hold the InfoPath file attachment buffer before Base64 encoding.
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
 
             // Get the file information.
             using (BinaryReader br = new BinaryReader(File.Open(fullyQualifiedFileName, FileMode.Open, FileAccess.Read, FileShare.Read)))
             {
-                string fileName = Path.GetFileName(fullyQualifiedFileName);
+                var fileName = Path.GetFileName(fullyQualifiedFileName);
 
-                uint fileNameLength = (uint)fileName.Length + 1;
+                var fileNameLength = (uint)fileName.Length + 1;
 
-                byte[] fileNameBytes = Encoding.Unicode.GetBytes(fileName);
+                var fileNameBytes = Encoding.Unicode.GetBytes(fileName);
 
                 using (BinaryWriter bw = new BinaryWriter(ms))
                 {
@@ -72,8 +72,8 @@ namespace Utility
                     bw.Write(new byte[] { 0, 0 });
 
                     // Iterate through the file reading data and writing it to the outbuffer.
-                    byte[] data = new byte[64 * 1024];
-                    int bytesRead = 1;
+                    var data = new byte[64 * 1024];
+                    var bytesRead = 1;
 
                     while (bytesRead > 0)
                     {
@@ -84,17 +84,17 @@ namespace Utility
             }
 
             // This memorystream will hold the Base64 encoded InfoPath attachment.
-            MemoryStream msOut = new MemoryStream();
+            var msOut = new MemoryStream();
 
             using (BinaryReader br = new BinaryReader(new MemoryStream(ms.ToArray())))
             {
                 // Create a Base64 transform to do the encoding.
-                ToBase64Transform tf = new ToBase64Transform();
+                var tf = new ToBase64Transform();
 
-                byte[] data = new byte[tf.InputBlockSize];
-                byte[] outData = new byte[tf.OutputBlockSize];
+                var data = new byte[tf.InputBlockSize];
+                var outData = new byte[tf.OutputBlockSize];
 
-                int bytesRead = 1;
+                var bytesRead = 1;
 
                 while (bytesRead > 0)
                 {
