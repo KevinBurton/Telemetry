@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CLI.Args;
 
 namespace CLI
 {
     public interface ICliCommandSend
     {
+        public void Send(string commandName, ICLICommandArgs args);
+        public string Receive();
+
     }
 }

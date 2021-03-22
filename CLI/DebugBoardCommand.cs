@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace CLI
 {
-    public class DebugBoardCommand : ICliCommandSend
+    public class DebugBoardCommand : CommandBase
     {
+        protected override MethodInfo[] Methods { get; set; }
+
+        public DebugBoardCommand()
+        {
+            Methods = typeof(DebugBoardCommand).GetMethods();
+        }
     }
 }

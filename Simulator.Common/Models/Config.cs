@@ -24,7 +24,7 @@ namespace Simulator.Common.Models
             var BlockLength = 12 + Items.Count * 2 + 1;
             BlockLength += Items.Aggregate(0, (a, b) =>
             {
-                return StringManipulation.StringToByteArray(b.Payload).Count() + 2;
+                return b.Payload.StringToByteArray().Count() + 2;
             });
             //Make encryptable area lie on a 16-byte boundary
             Padding = (BlockLength - 8) % 16;
@@ -57,7 +57,7 @@ namespace Simulator.Common.Models
                 {
                     result += Convert.ToString((byte)(Items[i].Length & 0xFF), 2).PadLeft(8, '0');
                     result += Convert.ToString((byte)(Items[i].Parameter & 0xFF), 2).PadLeft(8, '0');
-                    result += StringManipulation.StringToByteArray(Items[i].Payload).Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
+                    result += Items[i].Payload.StringToByteArray().Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
                 }
 
                 // Add byte with length of 0

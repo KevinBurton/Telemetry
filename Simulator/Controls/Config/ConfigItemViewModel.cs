@@ -17,7 +17,7 @@ namespace Simulator.Controls
         }
         public byte Length
         {
-            get => (byte)(StringManipulation.StringToByteArray(Payload).Count() + 2);
+            get => (byte)(Payload.StringToByteArray().Count() + 2);
             set
             {
                 if (_configItem.Length != value)
@@ -59,12 +59,6 @@ namespace Simulator.Controls
                 }
             }
         }
-        public string PayloadBitString
-        {
-            get
-            {
-                return StringManipulation.StringToByteArray(Payload).Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
-            }
-        }
+        public string PayloadBitString => Payload.StringToByteArray().Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
     }
 }
