@@ -28,14 +28,26 @@ namespace Simulator.Controls
             {
                 if (MeasurementItem.SAT != value)
                 {
-                    MeasurementItem.SAT = value;
+                    if(value > 0)
+                    {
+                        MeasurementItem.SAT = 1;
+                        MeasurementItem.Measurement = value;
+                        RaisePropertyChanged("Measurement");
+                        RaisePropertyChanged("MeasurementBitString");
+                    }
+                    else
+                    {
+                        MeasurementItem.SAT = 0;
+                    }
                     RaisePropertyChanged();
                     RaisePropertyChanged("SATBitString");
+                    RaisePropertyChanged("MeasurementEnabled");
                 }
             }
         }
         public string SATBitString => Convert.ToString((byte)(SAT & 0x1), 2).PadLeft(1, '0');
 
+        public bool MeasurementEnabled => SAT == (byte)0;
         public uint Measurement
         {
             get => MeasurementItem.Measurement;

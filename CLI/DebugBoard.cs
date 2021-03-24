@@ -1,12 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CLI
 {
-    public class DebugBoard : CLIBase
+    public class DebugBoard : ICLI
     {
+        public DebugBoard(ICLIConnection connection)
+        {
+            Connection = connection;
+        }
+
+        public ICLIConnection Connection { get; }
+        public ICLICommandResult Command(ICLICommand command)
+        {
+            if(!typeof(ICLICommand).IsAssignableFrom(typeof(IDebugBoardCommand)))
+            {
+                throw new ArgumentException(nameof(command));
+            }
+            throw new NotImplementedException();
+        }
     }
 }

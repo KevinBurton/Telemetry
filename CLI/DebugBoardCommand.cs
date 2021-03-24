@@ -2,13 +2,10 @@
 
 namespace CLI
 {
-    public class DebugBoardCommand : CommandBase
+    public class DebugBoardCommand : IDebugBoardCommand
     {
-        protected override MethodInfo[] Methods { get; set; }
-
         public DebugBoardCommand()
         {
-            Methods = typeof(DebugBoardCommand).GetMethods();
         }
     }
 }

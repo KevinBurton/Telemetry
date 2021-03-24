@@ -50,7 +50,7 @@
                                           DisplayMemberPath="Display" />
                                 <TextBlock>Measurement</TextBlock>
                                 <TextBox 
-                   Text="{Binding Measurement,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                   Text="{Binding Measurement,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding MeasurementEnabled,Mode=OneWay}"/>
                                 <TextBlock>Gain</TextBlock>
                                 <ComboBox ItemsSource="{Binding GainValues}" 
                                           SelectedValue="{Binding Gain, Mode=TwoWay}" 
