@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AccelStandardDeviationZCommand : IMeasurementBoardCommand
+    public class AccelStandardDeviationZCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AccelStandardDeviationZCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

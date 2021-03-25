@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class MdmStatusCommand : IMeasurementBoardCommand
-	{
-		public List<string> Parameters { get; }
-	}
+    public class MdmStatusCommand : MeasurementBoardCommandBase
+    {
+        public MdmStatusCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

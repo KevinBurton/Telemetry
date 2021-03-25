@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcSethrOCommand : IMeasurementBoardCommand
+    public class AdcSethrOCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AdcSethrOCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

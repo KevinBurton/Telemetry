@@ -1,8 +1,18 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcSetofcCommand : IMeasurementBoardCommand
+    public class AdcSetofcCommand : MeasurementBoardCommandBase
 	{
-	}
+        public AdcSetofcCommand(int value)
+        {
+            Value = value;
+        }
+
+        public int Value { get; }
+
+        public AdcSetofcCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

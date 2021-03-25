@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class RtcGetCommand : IMeasurementBoardCommand
-	{
-		public List<string> Parameters { get; }
-	}
+    public class RtcGetCommand : MeasurementBoardCommandBase
+    {
+        public RtcGetCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

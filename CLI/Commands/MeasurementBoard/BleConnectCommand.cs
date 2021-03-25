@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class BleConnectCommand : IMeasurementBoardCommand
+    public class BleConnectCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public BleConnectCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

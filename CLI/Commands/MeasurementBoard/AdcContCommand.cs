@@ -2,7 +2,12 @@
 
 namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcContCommand : IMeasurementBoardCommand
+    public class AdcContCommand : MeasurementBoardCommandBase
 	{
-	}
+        public AdcContCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class BleSignalStrengthCommand : IMeasurementBoardCommand
+    public class BleSignalStrengthCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public BleSignalStrengthCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

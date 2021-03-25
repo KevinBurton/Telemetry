@@ -2,8 +2,12 @@
 
 namespace CLI.Commands.MeasurementBoard
 {
-    public class AccelMaxXCommand : IMeasurementBoardCommand
+    public class AccelMaxXCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AccelMaxXCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

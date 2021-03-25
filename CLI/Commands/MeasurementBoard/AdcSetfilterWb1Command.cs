@@ -2,7 +2,12 @@
 
 namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcSetfilterWb1Command : IMeasurementBoardCommand
+    public class AdcSetfilterWb1Command : MeasurementBoardCommandBase
 	{
-	}
+        public AdcSetfilterWb1Command(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

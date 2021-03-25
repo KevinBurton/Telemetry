@@ -1,11 +1,11 @@
-﻿using System;
-
-using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcStartCommand : IMeasurementBoardCommand
-	{
-		public List<string> Parameter { get; }
-	}
+    public class AdcStartCommand : MeasurementBoardCommandBase
+    {
+        public AdcStartCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

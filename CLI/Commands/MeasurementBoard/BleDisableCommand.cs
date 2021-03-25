@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class BleDisableCommand : IMeasurementBoardCommand
+    public class BleDisableCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public BleDisableCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

@@ -17,7 +17,7 @@ namespace CLI
             {
                 throw new ArgumentException(nameof(command));
             }
-            throw new NotImplementedException();
+            return command.Do(Connection);
         }
     }
 }

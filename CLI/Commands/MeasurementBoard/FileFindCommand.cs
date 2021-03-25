@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class FileFindCommand : IMeasurementBoardCommand
+    public class FileFindCommand : MeasurementBoardCommandBase
     {
-        public List<string> Parameter { get; }
+        public FileFindCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
     }
 }

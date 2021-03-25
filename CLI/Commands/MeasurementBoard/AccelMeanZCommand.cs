@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AccelMeanZCommand : IMeasurementBoardCommand
+    public class AccelMeanZCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AccelMeanZCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

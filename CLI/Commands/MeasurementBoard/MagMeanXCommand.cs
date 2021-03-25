@@ -1,6 +1,11 @@
 ﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class MagMeanXCommand : IMeasurementBoardCommand
-	{
-	}
+    public class MagMeanXCommand : MeasurementBoardCommandBase
+    {
+        public MagMeanXCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

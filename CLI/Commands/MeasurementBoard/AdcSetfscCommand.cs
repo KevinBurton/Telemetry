@@ -1,10 +1,14 @@
-﻿using System;
-
-using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcSetfscCommand : IMeasurementBoardCommand
+    public class AdcSetfscCommand : MeasurementBoardCommandBase
 	{
-	}
+        public AdcSetfscCommand(string command, float value)
+        {
+            Command = command;
+            Value = value;
+        }
+        public float Value { get; }
+
+        public override string Command { get; }
+    }
 }

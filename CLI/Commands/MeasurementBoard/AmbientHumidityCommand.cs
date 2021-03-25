@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AmbientHumidityCommand : IMeasurementBoardCommand
+    public class AmbientHumidityCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AmbientHumidityCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

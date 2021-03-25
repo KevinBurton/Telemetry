@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class FileHexDumpCommand : IMeasurementBoardCommand
+    public class FileHexDumpCommand : MeasurementBoardCommandBase
     {
-        public List<string> Parameter { get; }
+        public FileHexDumpCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
     }
 }

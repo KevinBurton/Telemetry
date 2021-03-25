@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcToggleSpitout_enCommand : IMeasurementBoardCommand
+    public class AdcToggleSpitout_enCommand : MeasurementBoardCommandBase
     {
+        public AdcToggleSpitout_enCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
     }
 }

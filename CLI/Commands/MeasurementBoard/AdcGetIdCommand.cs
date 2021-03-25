@@ -1,6 +1,11 @@
 ﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcGetIdCommand : IMeasurementBoardCommand
-	{
-	}
+    public class AdcGetIdCommand : MeasurementBoardCommandBase
+    {
+        public AdcGetIdCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

@@ -1,10 +1,6 @@
 ﻿using CLI.Commands.MeasurementBoard;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CLI
 {
@@ -16,50 +12,59 @@ namespace CLI
             {
                 throw new ArgumentNullException(nameof(command));
             }
-            var tokens = new Regex(@"\b").Split(command);
-            switch(tokens[0].ToLowerInvariant())
+            var tokens = new Regex(@"\s+").Split(command);
+            float fv;
+            int iv;
+            switch (tokens[0].ToLowerInvariant())
             {
                 case "adc":
                     if(tokens.Length < 1) throw new ArgumentException(nameof(command));
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "start":
-                            return new AdcStartCommand();
+                            return new AdcStartCommand(command);
                         case "stop":
-                            return new AdcStopCommand();
+                            return new AdcStopCommand(command);
                         case "reset":
-                            return new AdcResetCommand();
+                            return new AdcResetCommand(command);
                         case "toggle":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "crcb":
-                                    return new AdcToggleCrcbCommand();
+                                    return new AdcToggleCrcbCommand(command);
                                 case "statusword":
-                                    return new AdcToggleStatusWord();
+                                    return new AdcToggleStatusWord(command);
                                 case "spitout_en":
-                                    return new AdcToggleSpitout_enCommand();
+                                    return new AdcToggleSpitout_enCommand(command);
                                 case "spitout":
-                                    return new AdcToggleSpitoutCommand();
+                                    return new AdcToggleSpitoutCommand(command);
                                 case "ofc":
-                                    return new AdcToggleOfcCommand();
+                                    return new AdcToggleOfcCommand(command);
                                 case "fsc":
-                                    return new AdcToggleFscCommand();
+                                    return new AdcToggleFscCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
                         case "setofc":
-                            return new AdcSetofcCommand();
+                            if (tokens.Length < 3) throw new ArgumentException(nameof(command));
+                            iv = Utility.Utility.ParseIntegerValue(tokens[2]);
+                            return new AdcSetofcCommand(iv);
                         case "setfsc":
-                            return new AdcSetfscCommand();
+                            if (tokens.Length < 3) throw new ArgumentException(nameof(command));
+                            if(float.TryParse(tokens[2], out fv))
+                            {
+                                new AdcSetfscCommand(command,fv);
+                            }
+                            throw new ArgumentException(nameof(command));
                         case "setfs":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "slave":
-                                    return new AdcSetfsSlaveCommand();
+                                    return new AdcSetfsSlaveCommand(command);
                                 case "master":
-                                    return new AdcSetfsMasterCommand();
+                                    return new AdcSetfsMasterCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -68,9 +73,9 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "spi":
-                                    return new AdcSetInterfaceSpiCommand();
+                                    return new AdcSetInterfaceSpiCommand(command);
                                 case "fsync":
-                                    return new AdcSetinterfaceFsyncCommand();
+                                    return new AdcSetinterfaceFsyncCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -79,11 +84,11 @@ namespace CLI
                             switch(tokens[2].ToLowerInvariant())
                             {
                                 case "wb1":
-                                    return new AdcSetfilterWb1Command();
+                                    return new AdcSetfilterWb1Command(command);
                                 case "wb2":
-                                    return new AdcSetfilterWb2Command();
+                                    return new AdcSetfilterWb2Command(command);
                                 case "ll":
-                                    return new AdcSetfilterLlCommand();
+                                    return new AdcSetfilterLlCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -92,13 +97,13 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "00":
-                                    return new AdcSetosr00Command();
+                                    return new AdcSetosr00Command(command);
                                 case "01":
-                                    return new AdcSetosr01Command();
+                                    return new AdcSetosr01Command(command);
                                 case "l0":
-                                    return new AdcSetosr10Command();
+                                    return new AdcSetosr10Command(command);
                                 case "ll":
-                                    return new AdcSetosr11Command();
+                                    return new AdcSetosr11Command(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -107,9 +112,9 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "off":
-                                    return new AdcSethrOffCommand();
+                                    return new AdcSethrOffCommand(command);
                                 case "o":
-                                    return new AdcSethrOCommand();
+                                    return new AdcSethrOCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -118,17 +123,17 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "id":
-                                    return new AdcGetIdCommand();
+                                    return new AdcGetIdCommand(command);
                                 case "config":
-                                    return new AdcGetConfigCommand();
+                                    return new AdcGetConfigCommand(command);
                                 case "ofc":
-                                    return new AdcGetOfcCommand();
+                                    return new AdcGetOfcCommand(command);
                                 case "fsc":
-                                    return new AdcGetFscCommand();
+                                    return new AdcGetFscCommand(command);
                                 case "modes":
-                                    return new AdcGetModesCommand();
+                                    return new AdcGetModesCommand(command);
                                 case "all":
-                                    return new AdcGetAllCommand();
+                                    return new AdcGetAllCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -137,14 +142,14 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "voltage":
-                                    return new AdcReadVoltageCommand();
+                                    return new AdcReadVoltageCommand(command);
                                 case "counts":
-                                    return new AdcReadCountsCommand();
+                                    return new AdcReadCountsCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
                         case "cont":
-                            return new AdcContCommand();
+                            return new AdcContCommand(command);
                         default:
                             throw new ArgumentException(nameof(command));
                     }
@@ -153,13 +158,13 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "get":
-                            return new RtcGetCommand();
+                            return new RtcGetCommand(command);
                         case "set":
-                            return new RtcSetCommand();
+                            return new RtcSetCommand(command);
                         case "reset":
-                            return new RtcResetCommand();
+                            return new RtcResetCommand(command);
                         case "fout":
-                            return new RtcFoutCommand();
+                            return new RtcFoutCommand(command);
                         default:
                             throw new ArgumentException(nameof(command));
                     }
@@ -168,15 +173,15 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "wake":
-                            return new NfcWakeCommand();
+                            return new NfcWakeCommand(command);
                         case "disable":
-                            return new NfcDisableCommand();
+                            return new NfcDisableCommand(command);
                         case "enable":
-                            return new NfcEnableCommand();
+                            return new NfcEnableCommand(command);
                         case "toggle":
-                            return new NfcToggleCommand();
+                            return new NfcToggleCommand(command);
                         case "get":
-                            return new NfcGetCommand();
+                            return new NfcGetCommand(command);
                         default:
                             throw new ArgumentException(nameof(command));
                     }
@@ -189,11 +194,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "resistace":
-                                    return new RtdGetResistanceCommand();
+                                    return new RtdGetResistanceCommand(command);
                                 case "kelvin":
-                                    return new RtdGetKelvinCommand();
+                                    return new RtdGetKelvinCommand(command);
                                 case "fahrenheit":
-                                    return new RtdGetFarenheitCommand();
+                                    return new RtdGetFarenheitCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -205,25 +210,25 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "status":
-                            return new BleStatusCommand();
+                            return new BleStatusCommand(command);
                         case "disable":
-                            return new BleDisableCommand();
+                            return new BleDisableCommand(command);
                         case "enable":
-                            return new BleEnableCommand();
+                            return new BleEnableCommand(command);
                         case "connect":
-                            return new BleConnectCommand();
+                            return new BleConnectCommand(command);
                         case "disconnect":
-                            return new BleDisconnectCommand();
+                            return new BleDisconnectCommand(command);
                         case "send":
-                            return new BlePacketsTxCommand();
+                            return new BlePacketsTxCommand(command);
                         case "toggle":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "broadcast":
-                                    return new BleToggleBroadcastCommand();
+                                    return new BleToggleBroadcastCommand(command);
                                 case "pairing":
-                                    return new BleTogglePairingCommand();
+                                    return new BleTogglePairingCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -232,11 +237,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "strength":
-                                    return new BleSignalStrengthCommand();
+                                    return new BleSignalStrengthCommand(command);
                                 case "interference":
-                                    return new BleSignalInterferenceCommand();
+                                    return new BleSignalInterferenceCommand(command);
                                 case "connects":
-                                    return new BleSignalConnectsCommand();
+                                    return new BleSignalConnectsCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -245,11 +250,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "tx":
-                                    return new BlePacketsTxCommand();
+                                    return new BlePacketsTxCommand(command);
                                 case "rx":
-                                    return new BlePacketsRxCommand();
+                                    return new BlePacketsRxCommand(command);
                                 case "dropped":
-                                    return new BlePacketsDroppedCommand();
+                                    return new BlePacketsDroppedCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -261,9 +266,9 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "temperature":
-                            return new AmbientTemperatureCommand();
+                            return new AmbientTemperatureCommand(command);
                         case "humidity":
-                            return new AmbientHumidityCommand();
+                            return new AmbientHumidityCommand(command);
                         default:
                             throw new ArgumentException(nameof(command));
                     }
@@ -272,17 +277,17 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "calibrate":
-                            return new AccelCalibrateCommand();
+                            return new AccelCalibrateCommand(command);
                         case "measure":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new AccelMaxXCommand();
+                                    return new AccelMeasureXCommand(command);
                                 case "y":
-                                    return new AccelMaxYCommand();
+                                    return new AccelMeasureYCommand(command);
                                 case "z":
-                                    return new AccelMaxZCommand();
+                                    return new AccelMeasureZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -291,11 +296,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new AccelMeanXCommand();
+                                    return new AccelMeanXCommand(command);
                                 case "y":
-                                    return new AccelMeanYCommand();
+                                    return new AccelMeanYCommand(command);
                                 case "z":
-                                    return new AccelMeanZCommand();
+                                    return new AccelMeanZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -304,11 +309,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new AccelStandardDeviationXCommand();
+                                    return new AccelStandardDeviationXCommand(command);
                                 case "y":
-                                    return new AccelStandardDeviationYCommand();
+                                    return new AccelStandardDeviationYCommand(command);
                                 case "z":
-                                    return new AccelStandardDeviationZCommand();
+                                    return new AccelStandardDeviationZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -320,17 +325,17 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "calibrate":
-                            return new MagCalibrateCommand();
+                            return new MagCalibrateCommand(command);
                         case "measure":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new MagMaxXCommand();
+                                    return new MagMaxXCommand(command);
                                 case "y":
-                                    return new MagMaxYCommand();
+                                    return new MagMaxYCommand(command);
                                 case "z":
-                                    return new MagMaxZCommand();
+                                    return new MagMaxZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -339,11 +344,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new MagMeanXCommand();
+                                    return new MagMeanXCommand(command);
                                 case "y":
-                                    return new MagMeanYCommand();
+                                    return new MagMeanYCommand(command);
                                 case "z":
-                                    return new MagMeanZCommand();
+                                    return new MagMeanZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -352,11 +357,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "x":
-                                    return new MagStandardDeviationXCommand();
+                                    return new MagStandardDeviationXCommand(command);
                                 case "y":
-                                    return new MagStandardDeviationYCommand();
+                                    return new MagStandardDeviationYCommand(command);
                                 case "z":
-                                    return new MagStandardDeviationZCommand();
+                                    return new MagStandardDeviationZCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -368,25 +373,25 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "id":
-                            return new MdmIdCommand();
+                            return new MdmIdCommand(command);
                         case "status":
-                            return new MdmStatusCommand();
+                            return new MdmStatusCommand(command);
                         case "enable":
-                            return new MdmEnableCommand();
+                            return new MdmEnableCommand(command);
                         case "disable":
-                            return new MdmDisableCommand();
+                            return new MdmDisableCommand(command);
                         case "connect":
-                            return new MdmConnectCommand();
+                            return new MdmConnectCommand(command);
                         case "disconnect":
-                            return new MdmDisconnectCommand();
+                            return new MdmDisconnectCommand(command);
                         case "search":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "start":
-                                    return new MdmSearchStartCommand();
+                                    return new MdmSearchStartCommand(command);
                                 case "end":
-                                    return new MdmSearchEndCommand();
+                                    return new MdmSearchEndCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -395,11 +400,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "strength":
-                                    return new MdmSignalStrengthCommand();
+                                    return new MdmSignalStrengthCommand(command);
                                 case "interference":
-                                    return new MdmSignalInterferenceCommand();
+                                    return new MdmSignalInterferenceCommand(command);
                                 case "connects":
-                                    return new MdmSignalConnectsCommand();
+                                    return new MdmSignalConnectsCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -408,11 +413,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "tx":
-                                    return new MdmPacketsTxCommand();
+                                    return new MdmPacketsTxCommand(command);
                                 case "rx":
-                                    return new MdmPacketsRxCommand();
+                                    return new MdmPacketsRxCommand(command);
                                 case "dropped":
-                                    return new MdmPacketsDroppedCommand();
+                                    return new MdmPacketsDroppedCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -424,21 +429,21 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "id":
-                            return new SatIdCommand();
+                            return new SatIdCommand(command);
                         case "status":
-                            return new SatStatusCommand();
+                            return new SatStatusCommand(command);
                         case "disable":
-                            return new SatDisableCommand();
+                            return new SatDisableCommand(command);
                         case "enable":
-                            return new SatEnableCommand();
+                            return new SatEnableCommand(command);
                         case "search":
                             if (tokens.Length < 2) throw new ArgumentException(nameof(command));
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "start":
-                                    return new SatSearchStartCommand();
+                                    return new SatSearchStartCommand(command);
                                 case "end":
-                                    return new SatSearchEndCommand();
+                                    return new SatSearchEndCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -447,11 +452,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "strength":
-                                    return new SatSignalStrengthCommand();
+                                    return new SatSignalStrengthCommand(command);
                                 case "interference":
-                                    return new SatSignalInterferenceCommand();
+                                    return new SatSignalInterferenceCommand(command);
                                 case "connects":
-                                    return new SatSignalConnectsCommand();
+                                    return new SatSignalConnectsCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -460,11 +465,11 @@ namespace CLI
                             switch (tokens[2].ToLowerInvariant())
                             {
                                 case "tx":
-                                    return new SatPacketsTxCommand();
+                                    return new SatPacketsTxCommand(command);
                                 case "rx":
-                                    return new SatPacketsRxCommand();
+                                    return new SatPacketsRxCommand(command);
                                 case "dropped":
-                                    return new SatPacketsDroppedCommand();
+                                    return new SatPacketsDroppedCommand(command);
                                 default:
                                     throw new ArgumentException(nameof(command));
                             }
@@ -476,28 +481,28 @@ namespace CLI
                     switch (tokens[1].ToLowerInvariant())
                     {
                         case "ls":
-                            return new FileLsCommand();
+                            return new FileLsCommand(command);
                         case "rm":
-                            return new FileRmCommand();
+                            return new FileRmCommand(command);
                         case "find":
-                            return new FileFindCommand();
+                            return new FileFindCommand(command);
                         case "cp":
-                            return new FileCpCommand();
+                            return new FileCpCommand(command);
                         case "cat":
-                            return new FileCatCommand();
+                            return new FileCatCommand(command);
                         case "hexdump":
-                            return new FileHexDumpCommand();
+                            return new FileHexDumpCommand(command);
                         case "upload":
-                            return new FileUploadCommand();
+                            return new FileUploadCommand(command);
                         case "download":
-                            return new FileDownloadCommand();
+                            return new FileDownloadCommand(command);
                         default:
                             throw new ArgumentException(nameof(command));
                     }
                 default:
                     throw new ArgumentException(nameof(command));
             }
-            throw new NotImplementedException();
+            throw new NotImplementedException(command);
         }
     }
 }

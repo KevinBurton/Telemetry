@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CLI
+﻿namespace CLI
 {
     public interface ICLICommand
     {
+        public ICLICommandResult Do(ICLIConnection connection);
     }
 }

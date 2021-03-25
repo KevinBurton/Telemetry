@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class NfcWakeCommand : IMeasurementBoardCommand
-	{
-		public List<string> Parameters { get; }
-	}
+    public class NfcWakeCommand : MeasurementBoardCommandBase
+    {
+        public NfcWakeCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

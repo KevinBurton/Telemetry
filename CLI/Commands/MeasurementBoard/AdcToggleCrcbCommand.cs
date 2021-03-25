@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AdcToggleCrcbCommand : IMeasurementBoardCommand
+    public class AdcToggleCrcbCommand : MeasurementBoardCommandBase
     {
+        public AdcToggleCrcbCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
     }
 }

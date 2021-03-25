@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AmbientTemperatureCommand : IMeasurementBoardCommand
+    public class AmbientTemperatureCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public AmbientTemperatureCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

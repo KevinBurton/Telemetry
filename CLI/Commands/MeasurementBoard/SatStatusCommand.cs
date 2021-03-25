@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class SatStatusCommand : IMeasurementBoardCommand
+    public class SatStatusCommand : MeasurementBoardCommandBase
 	{
-		public List<string> Parameters { get; }
-	}
+        public SatStatusCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }

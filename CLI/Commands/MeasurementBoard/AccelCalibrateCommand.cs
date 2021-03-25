@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace CLI.Commands.MeasurementBoard
+﻿namespace CLI.Commands.MeasurementBoard
 {
-    public class AccelCalibrateCommand : IMeasurementBoardCommand
-	{
-		public List<string> Parameters { get; }
-	}
+    public class AccelCalibrateCommand : MeasurementBoardCommandBase
+    {
+        public AccelCalibrateCommand(string command)
+        {
+            Command = command;
+        }
+        public override string Command { get; }
+    }
 }
