@@ -2,7 +2,7 @@
 {
     public interface ICLIConnection
     {
-        public ICLICommandResult Read();
+        public string Read();
         public void Send(string values);
     }
 }

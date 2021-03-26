@@ -1,10 +1,15 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.Collections.Generic;
+using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CLI
 {
-    public class MeasurementBoardConnection : SerialPort, ICLIConnection
+    public class DebugBoardConnection : SerialPort, ICLIConnection
     {
-        public MeasurementBoardConnection(string port)
+        public DebugBoardConnection(string port)
         {
             Port = port;
         }

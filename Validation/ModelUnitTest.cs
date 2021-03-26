@@ -13,10 +13,9 @@ namespace Validation
         [Test]
         public void TestMeasurementBoardCommands()
         {
-            var connection = new MeasurementBoardConnection();
+            var connection = new MeasurementBoardConnection("COM3:");
             var board = new MeasurementBoard(connection);
-            var command = MeasurementBoardCommandFactory.Command("adc start");
-            var result = board.Command(command);
+            var result = board.AdcStartCommand();
 
             Assert.Pass();
         }
