@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CLI
 {
-    public class MeasurementBoardConnection : SerialPort, ICLIConnection
+    public class DebugBoardConnection : SerialPort, ICLIConnection
     {
-        public MeasurementBoardConnection(string port) : base(port)
+        public DebugBoardConnection(string port) : base(port)
         {
             Port = port;
         }
@@ -14,10 +18,6 @@ namespace CLI
 
         public string[] Read()
         {
-            if(!IsOpen)
-            {
-                Open();
-            }
             List<string> response = new List<string>();
             var currentLine = ReadLine();
             while (currentLine != null && currentLine.Length > 0 && currentLine[0] != '.' && currentLine[0] != '!')

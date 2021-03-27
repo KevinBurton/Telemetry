@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Simulator.Common\Simulator.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="MeasurementTest.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

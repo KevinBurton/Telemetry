@@ -1,23 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 
 namespace CLI
 {
-    public class MeasurementBoardConnection : SerialPort, ICLIConnection
+    public class CLIConnection : SerialPort, ICLIConnection
     {
-        public MeasurementBoardConnection(string port) : base(port)
+        public string Port { get; }
+
+        public CLIConnection(string port) : base(port)
         {
             Port = port;
         }
-
-        public string Port { get; }
-
-        public string[] Read()
+        public void Send(string command)
         {
-            if(!IsOpen)
+            if (!IsOpen)
             {
                 Open();
             }
+            Write(command);
+        }
+        public string[] Read()
+        {
             List<string> response = new List<string>();
             var currentLine = ReadLine();
             while (currentLine != null && currentLine.Length > 0 && currentLine[0] != '.' && currentLine[0] != '!')
@@ -28,14 +32,6 @@ namespace CLI
             }
             response.Add(currentLine);
             return response.ToArray();
-        }
-        public void Send(string command)
-        {
-            if (!IsOpen)
-            {
-                Open();
-            }
-            Write(command);
         }
     }
 }
