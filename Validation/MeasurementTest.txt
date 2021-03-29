@@ -1,13 +1,64 @@
+
+adc start
+.
+adc stop
+.
+adc reset 
+.Reset the ADC
+adc toggle crcb
+.
+adc toggle statusword
+.
+adc toggle spitout_en
+.
+adc toggle spitout
+.
+adc toggle ofc
+.
+adc toggle fsc
+.
 adc setofc \d+
 .Wrote 1000 to offset registers successfully 
-adc get ofc 
-.Offset val: 1000 
 adc setfsc \d+|\d+\.\d+
 .Wrote 1.1 to the gain calibration register (FSC Enabled:1) 
-adc reset 
-.Reset the ADC 
+adc setfs master
+.
+adc setfs slave
+.
+adc setinterface spi
+.
+adc setinterface fsync
+.
+adc setfilter wb1
+.
+adc setfilter wb2
+.
 adc setfilter ll
 .Set Filter mode to ll 
+adc setosr 00
+.
+adc setosr 01
+.
+adc setosr 10
+.
+adc setosr 11
+.
+adc sethr off
+.
+adc sethr o
+.
+adc get ofc 
+.Offset val: 1000 
+adc get id
+.
+adc get config
+.
+adc get fsc
+.
+adc get modes
+.
+adc get all
+.
 adc read counts \d+ 
 510268 
 510410 
@@ -22,31 +73,43 @@ adc read voltage \d+
 adc read all 
 !ADC Read Failed (subcmd=all, rcount=0) 
 adc cont 
-.Continuous Readings On 
 2243 
 2243 
 2243 
 2244 
 2243 
-... 
+#... 
 2243 
 2243 
 2243 
 2243 
+#.Continuous Readings On 
 |C 
-.Continuous Readings Off 
+#.Continuous Readings Off
+.
 rtc help 
-(print out all the info for each command) 
+(print out all the info for each command)
+.
 rtc set time \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+. 
+rtc set wakeinterval \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+. 
+rtc set countdown \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
 . 
 rtc set time waffle 
 !Error,Unexpected Format 
 rtc set wake time \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
-. 
+.
+rtc reset countdown
+.
+rtc reset default
+.
 rtc fout set 
 . 
 rtc fout clear 
-. 
+.
+rtc fout yield
+.
 rtc get frequency 
 38.2kHz
 .
@@ -56,15 +119,24 @@ rtc get time
 rtc get wake time 
 0000-00-07 00:00:00
 . 
-rtc get wake remaining 
+rtc get wake countdown 
 0000-00-03 11:24:59
+.
+rtc get wake interval 
+0000-00-03 11:24:59
+.
+rtc get frequency
 .
 nfc disable 
 . 
 nfc enable 
 . 
-nfc send discovery 
-. 
+nfc toggle discovery 
+.
+nfc wake
+.
+nfc get
+.
 rtd get resistance 
 87 
 .
@@ -100,20 +172,43 @@ ambient temperature
 ambient humidity 
 20
 . 
-accel calibrate 
+acl calibrate 
 . 
-accel measure x 
-0 
-accel max x 
-0.4 
-accel standarddeviation x 0.03
+acl measure x 
+0
 .
-accel measure z 
+acl measure y 
 0.7
 .
-accel max z 
+acl measure z 
+0.7
+.
+acl standarddeviation x
+0.03
+.
+acl standarddeviation y
+0.03
+.
+acl standarddeviation z
+0.03
+.
+acl max x 
 0.9
 .
+acl max y 
+0.9
+.
+acl max z 
+0.9
+.
+acl mean x 
+0.9
+.
+acl mean y 
+0.9
+.
+acl mean z 
+0.9
 mag calibrate 
 . 
 mag measure x 
@@ -130,7 +225,18 @@ mag measure z
 .
 mag max z 
 0.9
-. 
+.
+mdm packets rx
+1
+.
+mdm packets tx
+1
+.
+mdm packets dropped
+0
+.
+mdm id
+.
 mdm status 
 Off, Disconnected, Strength: --dB
 .
@@ -141,24 +247,40 @@ On, Disconnected, Strength: --dB
 #Wait a little bit for the modem to connect to a cell tower
 .
 mdm search start 
-.#Provider A, 16dB 
+#Provider A, 16dB 
 #Provider B, 20dB 
 #Provider C, 6dB 
 #Provider D, 1dB
 .
-mdm search stop 
+mdm search end 
 . 
 mdm status 
 On, Connected, Strength: 20dB
 .
 mdm signal strength 
-20dB 
+20dB
+.
+mdm signal interference
+.
+mdm signal connects
+.
 mdm disconnect 
-. 
+.
+mdm toggle broadcast
+.
+mdm toggle pairing
+.
+mdm send discovery
+.
 sat status 
-Off, Disconnected, Strength: --dB 
+Off, Disconnected, Strength: --dB
+.
 sat enable 
-. 
+.
+sat disable
+.
+sat id
+.
 sat status 
 On, Disconnected, Strength: --dB 
 #Wait a little bit for the transmitter to connect to a satellite
@@ -169,15 +291,28 @@ sat search start
 #Provider C, 6dB 
 #Provider D, 1dB
 .
-sat search stop 
-. 
+sat search end
+.
 sat status 
 On, Connected, Strength: 20dB
 .
 sat signal strength 
 20dB
 .
+sat signal interference
+.
+sat signal connects
+.
 sat disconnect 
+.
+sat packets dropped
+0
+.
+sat packets tx
+1
+.
+sat packets rx
+1
 .
 file ls /
 /firstDir/ 

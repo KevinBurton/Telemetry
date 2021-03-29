@@ -21,231 +21,116 @@ namespace CLI
         ICLIConnection Connection { get; }
         public ICLICommandResult AccelCalibrateCommand()
         {
-            try
-			{
- 				Send("acl calibrate");
-                return Receive();
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+    		Send("acl calibrate");
+            return Receive();
         }
 
         public ICLICommandResult AccelMaxXCommand()
         {
-            try
-			{
- 				Send("acl max x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl max x");
+            return Receive();
         }
 
         public ICLICommandResult AccelMaxYCommand()
         {
-            try
-			{
- 				Send("acl max y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl max y");
+            return Receive();
         }
 
         public ICLICommandResult AccelMaxZCommand()
         {
-            try
-			{
- 				Send("acl max z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl max z");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeanXCommand()
         {
-            try
-			{
- 				Send("acl mean x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl mean x");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeanYCommand()
         {
-            try
-			{
- 				Send("acl mean y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl mean y");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeanZCommand()
         {
-            try
-			{
- 				Send("acl mean z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl mean z");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeasureXCommand()
         {
-            try
-			{
- 				Send("acl measure x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl measure x");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeasureYCommand()
         {
-            try
-			{
- 				Send("acl measure y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl measure y");
+            return Receive();
         }
 
         public ICLICommandResult AccelMeasureZCommand()
         {
-            try
-			{
- 				Send("acl measure z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl measure z");
+            return Receive();
         }
 
         public ICLICommandResult AccelStandardDeviationXCommand()
         {
-            try
-			{
- 				Send("acl standarddeviation x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl standarddeviation x");
+            return Receive();
         }
 
         public ICLICommandResult AccelStandardDeviationYCommand()
         {
-            try
-			{
- 				Send("acl standarddeviation y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl standarddeviation y");
+            return Receive();
         }
 
         public ICLICommandResult AccelStandardDeviationZCommand()
         {
-            try
-			{
- 				Send("acl standarddeviation z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("acl standarddeviation z");
+            return Receive();
         }
 
         public ICLICommandResult AdcContCommand()
         {
-            try
-			{
- 				Send("adc cont");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc cont");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetAllCommand()
         {
-            try
-			{
- 				Send("adc get all");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc get all");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetConfigCommand()
         {
-            try
-			{
- 				Send("adc get config");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc get config");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetFscCommand()
         {
-            try
-			{
- 				Send("adc get fsc");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc get fsc");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetIdCommand()
         {
-            try
-			{
- 				Send("adc get id");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc get id");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetModesCommand()
         {
-            try
-			{
- 				Send("adc get modes");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc get modes");
+            return Receive();
         }
 
         public ICLICommandResult AdcGetOfcCommand()
@@ -256,1294 +141,635 @@ namespace CLI
 
         public ICLICommandResult AdcReadCountsCommand(int n)
         {
-            try
-			{
- 				Send($"adc read counts {n}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"adc read counts {n}");
+            return Receive();
         }
 
         public ICLICommandResult AdcReadVoltageCommand(int n)
         {
-            try
-			{
- 				Send($"adc read voltage {n}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"adc read voltage {n}");
+            return Receive();
         }
 
         public ICLICommandResult AdcResetCommand()
         {
-            try
-			{
- 				Send("adc reset");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc reset");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfilterLlCommand()
         {
-            try
-			{
- 				Send("adc set filter ll");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setfilter ll");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfilterWb1Command()
         {
-            try
-			{
- 				Send("adc set filter wb1");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setfilter wb1");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfilterWb2Command()
         {
-            try
-			{
- 				Send("adc set filter wb2");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setfilter wb2");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfscCommand(float value)
         {
-            try
-			{
- 				Send($"adc setfsc {value}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"adc setfsc {value}");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfsMasterCommand()
         {
-            try
-			{
- 				Send("adc setfs master");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setfs master");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetfsSlaveCommand()
         {
-            try
-			{
- 				Send("adc setfx slave");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setfs slave");
+            return Receive();
         }
 
         public ICLICommandResult AdcSethrOCommand()
         {
-            try
-			{
- 				Send("adc sethr o");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc sethr o");
+            return Receive();
         }
 
         public ICLICommandResult AdcSethrOffCommand()
         {
-            try
-			{
- 				Send("adc sethr off");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc sethr off");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetinterfaceFsyncCommand()
         {
-            try
-			{
- 				Send("adc setinterface fsync");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setinterface fsync");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetinterfaceSpiCommand()
         {
-            try
-			{
- 				Send("adc setinterface spi");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setinterface spi");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetofcCommand(int value)
         {
-            try
-			{
- 				Send($"adc setofc {value}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"adc setofc {value}");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetosr00Command()
         {
-            try
-			{
- 				Send("adc setosr 00");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setosr 00");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetosr01Command()
         {
-            try
-			{
- 				Send("adc setosr 01");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setosr 01");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetosr10Command()
         {
-            try
-			{
- 				Send("adc setosr 10");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setosr 10");
+            return Receive();
         }
 
         public ICLICommandResult AdcSetosr11Command()
         {
-            try
-			{
- 				Send("adc setosr 11");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc setosr 11");
+            return Receive();
         }
 
         public ICLICommandResult AdcStartCommand()
         {
-            try
-			{
- 				Send("adc start");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc start");
+            return Receive();
         }
 
         public ICLICommandResult AdcStopCommand()
         {
-            try
-			{
- 				Send("adc stop");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc stop");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleCrcbCommand()
         {
-            try
-			{
- 				Send("adc toggle crb");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle crb");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleFscCommand()
         {
-            try
-			{
- 				Send("adc toggle fsc");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle fsc");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleOfcCommand()
         {
-            try
-			{
- 				Send("adc toggle ofc");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle ofc");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleSpitoutCommand()
         {
-            try
-			{
- 				Send("adc toggle spitout");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle spitout");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleSpitout_enCommand()
         {
-            try
-			{
- 				Send("adc toggle spitout_en");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle spitout_en");
+            return Receive();
         }
 
         public ICLICommandResult AdcToggleStatusWord()
         {
-            try
-			{
- 				Send("adc toggle statusword");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("adc toggle statusword");
+            return Receive();
         }
 
         public ICLICommandResult AmbientHumidityCommand()
         {
-            try
-			{
- 				Send("amb humidity");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("amb humidity");
+            return Receive();
         }
 
         public ICLICommandResult AmbientTemperatureCommand()
         {
-            try
-			{
- 				Send("amb temperature");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("amb temperature");
+            return Receive();
         }
 
         public ICLICommandResult BleConnectCommand()
         {
-            try
-			{
- 				Send("ble connect");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble connect");
+            return Receive();
         }
 
         public ICLICommandResult BleDisableCommand()
         {
-            try
-			{
- 				Send("ble disable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble disable");
+            return Receive();
         }
 
         public ICLICommandResult BleDisconnectCommand()
         {
-            try
-			{
- 				Send("ble disconnect");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble disconnect");
+            return Receive();
         }
 
         public ICLICommandResult BleEnableCommand()
         {
-            try
-			{
- 				Send("ble enable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble enable");
+            return Receive();
         }
 
         public ICLICommandResult BlePacketsDroppedCommand()
         {
-            try
-			{
- 				Send("ble packates dropped");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble packates dropped");
+            return Receive();
         }
 
         public ICLICommandResult BlePacketsRxCommand()
         {
-            try
-			{
- 				Send("ble packets rx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble packets rx");
+            return Receive();
         }
 
         public ICLICommandResult BlePacketsTxCommand()
         {
-            try
-			{
- 				Send("ble packets tx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble packets tx");
+            return Receive();
         }
 
         public ICLICommandResult BleSignalConnectsCommand()
         {
-            try
-			{
- 				Send("ble signal connects");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble signal connects");
+            return Receive();
         }
 
         public ICLICommandResult BleSignalInterferenceCommand()
         {
-            try
-			{
- 				Send("ble signal interference");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble signal interference");
+            return Receive();
         }
 
         public ICLICommandResult BleSignalStrengthCommand()
         {
-            try
-			{
- 				Send("ble signal strength");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble signal strength");
+            return Receive();
         }
 
         public ICLICommandResult BleStatusCommand()
         {
-            try
-			{
- 				Send("ble status");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble status");
+            return Receive();
         }
 
         public ICLICommandResult BleToggleBroadcastCommand()
         {
-            try
-			{
- 				Send("ble toggle broadcast");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble toggle broadcast");
+            return Receive();
         }
 
         public ICLICommandResult BleTogglePairingCommand()
         {
-            try
-			{
- 				Send("ble toggle pairing");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("ble toggle pairing");
+            return Receive();
         }
 
         public ICLICommandResult FileCatCommand(string fileName)
         {
-            try
-			{
- 				Send($"file cat {fileName}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file cat {fileName}");
+            return Receive();
         }
 
         public ICLICommandResult FileCpCommand(string currentPath, string newPath)
         {
-            try
-			{
- 				Send($"file cp {currentPath} {newPath}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
-        }
-
-        public ICLICommandResult FileDownloadCommand(string path)
-        {
-            try
-			{
- 				Send("$file download {path}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file cp {currentPath} {newPath}");
+            return Receive();
         }
 
         public ICLICommandResult FileFindCommand(string directory, string flags, string expression)
         {
-            try
-			{
- 				Send($"file find {directory} {flags} {expression}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file find {directory} {flags} {expression}");
+            return Receive();
         }
 
-        public ICLICommandResult FileHexDumpCommand(string flags, string filename)
+        public ICLICommandResult FileHexDumpCommand(string flags, string fileName)
         {
-            try
-			{
- 				Send($"file hexdump {flags} {filename}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file hexdump {flags} {fileName}");
+            return Receive();
         }
 
         public ICLICommandResult FileLsCommand(string flags, string directory)
         {
-            try
-			{
- 				Send($"file ls {flags} {directory}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file ls {flags} {directory}");
+            return Receive();
         }
 
         public ICLICommandResult FileRmCommand(string flags, string path)
         {
-            try
-			{
- 				Send($"file rm {flags} {path}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file rm {flags} {path}");
+            return Receive();
         }
 
-        public ICLICommandResult FileUploadCommand(string path, string username, string destinationServer)
+        public ICLICommandResult FileUploadCommand(string path, string userName, string destinationServer)
         {
-            try
-			{
- 				Send($"file upload {path} {username}@{destinationServer}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"file upload {path} {userName}@{destinationServer}");
+            return Receive();
+        }
+
+        public ICLICommandResult FileDownloadCommand(string path)
+        {
+            Send("$file download {path}");
+            return Receive();
         }
 
         public ICLICommandResult MagCalibrateCommand()
         {
-            try
-			{
- 				Send("mag calibrate");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag calibrate");
+            return Receive();
         }
 
         public ICLICommandResult MagMaxXCommand()
         {
-            try
-			{
- 				Send("mag max x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag max x");
+            return Receive();
         }
 
         public ICLICommandResult MagMaxYCommand()
         {
-            try
-			{
- 				Send("mag max y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag max y");
+            return Receive();
         }
 
         public ICLICommandResult MagMaxZCommand()
         {
-            try
-			{
- 				Send("mag max z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag max z");
+            return Receive();
         }
 
         public ICLICommandResult MagMeanXCommand()
         {
-            try
-			{
- 				Send("mag mean x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag mean x");
+            return Receive();
         }
 
         public ICLICommandResult MagMeanYCommand()
         {
-            try
-			{
- 				Send("mag mean y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag mean y");
+            return Receive();
         }
 
         public ICLICommandResult MagMeanZCommand()
         {
-            try
-			{
- 				Send("mag mean z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag mean z");
+            return Receive();
         }
 
         public ICLICommandResult MagStandardDeviationXCommand()
         {
-            try
-			{
- 				Send("mag standarddeviation x");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag standarddeviation x");
+            return Receive();
         }
 
         public ICLICommandResult MagStandardDeviationYCommand()
         {
-            try
-			{
- 				Send("mag standarddeviation y");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag standarddeviation y");
+            return Receive();
         }
 
         public ICLICommandResult MagStandardDeviationZCommand()
         {
-            try
-			{
- 				Send("mag standarddeviation z");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mag standarddeviation z");
+            return Receive();
         }
 
         public ICLICommandResult MdmConnectCommand()
         {
-            try
-			{
- 				Send("mdm connect");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm connect");
+            return Receive();
         }
 
         public ICLICommandResult MdmDisableCommand()
         {
-            try
-			{
- 				Send("mdm disable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm disable");
+            return Receive();
         }
 
         public ICLICommandResult MdmDisconnectCommand()
         {
-            try
-			{
- 				Send("mdm disconnect");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm disconnect");
+            return Receive();
         }
 
         public ICLICommandResult MdmEnableCommand()
         {
-            try
-			{
- 				Send("mdm enable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm enable");
+            return Receive();
         }
 
         public ICLICommandResult MdmIdCommand()
         {
-            try
-			{
- 				Send("mdm id");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm id");
+            return Receive();
         }
 
         public ICLICommandResult MdmPacketsDroppedCommand()
         {
-            try
-			{
- 				Send("mdm packets dropped");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm packets dropped");
+            return Receive();
         }
 
         public ICLICommandResult MdmPacketsRxCommand()
         {
-            try
-			{
- 				Send("mdm packets rx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm packets rx");
+            return Receive();
         }
 
         public ICLICommandResult MdmPacketsTxCommand()
         {
-            try
-			{
- 				Send("mdm packets tx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm packets tx");
+            return Receive();
         }
 
         public ICLICommandResult MdmSearchEndCommand()
         {
-            try
-			{
- 				Send("mdm search end");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm search end");
+            return Receive();
         }
 
         public ICLICommandResult MdmSearchStartCommand()
         {
-            try
-			{
- 				Send("mdm search start");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm search start");
+            return Receive();
         }
 
         public ICLICommandResult MdmSignalConnectsCommand()
         {
-            try
-			{
- 				Send("mdm signal connects");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm signal connects");
+            return Receive();
         }
 
         public ICLICommandResult MdmSignalInterferenceCommand()
         {
-            try
-			{
- 				Send("mdm signal interference");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm signal interference");
+            return Receive();
         }
 
         public ICLICommandResult MdmSignalStrengthCommand()
         {
-            try
-			{
- 				Send("mdm signal strength");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm signal strength");
+            return Receive();
         }
 
         public ICLICommandResult MdmStatusCommand()
         {
-            try
-			{
- 				Send("mdm status");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("mdm status");
+            return Receive();
         }
 
         public ICLICommandResult NfcDisableCommand()
         {
-            try
-			{
- 				Send("nfc disable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("nfc disable");
+            return Receive();
         }
 
-        public ICLICommandResult NfcDiscoveryCommand()
+        public ICLICommandResult NfcToggleDiscoveryCommand()
         {
-            try
-			{
- 				Send("nfc discovery");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("nfc toggle discovery");
+            return Receive();
         }
 
         public ICLICommandResult NfcEnableCommand()
         {
-            try
-			{
- 				Send("nfc enable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("nfc enable");
+            return Receive();
         }
 
         public ICLICommandResult NfcGetCommand()
         {
-            try
-			{
- 				Send("nfc get");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
-        }
-
-        public ICLICommandResult NfcToggleCommand(string discovery)
-        {
-            try
-			{
- 				Send($"nfc toggle {discovery}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("nfc get");
+            return Receive();
         }
 
         public ICLICommandResult NfcWakeCommand()
         {
-            try
-			{
- 				Send("nfc wake");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("nfc wake");
+            return Receive();
         }
 
         public ICLICommandResult RtcFoutYieldCommand()
         {
-            try
-			{
- 				Send("rtc fout yield");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtc fout yield");
+            return Receive();
         }
 
         public ICLICommandResult RtcFoutSetCommand()
         {
-            try
-            {
-                Send("rtc fout set");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc fout set");
+            return Receive();
         }
 
         public ICLICommandResult RtcFoutClearCommand()
         {
-            try
-            {
-                Send("rtc fout clear");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc fout clear");
+            return Receive();
         }
 
         public ICLICommandResult RtcGetFrequencyCommand()
         {
-            try
-			{
- 				Send("rtc get frequency");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtc get frequency");
+            return Receive();
         }
 
         public ICLICommandResult RtcGetTimeCommand()
         {
-            try
-            {
-                Send("rtc get time");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
-        }
-        public ICLICommandResult RtcGetWakeCommand()
-        {
-            try
-            {
-                Send("rtc get wake");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc get time");
+            return Receive();
         }
         public ICLICommandResult RtcGetWakeCountdownCommand()
         {
-            try
-            {
-                Send("rtc get wake countdown");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc get wake countdown");
+            return Receive();
         }
         public ICLICommandResult RtcGetWakeIntervalCommand()
         {
-            try
-            {
-                Send("rtc get wake interval");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc get wake interval");
+            return Receive();
         }
         public ICLICommandResult RtcResetCountdownCommand()
         {
-            try
-			{
- 				Send("rtc reset countdown");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtc reset countdown");
+            return Receive();
         }
 
         public ICLICommandResult RtcResetDefaultCommand()
         {
-            try
-            {
-                Send("rtc reset default");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("rtc reset default");
+            return Receive();
         }
 
         public ICLICommandResult RtcSetTimeCommand(string date)
         {
-            try
-			{
- 				Send($"rtc set time {date}");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send($"rtc set time {date}");
+            return Receive();
         }
 
         public ICLICommandResult RtcSetWakeIntervalCommand(string date)
         {
-            try
-            {
-                Send($"rtc set wakeinterval {date}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"rtc set wakeinterval {date}");
+            return Receive();
         }
 
         public ICLICommandResult RtcSetcountdownCommand(string date)
         {
-            try
-            {
-                Send($"rtc set countdown {date}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"rtc set countdown {date}");
+            return Receive();
         }
 
         public ICLICommandResult RtdGetFarenheitCommand()
         {
-            try
-			{
- 				Send("rtd get fahrenheit");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtd get fahrenheit");
+            return Receive();
         }
 
         public ICLICommandResult RtdGetKelvinCommand()
         {
-            try
-			{
- 				Send("rtd get kelvin");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtd get kelvin");
+            return Receive();
         }
 
         public ICLICommandResult RtdGetResistanceCommand()
         {
-            try
-			{
- 				Send("rtd get resistance");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("rtd get resistance");
+            return Receive();
         }
 
         public ICLICommandResult SatDisableCommand()
         {
-            try
-			{
- 				Send("sat disable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat disable");
+            return Receive();
         }
 
         public ICLICommandResult SatDisconnectCommand()
         {
-            try
-			{
- 				Send("sat disconnect");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat disconnect");
+            return Receive();
         }
 
         public ICLICommandResult SatEnableCommand()
         {
-            try
-			{
- 				Send("sat enable");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat enable");
+            return Receive();
         }
 
         public ICLICommandResult SatIdCommand()
         {
-            try
-			{
- 				Send("sat id");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat id");
+            return Receive();
         }
 
         public ICLICommandResult SatPacketsDroppedCommand()
         {
-            try
-			{
- 				Send("sat packets dropped");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat packets dropped");
+            return Receive();
         }
 
         public ICLICommandResult SatPacketsRxCommand()
         {
-            try
-			{
- 				Send("sat packets rx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat packets rx");
+            return Receive();
         }
 
         public ICLICommandResult SatPacketsTxCommand()
         {
-            try
-			{
- 				Send("sat packets tx");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat packets tx");
+            return Receive();
         }
 
         public ICLICommandResult SatSearchEndCommand()
         {
-            try
-			{
- 				Send("sat search end");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat search end");
+            return Receive();
         }
 
         public ICLICommandResult SatSearchStartCommand()
         {
-            try
-			{
- 				Send("sat search start");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat search start");
+            return Receive();
         }
 
         public ICLICommandResult SatSignalConnectsCommand()
         {
-            try
-			{
- 				Send("sat signal strength");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat signal strength");
+            return Receive();
         }
 
         public ICLICommandResult SatSignalInterferenceCommand()
         {
-            try
-			{
- 				Send("sat signal interference");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat signal interference");
+            return Receive();
         }
 
         public ICLICommandResult SatSignalStrengthCommand()
         {
-            try
-			{
- 				Send("sat signal strength");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat signal strength");
+            return Receive();
         }
 
         public ICLICommandResult SatStatusCommand()
         {
-            try
-			{
- 				Send("sat status");
- 			}
-			catch(CLIException)
- 			{
-			}
-            throw new NotImplementedException();
+            Send("sat status");
+            return Receive();
         }
 
     }

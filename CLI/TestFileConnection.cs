@@ -32,7 +32,7 @@ namespace CLI
         }
         string[] LookForMatch(string command)
         {
-            string line = string.Empty; ;
+            string line = string.Empty;
             StreamReader sr = null;
             try
             {
@@ -50,7 +50,11 @@ namespace CLI
                     //Skip to the next candidate
                     line = SkiptoNext(sr);
                 }
-                throw new InvalidOperationException("File format error");
+                throw new InvalidOperationException($"File format error. Could not find {command}");
+            }
+            catch(InvalidOperationException)
+            {
+                throw new InvalidOperationException($"File format error. Could not find {command}");
             }
             finally
             {
@@ -65,12 +69,12 @@ namespace CLI
             string line;
             while((line = sr.ReadLine()) != null)
             {
-                if (line[0] == '.')
+                if (line[0] == '.' || line[0] == '!')
                 {
                     return sr.ReadLine();
                 }
             }
-            throw new InvalidOperationException("File format error");
+            throw new InvalidOperationException("File format error (SkiptoNext)");
         }
         string[] GetCommandReturn(StreamReader sr)
         {
@@ -79,7 +83,7 @@ namespace CLI
 
             while ((line = sr.ReadLine()) != null)
             {
-                if (line[0] == '.')
+                if (line[0] == '.' || line[0] == '!')
                 {
                     stringList.Add(line);
                     sr.ReadLine();
@@ -87,7 +91,7 @@ namespace CLI
                 }
                 stringList.Add(line);
             }
-            throw new InvalidOperationException("File format error");
+            throw new InvalidOperationException("File format error (GetCommandReturn)");
         }
     }
 }
