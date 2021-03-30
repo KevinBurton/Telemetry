@@ -1,0 +1,112 @@
+dac reset
+.
+dac set (\d+) (\d+) counts (\d+|\d+\.\d*)
+.
+dac set (\d+) (\d+) volts (\d+|\d+\.\d*)
+.
+nkc
+.
+pot reset
+.
+pot set (\d+|\d+\.\d*)
+.
+serial inject_urc (.*)
+.
+file ls (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+)
+/.easterEggs 
+/.hideAndSeek 
+/.suprise 
+/firstDir/ 
+/secondDir/ 
+/thirdDir/ 
+/someFileInThisDir.txt 
+. 
+file ls /
+/firstDir/ 
+/secondDir/ 
+/thirdDir/ 
+/someFileInThisDir.txt 
+. 
+file ls -a /firstDir 
+/aFolderInTheFirstDir 
+/.someHiddenFileInTheFirstDir.txt 
+/someRegularFileInTheFirstDir.txt 
+. 
+file ls -l / 
+total 7 
+r 110000 210317-1546 /.easterEggs 
+r 120000 210317-1546 /.hideAndSeek 
+r 1337 210317-1546 /.suprise 
+r 210317-1546 /firstDir/ 
+- 210317-1246 /secondDir/ 
+- 210317-1346 /thirdDir/ 
+- 999000000 210317-0746 /someFileInThisDir.txt 
+. 
+file ls /thisFolderDoesntExist 
+?file,NotFound,Couldn't find directory "/thisFolderDoesntExist" 
+.
+file rm (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
+.firstDir has been removed 
+file rm /secondDir/unimportantFile.txt 
+.unimportantFile.txt has been removed 
+file rm /thirdDir/importantFile.txt 
+!importantFile.txt permission denied
+file rm /ThisFolderDoesntExist 
+?file,NotFound,Couldn't find "/thisFolderDoesntExist"
+.
+file find ([A-Za-z0-9/]+) (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
+FolderToSearch/findMe.txt 
+. 
+file find /FolderToSearch -name *.txt 
+FolderToSearch/findMe.txt 
+. 
+file find /FolderToSearch -name iDontExist.txt 
+?file,NotFound,Couldn't find "iDontExist.txt in /FolderToSearch" 
+.
+file cp ([A-Za-z0-9/]+) ([A-Za-z0-9/]+) 
+.firstDirCopy.txt has been created 
+file cp /originalFile.txt /copyFile.txt 
+.copyFile.txt has been created 
+file cp /thirdDir /thirdDirCopy 
+!file,Illegal,Can't copy a directory, please provide a file to copy. 
+file cp /thirdDir/thirdDirFileOriginal.txt /firstDir/firstDirFileCopy.txt .firstDirFileCopy.txt has been created
+.
+file cat (.*) 
+.Hello, this is an example text file to prove cat works. 
+file cat /thirdDir/thisFileDoesntExist.txt 
+?file,NotFound,"thisFileDoesntExist.txt" couldn't be found 
+.
+file hexdump (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
+00000000 72 101 108 108 111 44 32 116 104 105 115 32 105 115 32  97 |Hello, this is a| 
+00000010 110 32 101 120 97 109 112 108 101 32 116 101 120 116 32  102 |n example text f| 
+00000020 105 108 101 32 116 111 32 112 114 111 118 101 32 104 101  120 |ile to prove hex| 
+00000030 32 100 117 109 112 32 119 111 114 107 115  
+46 | dump works.| 
+. 
+file hexdump -n 5 -C /pleaseDontMakeMeDecodeAnotherAsciiString.txt 00000000 72 101 108 108  
+111  
+|Hello| 
+. 
+file hexdump -s 16 /pleaseDontMakeMeDecodeAnotherAsciiString.txt 
+00000010 110 32 101 120 97 109 112 108 101 32 116 101 120 116 32  102 |n example text f| 
+00000020 105 108 101 32 116 111 32 112 114 111 118 101 32 104 101  120 |ile to prove hex| 
+00000030 32 100 117 109 112 32 119 111 114 107 115  
+46 | dump works.| 
+. 
+file hexdump -s 7 -n 2 /pleaseDontMakeMeDecodeAnotherAsciiString.txt 00000000 116  
+104  
+|th| 
+. 
+file hexdump -C /thirdDir/thisFileDoesntExist.txt 
+?file,NotFound,"thisFileDoesntExist.txt" couldn't be found 
+.
+file upload ([A-Za-z0-9/]+) ([A-Za-z0-9/]+)@([A-Za-z0-9]+)
+#Waiting for transfer to start 
+#Transferring... 
+(...uuencoded stream...) 
+#Transfer complete
+.fileOnTsmFlash.txt has been created 
+file download ([A-Za-z0-9/]+) 
+(...uuencoded stream...) 
+.
+

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CLI
+﻿namespace CLI
 {
     public class DebugBoardCommandResult : ICLICommandResult
     {
@@ -13,6 +7,6 @@ namespace CLI
             Result = result;
         }
         public string[] Result { get; }
-        public bool IsSuccess => Result != null && Result.Length > 0 && Result[0][0] == '.';
+        public bool IsSuccess => Result != null && Result.Length > 0 && Result[Result.Length - 1][0] == '.';
     }
 }

@@ -1,4 +1,3 @@
-
 adc start
 .
 adc stop
@@ -17,9 +16,9 @@ adc toggle ofc
 .
 adc toggle fsc
 .
-adc setofc \d+
+adc setofc (\d+)
 .Wrote 1000 to offset registers successfully 
-adc setfsc \d+|\d+\.\d+
+adc setfsc (\d+|\d+\.\d*)
 .Wrote 1.1 to the gain calibration register (FSC Enabled:1) 
 adc setfs master
 .
@@ -59,14 +58,14 @@ adc get modes
 .
 adc get all
 .
-adc read counts \d+ 
+adc read counts (\d+) 
 510268 
 510410 
 510232 
 510209 
 510073 
 . 
-adc read voltage \d+
+adc read voltage (\d+)
 2.1221 
 2.1218
 . 
@@ -90,15 +89,15 @@ adc cont
 rtc help 
 (print out all the info for each command)
 .
-rtc set time \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+rtc set time (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})
 . 
-rtc set wakeinterval \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+rtc set wakeinterval (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})
 . 
-rtc set countdown \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+rtc set countdown (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})
 . 
 rtc set time waffle 
 !Error,Unexpected Format 
-rtc set wake time \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+rtc set wake time (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})
 .
 rtc reset countdown
 .
@@ -151,11 +150,15 @@ Off, Disconnected, Strength: --dB
 .
 ble enable 
 . 
+ble disable 
+. 
 ble status 
 On, Disconnected, Strength: --dB
 .
 ble toggle pairing 
 . #Pairing mode enabled 
+ble toggle broadcast 
+.
 ble status 
 On, Connected, Strength: 20dB
 .
@@ -166,10 +169,24 @@ ble signal strength
 . 
 ble disconnect 
 . 
-ambient temperature 
+ble connect 
+. 
+ble packets tx 
+. 
+ble packets rx 
+. 
+ble packets dropped 
+. 
+ble signal strength 
+. 
+ble signal interference 
+. 
+ble signal connects 
+. 
+amb temperature 
 294 
 .
-ambient humidity 
+amb humidity 
 20
 . 
 acl calibrate 
@@ -209,22 +226,44 @@ acl mean y
 .
 acl mean z 
 0.9
+.
 mag calibrate 
 . 
 mag measure x 
 0
 .
+mag measure y 
+0
+.
+mag measure z 
+0
+.
+mag mean x 
+0
+.
+mag mean y 
+0
+.
+mag mean z 
+0
+.
 mag max x 
+0.4 
+.
+mag max y 
+0.4 
+.
+mag max z 
 0.4 
 .
 mag standarddeviation x 
 0.03
 .
-mag measure z 
-0.7
+mag standarddeviation y 
+0.03
 .
-mag max z 
-0.9
+mag standarddeviation z 
+0.03
 .
 mdm packets rx
 1
@@ -241,6 +280,8 @@ mdm status
 Off, Disconnected, Strength: --dB
 .
 mdm enable 
+. 
+mdm disable 
 . 
 mdm status 
 On, Disconnected, Strength: --dB
@@ -263,6 +304,8 @@ mdm signal strength
 mdm signal interference
 .
 mdm signal connects
+.
+mdm connect 
 .
 mdm disconnect 
 .
@@ -314,16 +357,16 @@ sat packets tx
 sat packets rx
 1
 .
-file ls /
+file ls (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+)
+/.easterEggs 
+/.hideAndSeek 
+/.suprise 
 /firstDir/ 
 /secondDir/ 
 /thirdDir/ 
 /someFileInThisDir.txt 
 . 
-file ls -a /
-/.easterEggs 
-/.hideAndSeek 
-/.suprise 
+file ls /
 /firstDir/ 
 /secondDir/ 
 /thirdDir/ 
@@ -347,7 +390,7 @@ r 210317-1546 /firstDir/
 file ls /thisFolderDoesntExist 
 ?file,NotFound,Couldn't find directory "/thisFolderDoesntExist" 
 .
-file rm /firstDir 
+file rm (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
 .firstDir has been removed 
 file rm /secondDir/unimportantFile.txt 
 .unimportantFile.txt has been removed 
@@ -356,7 +399,7 @@ file rm /thirdDir/importantFile.txt
 file rm /ThisFolderDoesntExist 
 ?file,NotFound,Couldn't find "/thisFolderDoesntExist"
 .
-file find /FolderToSearch -name findMe.txt 
+file find ([A-Za-z0-9/]+) (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
 FolderToSearch/findMe.txt 
 . 
 file find /FolderToSearch -name *.txt 
@@ -365,7 +408,7 @@ FolderToSearch/findMe.txt
 file find /FolderToSearch -name iDontExist.txt 
 ?file,NotFound,Couldn't find "iDontExist.txt in /FolderToSearch" 
 .
-file cp /firstDir/firstDir.txt /secondDir/firstDirCopy.txt 
+file cp ([A-Za-z0-9/]+) ([A-Za-z0-9/]+) 
 .firstDirCopy.txt has been created 
 file cp /originalFile.txt /copyFile.txt 
 .copyFile.txt has been created 
@@ -373,12 +416,12 @@ file cp /thirdDir /thirdDirCopy
 !file,Illegal,Can't copy a directory, please provide a file to copy. 
 file cp /thirdDir/thirdDirFileOriginal.txt /firstDir/firstDirFileCopy.txt .firstDirFileCopy.txt has been created
 .
-file cat /testText.txt 
+file cat (.*) 
 .Hello, this is an example text file to prove cat works. 
 file cat /thirdDir/thisFileDoesntExist.txt 
 ?file,NotFound,"thisFileDoesntExist.txt" couldn't be found 
 .
-file hexdump -C /pleaseDontMakeMeDecodeAnotherAsciiString.txt 
+file hexdump (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+) 
 00000000 72 101 108 108 111 44 32 116 104 105 115 32 105 115 32  97 |Hello, this is a| 
 00000010 110 32 101 120 97 109 112 108 101 32 116 101 120 116 32  102 |n example text f| 
 00000020 105 108 101 32 116 111 32 112 114 111 118 101 32 104 101  120 |ile to prove hex| 
@@ -402,13 +445,12 @@ file hexdump -s 7 -n 2 /pleaseDontMakeMeDecodeAnotherAsciiString.txt 00000000 11
 file hexdump -C /thirdDir/thisFileDoesntExist.txt 
 ?file,NotFound,"thisFileDoesntExist.txt" couldn't be found 
 .
-file upload /fileOnTsmFlash.txt 
+file upload ([A-Za-z0-9/]+) ([A-Za-z0-9/]+)@([A-Za-z0-9]+)
 #Waiting for transfer to start 
 #Transferring... 
 (...uuencoded stream...) 
 #Transfer complete
 .fileOnTsmFlash.txt has been created 
-file download /fileOnTsmFlash.txt 
+file download ([A-Za-z0-9/]+) 
 (...uuencoded stream...) 
 .
-

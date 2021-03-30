@@ -7,9 +7,10 @@ namespace CLI
 {
     public class TestFileConnection : ICLIConnection
     {
-        public TestFileConnection(string path)
+        public TestFileConnection(string path, DebugMeasurementShared shared)
         {
-            if(File.Exists(path))
+            Shared = shared;
+            if (File.Exists(path))
             {
                 Path = path;
                 return;
@@ -22,9 +23,58 @@ namespace CLI
         StreamReader Reader { get; }
 
         string Command { get; set; }
+        public DebugMeasurementShared Shared { get; }
+
         public string[] Read()
         {
-            return LookForMatch(Command);
+            var result = LookForMatch(Command);
+            if(Command.Contains("adc read"))
+            {
+                // Handle adc read special
+                // The assumption is that there is only
+                // a '.' success indicator
+                var tokens = Command.Split(' ');
+                var count = int.Parse(tokens[3]);
+                var diff = 0.0f;
+                // 5 percent variation +_4 volts 0-4095 counts
+                if(tokens[2] == "counts")
+                {
+                    diff = 205f;
+                }
+                else
+                {
+                    diff = 0.4f;
+                }
+                var value = tokens[2] == "counts" ? Shared.Counts : Shared.Volts;
+                var resultList = new List<string>();
+                for(var i = 0; i < count; i++)
+                {
+                    resultList.Add($"{value + (i%2 == 0 ? -diff : diff)}");
+                }
+                resultList.Add(".");
+                return resultList.ToArray();
+            }
+            else if(Command.Contains("dac set"))
+            {
+                var tokens = Command.Split(' ');
+                Shared.DAC = int.Parse(tokens[2]);
+                Shared.Channel = int.Parse(tokens[3]);
+                if(tokens[4] == "volts")
+                {
+                    var value = float.Parse(tokens[5]);
+                    value = Math.Min(value, 4);
+                    value = Math.Max(value, -4);
+                    Shared.Volts = value;
+                }
+                else if(tokens[4] == "counts")
+                {
+                    var value = int.Parse(tokens[5]);
+                    value = Math.Min(value, 4095);
+                    value = Math.Max(value, 0);
+                    Shared.Counts = (ushort)value;
+                }
+            }
+            return result;
         }
         public void Send(string command)
         {
@@ -45,7 +95,15 @@ namespace CLI
                     var match = rex.Match(Command);
                     if(match.Success)
                     {
-                        return GetCommandReturn(sr);
+                        var result = GetCommandReturn(sr);
+                        for(var i = 0;i < match.Groups.Count; i++)
+                        {
+                            for(var j = 0; j < result.Length; j++)
+                            {
+                                result[j] = result[j].Replace($"{i}$", match.Groups[i].Value);
+                            }
+                        }
+                        return result;
                     }
                     //Skip to the next candidate
                     line = SkiptoNext(sr);

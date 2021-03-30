@@ -261,7 +261,7 @@ namespace CLI
 
         public ICLICommandResult AdcToggleCrcbCommand()
         {
-            Send("adc toggle crb");
+            Send("adc toggle crcb");
             return Receive();
         }
 
@@ -333,7 +333,7 @@ namespace CLI
 
         public ICLICommandResult BlePacketsDroppedCommand()
         {
-            Send("ble packates dropped");
+            Send("ble packets dropped");
             return Receive();
         }
 
@@ -429,7 +429,7 @@ namespace CLI
 
         public ICLICommandResult FileDownloadCommand(string path)
         {
-            Send("$file download {path}");
+            Send($"file download {path}");
             return Receive();
         }
 

@@ -9,7 +9,7 @@ namespace CLI
             Connection = connection;
         }
 
-        public ICLIConnection Connection { get; }
+        ICLIConnection Connection { get; }
 
         void Send(string command)
         {
@@ -17,186 +17,97 @@ namespace CLI
         }
         ICLICommandResult Receive()
         {
-            return new DebugBoardCommandResult(new string[0]);
+            var response = Connection.Read();
+            return new DebugBoardCommandResult(response);
         }
 
         public ICLICommandResult DacResetCommand()
         {
-            try
-            {
-                Send("dac reset");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("dac reset");
+            return Receive();
         }
 
         public ICLICommandResult DacSetCountCommand(int dac, int channel, float value)
         {
-            try
-            {
-                Send($"dac set {dac} {channel} counts {value}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"dac set {dac} {channel} counts {value}");
+            return Receive();
         }
 
         public ICLICommandResult DacSetVoltCommand(int dac, int channel, float value)
         {
-            try
-            {
-                Send($"dac set {dac} {channel} volts {value}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"dac set {dac} {channel} volts {value}");
+            return Receive();
         }
 
         public ICLICommandResult NkcCommand()
         {
-            try
-            {
-                Send("nkc");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("nkc");
+            return Receive();
         }
 
         public ICLICommandResult PotResetCommand()
         {
-            try
-            {
-                Send("pot reset");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send("pot reset");
+            return Receive();
         }
 
         public ICLICommandResult PotSetCommand(float value)
         {
-            try
-            {
-                Send($"pot set {value}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"pot set {value}");
+            return Receive();
         }
 
         public ICLICommandResult SerialInjecUrcCommand(string urc)
         {
-            try
-            {
-                Send($"serial inject_urc {urc}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"serial inject_urc {urc}");
+            return Receive();
         }
         public ICLICommandResult FileCatCommand(string fileName)
         {
-            try
-            {
-                Send($"file cat {fileName}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file cat {fileName}");
+            return Receive();
         }
 
         public ICLICommandResult FileCpCommand(string currentPath, string newPath)
         {
-            try
-            {
-                Send($"file cp {currentPath} {newPath}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
-        }
-
-        public ICLICommandResult FileDownloadCommand(string path)
-        {
-            try
-            {
-                Send("$file download {path}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file cp {currentPath} {newPath}");
+            return Receive();
         }
 
         public ICLICommandResult FileFindCommand(string directory, string flags, string expression)
         {
-            try
-            {
-                Send($"file find {directory} {flags} {expression}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file find {directory} {flags} {expression}");
+            return Receive();
         }
 
-        public ICLICommandResult FileHexDumpCommand(string flags, string filename)
+        public ICLICommandResult FileHexDumpCommand(string flags, string fileName)
         {
-            try
-            {
-                Send($"file hexdump {flags} {filename}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file hexdump {flags} {fileName}");
+            return Receive();
         }
 
         public ICLICommandResult FileLsCommand(string flags, string directory)
         {
-            try
-            {
-                Send($"file ls {flags} {directory}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file ls {flags} {directory}");
+            return Receive();
         }
 
         public ICLICommandResult FileRmCommand(string flags, string path)
         {
-            try
-            {
-                Send($"file rm {flags} {path}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file rm {flags} {path}");
+            return Receive();
         }
 
-        public ICLICommandResult FileUploadCommand(string path, string username, string destinationServer)
+        public ICLICommandResult FileUploadCommand(string path, string userName, string destinationServer)
         {
-            try
-            {
-                Send($"file upload {path} {username}@{destinationServer}");
-            }
-            catch (CLIException)
-            {
-            }
-            throw new NotImplementedException();
+            Send($"file upload {path} {userName}@{destinationServer}");
+            return Receive();
+        }
+
+        public ICLICommandResult FileDownloadCommand(string path)
+        {
+            Send($"file download {path}");
+            return Receive();
         }
     }
 }
