@@ -771,6 +771,11 @@ namespace CLI
             Send("sat status");
             return Receive();
         }
+        public ICLICommandResult LatchRelayCommand(int dac, int channel)
+        {
+            Send($"relay {dac} {channel}");
+            return Receive();
+        }
         bool CheckInput(MeasurementBoardChannels first, MeasurementBoardChannels second)
         {
             if (first == MeasurementBoardChannels.s1 ||
