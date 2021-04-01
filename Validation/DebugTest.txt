@@ -1,8 +1,8 @@
 dac reset
 .
-dac set (\d+) (\d+) counts (\d+|\d+\.\d*)
+dac set (\d+) (\d+) counts (-?(\d+|\d+\.\d*))
 .
-dac set (\d+) (\d+) volts (\d+|\d+\.\d*)
+dac set (\d+) (\d+) volts (-?(\d+|-?\d+\.\d*))
 .
 nkc
 .

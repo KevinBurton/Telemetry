@@ -45,7 +45,7 @@ namespace CLI
                 {
                     diff = 0.4f;
                 }
-                var value = tokens[2] == "counts" ? Shared.Counts : Shared.Volts;
+                var value = tokens[2] == "counts" ? Shared.GetCounts : Shared.GetVolts;
                 var resultList = new List<string>();
                 for(var i = 0; i < count; i++)
                 {
@@ -57,27 +57,44 @@ namespace CLI
             else if(Command.Contains("dac set"))
             {
                 var tokens = Command.Split(' ');
-                Shared.DAC = int.Parse(tokens[2]);
+                Shared.Dac = int.Parse(tokens[2]);
+                if(Shared.Dac > 1) throw new ArgumentOutOfRangeException($"Allowed values for Dac are 0, 1 {Shared.Dac}");
                 Shared.Channel = int.Parse(tokens[3]);
-                if(tokens[4] == "volts")
+                if (Shared.Channel > 7) throw new ArgumentOutOfRangeException($"Allowed values for Channel are 0-7 {Shared.Channel}");
+                if (tokens[4] == "volts")
                 {
                     var value = float.Parse(tokens[5]);
                     value = Math.Min(value, 4);
                     value = Math.Max(value, -4);
-                    Shared.Volts = value;
+                    Shared.Settings[Shared.Dac, Shared.Channel].Volts = value;
                 }
                 else if(tokens[4] == "counts")
                 {
                     var value = int.Parse(tokens[5]);
                     value = Math.Min(value, 4095);
                     value = Math.Max(value, 0);
-                    Shared.Counts = (ushort)value;
+                    Shared.Settings[Shared.Dac, Shared.Channel].Counts = (ushort)value;
                 }
             }
             return result;
         }
         public void Send(string command)
         {
+            var commandRegex = new Regex(@"relay (\d+) (\d+)");
+            var match = commandRegex.Match(command);
+            if (match.Success)
+            {
+                // Handle relay commands special
+                var dac = int.Parse(match.Groups[1].Value);
+                var channel = int.Parse(match.Groups[2].Value);
+                Shared.DacRelay = dac;
+                Shared.ChannelRelay = channel;
+            }
+            if(command == "relay reset")
+            {
+                // Handle relay reset command special
+                Shared.RelayReset();
+            }
             Command = command;
         }
         string[] LookForMatch(string command)

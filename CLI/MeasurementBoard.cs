@@ -21,7 +21,7 @@ namespace CLI
         ICLIConnection Connection { get; }
         public ICLICommandResult AccelCalibrateCommand()
         {
-    		Send("acl calibrate");
+            Send("acl calibrate");
             return Receive();
         }
 
@@ -135,7 +135,7 @@ namespace CLI
 
         public ICLICommandResult AdcGetOfcCommand()
         {
-        	Send("adc get ofc");
+            Send("adc get ofc");
             return Receive();
         }
 
@@ -771,6 +771,213 @@ namespace CLI
             Send("sat status");
             return Receive();
         }
-
+        bool CheckInput(MeasurementBoardChannels first, MeasurementBoardChannels second)
+        {
+            if (first == MeasurementBoardChannels.s1 ||
+               first == MeasurementBoardChannels.s2 ||
+               first == MeasurementBoardChannels.pc1 ||
+               first == MeasurementBoardChannels.nc ||
+               first == MeasurementBoardChannels.acc ||
+               first == MeasurementBoardChannels.pc2)
+            {
+                if(second != MeasurementBoardChannels.ref1 &&
+                   second != MeasurementBoardChannels.ref1)
+                {
+                    return false;
+                }
+            }
+            if (first == MeasurementBoardChannels.ref1 ||
+                first == MeasurementBoardChannels.ref1)
+            {
+                if (second != MeasurementBoardChannels.s1 &&
+                    second != MeasurementBoardChannels.s2 &&
+                    second != MeasurementBoardChannels.pc1 &&
+                    second != MeasurementBoardChannels.nc &&
+                    second != MeasurementBoardChannels.acc &&
+                    second != MeasurementBoardChannels.pc2)
+                {
+                    return false;
+                }
+            }
+            if ((first == MeasurementBoardChannels.aux2_pos && second != MeasurementBoardChannels.aux2_neg) ||
+               (first == MeasurementBoardChannels.aux2_neg && second != MeasurementBoardChannels.aux2_pos))
+            {
+                return false;
+            }
+            if ((first == MeasurementBoardChannels.ishnt_pos && second != MeasurementBoardChannels.ishnt_neg) ||
+                (first == MeasurementBoardChannels.ishnt_neg && second != MeasurementBoardChannels.ishnt_pos))
+            {
+                return false;
+            }
+            if ((first == MeasurementBoardChannels.pcr_pos && second != MeasurementBoardChannels.pcr_neg) ||
+                (first == MeasurementBoardChannels.pcr_neg && second != MeasurementBoardChannels.pcr_pos))
+            {
+                return false;
+            }
+            if ((first == MeasurementBoardChannels.eshnt_pos && second != MeasurementBoardChannels.eshnt_neg) ||
+                (first == MeasurementBoardChannels.eshnt_neg && second != MeasurementBoardChannels.eshnt_pos))
+            {
+                return false;
+            }
+            return true;
+        }
+        public ICLICommandResult RelayCommand(MeasurementBoardChannels first, MeasurementBoardChannels second)
+        {
+            // Check input
+            if(!CheckInput(first, second))
+            {
+                throw new ArgumentOutOfRangeException($"Invalid relay latch combination. {first}, {second}");
+            }
+            int dac = 0;
+            int channel = 0;
+            switch (first)
+            {
+                case MeasurementBoardChannels.s1:
+                    dac = 0;
+                    channel = 0;
+                    break;
+                case MeasurementBoardChannels.s2:
+                    dac = 0;
+                    channel = 1;
+                    break;
+                case MeasurementBoardChannels.pc1:
+                    dac = 0;
+                    channel = 2;
+                    break;
+                case MeasurementBoardChannels.nc:
+                    dac = 0;
+                    channel = 3;
+                    break;
+                case MeasurementBoardChannels.acc:
+                    dac = 0;
+                    channel = 4;
+                    break;
+                case MeasurementBoardChannels.pc2:
+                    dac = 0;
+                    channel = 5;
+                    break;
+                case MeasurementBoardChannels.aux2_pos:
+                    dac = 0;
+                    channel = 6;
+                    break;
+                case MeasurementBoardChannels.aux2_neg:
+                    dac = 0;
+                    channel = 7;
+                    break;
+                case MeasurementBoardChannels.ishnt_pos:
+                    dac = 1;
+                    channel = 0;
+                    break;
+                case MeasurementBoardChannels.ishnt_neg:
+                    dac = 1;
+                    channel = 1;
+                    break;
+                case MeasurementBoardChannels.ref1:
+                    dac = 1;
+                    channel = 2;
+                    break;
+                case MeasurementBoardChannels.ref2:
+                    dac = 1;
+                    channel = 3;
+                    break;
+                case MeasurementBoardChannels.pcr_pos:
+                    dac = 1;
+                    channel = 4;
+                    break;
+                case MeasurementBoardChannels.pcr_neg:
+                    dac = 1;
+                    channel = 5;
+                    break;
+                case MeasurementBoardChannels.eshnt_pos:
+                    dac = 1;
+                    channel = 6;
+                    break;
+                case MeasurementBoardChannels.eshnt_neg:
+                    dac = 1;
+                    channel = 7;
+                    break;
+                default:
+                    break;
+            }
+            Send($"relay {dac} {channel}");
+            var result = Receive();
+            if (!result.IsSuccess) return result;
+            switch (second)
+            {
+                case MeasurementBoardChannels.s1:
+                    dac = 0;
+                    channel = 0;
+                    break;
+                case MeasurementBoardChannels.s2:
+                    dac = 0;
+                    channel = 1;
+                    break;
+                case MeasurementBoardChannels.pc1:
+                    dac = 0;
+                    channel = 2;
+                    break;
+                case MeasurementBoardChannels.nc:
+                    dac = 0;
+                    channel = 3;
+                    break;
+                case MeasurementBoardChannels.acc:
+                    dac = 0;
+                    channel = 4;
+                    break;
+                case MeasurementBoardChannels.pc2:
+                    dac = 0;
+                    channel = 5;
+                    break;
+                case MeasurementBoardChannels.aux2_pos:
+                    dac = 0;
+                    channel = 6;
+                    break;
+                case MeasurementBoardChannels.aux2_neg:
+                    dac = 0;
+                    channel = 7;
+                    break;
+                case MeasurementBoardChannels.ishnt_pos:
+                    dac = 1;
+                    channel = 0;
+                    break;
+                case MeasurementBoardChannels.ishnt_neg:
+                    dac = 1;
+                    channel = 1;
+                    break;
+                case MeasurementBoardChannels.ref1:
+                    dac = 1;
+                    channel = 2;
+                    break;
+                case MeasurementBoardChannels.ref2:
+                    dac = 1;
+                    channel = 3;
+                    break;
+                case MeasurementBoardChannels.pcr_pos:
+                    dac = 1;
+                    channel = 4;
+                    break;
+                case MeasurementBoardChannels.pcr_neg:
+                    dac = 1;
+                    channel = 5;
+                    break;
+                case MeasurementBoardChannels.eshnt_pos:
+                    dac = 1;
+                    channel = 6;
+                    break;
+                case MeasurementBoardChannels.eshnt_neg:
+                    dac = 1;
+                    channel = 7;
+                    break;
+                default:
+                    break;
+            }
+            Send($"relay {dac} {channel}");
+            return Receive();
+        }
+        public ICLICommandResult RelayResetCommand()
+        {
+            Send("relay reset");
+            return Receive();
+        }
     }
 }
