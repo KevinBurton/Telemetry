@@ -57,23 +57,24 @@ namespace CLI
             else if(Command.Contains("dac set"))
             {
                 var tokens = Command.Split(' ');
-                Shared.Dac = int.Parse(tokens[2]);
-                if(Shared.Dac > 1) throw new ArgumentOutOfRangeException($"Allowed values for Dac are 0, 1 {Shared.Dac}");
-                Shared.Channel = int.Parse(tokens[3]);
-                if (Shared.Channel > 7) throw new ArgumentOutOfRangeException($"Allowed values for Channel are 0-7 {Shared.Channel}");
+                var tmp = new int[] { int.Parse(tokens[2]), int.Parse(tokens[3]) };
+                Shared.Dac = tmp[0];
+                if(tmp[0] > 1) throw new ArgumentOutOfRangeException($"Allowed values for Dac are 0, 1 {tmp[0]}");
+                Shared.Channel = tmp[1];
+                if (tmp[1] > 7) throw new ArgumentOutOfRangeException($"Allowed values for Channel are 0-7 {tmp[1]}");
                 if (tokens[4] == "volts")
                 {
                     var value = float.Parse(tokens[5]);
                     value = Math.Min(value, 4);
                     value = Math.Max(value, -4);
-                    Shared.Settings[Shared.Dac, Shared.Channel].Volts = value;
+                    Shared.Settings[tmp[0], tmp[1]].Volts = value;
                 }
                 else if(tokens[4] == "counts")
                 {
                     var value = int.Parse(tokens[5]);
                     value = Math.Min(value, 4095);
                     value = Math.Max(value, 0);
-                    Shared.Settings[Shared.Dac, Shared.Channel].Counts = (ushort)value;
+                    Shared.Settings[tmp[0], tmp[1]].Counts = (ushort)value;
                 }
             }
             return result;

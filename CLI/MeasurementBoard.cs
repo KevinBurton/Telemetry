@@ -786,13 +786,13 @@ namespace CLI
                first == MeasurementBoardChannels.pc2)
             {
                 if(second != MeasurementBoardChannels.ref1 &&
-                   second != MeasurementBoardChannels.ref1)
+                   second != MeasurementBoardChannels.ref2)
                 {
                     return false;
                 }
             }
             if (first == MeasurementBoardChannels.ref1 ||
-                first == MeasurementBoardChannels.ref1)
+                first == MeasurementBoardChannels.ref2)
             {
                 if (second != MeasurementBoardChannels.s1 &&
                     second != MeasurementBoardChannels.s2 &&

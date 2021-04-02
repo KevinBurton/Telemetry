@@ -11,6 +11,9 @@ namespace Validation
     [TestFixture]
     public class MeasurementTests
     {
+        delegate ICLICommandResult MeasurementFunction(int n);
+        delegate ICLICommandResult MeasurementRelayFunction(MeasurementBoardChannels first, MeasurementBoardChannels second);
+
         MeasurementBoard measurementBoard;
         DebugBoard debugBoard;
 
@@ -61,48 +64,6 @@ namespace Validation
             var factor = 2.576 * (sd / Math.Sqrt(n));
             return (mean + factor, mean - factor);
         }
-        [Test]
-        public void CheckVoltageTest()
-        {
-            var testVoltage = 2.5f;
-            var result = debugBoard.DacSetVoltCommand(0, 0, testVoltage);
-            Assert.IsTrue(result.IsSuccess);
-            result = measurementBoard.AdcReadVoltageCommand(5);
-            Assert.IsTrue(result.IsSuccess);
-            var measurements = new List<float>();
-            foreach(var r in result.Result)
-            {
-                if(r[0] != '.')
-                {
-                    measurements.Add(float.Parse(r));
-                }
-            }
-            var mean = Mean(measurements);
-            Assert.Less(Math.Abs(testVoltage - mean), 0.1f, "The mean voltage is not within a tolerance of 0.1");
-            var sd = StandardDeviation(measurements);
-            Assert.Less(sd, 0.5f, "Standard deviation is larger than 0.5");
-        }
-        [Test]
-        public void CheckCountTest()
-        {
-            var testCount = 2000f;
-            var result = debugBoard.DacSetCountCommand(0, 0, testCount);
-            Assert.IsTrue(result.IsSuccess);
-            result = measurementBoard.AdcReadCountsCommand(5);
-            Assert.IsTrue(result.IsSuccess);
-            var measurements = new List<float>();
-            foreach (var r in result.Result)
-            {
-                if (r[0] != '.')
-                {
-                    measurements.Add(float.Parse(r));
-                }
-            }
-            var mean = Mean(measurements);
-            Assert.Less(Math.Abs(testCount - mean), 50f, "The mean voltage is not within a tolerance of 0.1");
-            var sd = StandardDeviation(measurements);
-            Assert.Less(sd, 225f, "Standard deviation is larger than 0.5");
-        }
         void CheckResults(double expectedVolts, int n, ICLICommandResult result)
         {
             var measurements = new List<float>();
@@ -120,12 +81,94 @@ namespace Validation
             (upper, lower) = ConfidenceInterval(mean, sd, n);
             Assert.IsTrue(expectedVolts < upper && expectedVolts > lower);
         }
-        [Test]
+        private static IEnumerable<TestCaseData> MeasurementTestCaseSource()
+        {
+            foreach(var test in MeasurementTestTypeParameters())
+            {
+                foreach(var testValue in MeasurementValueParmeters())
+                {
+                    var z = new object[test.Length + testValue.Length];
+                    test.CopyTo(z, 0);
+                    testValue.CopyTo(z, test.Length);
+                    yield return new TestCaseData(z);
+                }
+            }
+        }
+        private static IEnumerable<TestCaseData> MeasurementIndividualTestCaseSource()
+        {
+            foreach (var testValue in MeasurementValueParmeters())
+            {
+                yield return new TestCaseData(testValue);
+            }
+
+        }
+        private static IEnumerable<object[]> MeasurementValueParmeters()
+        {
+            yield return new object[] { 4.0f, -4.0f, 5 };
+            yield return new object[] { 4.0f, -4.0f, 20 };
+            yield return new object[] { -4.0f, 4.0f, 5 };
+            yield return new object[] { 4.0f, 4.0f, 5 };
+        }
+        private static IEnumerable<object[]> MeasurementTestTypeParameters()
+        {
+            yield return new object[] { "Sr1", 0, 0, 1, 2,
+                                          MeasurementBoardChannels.s1, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "Sr1Ref2", 0, 0, 1, 3,
+                                          MeasurementBoardChannels.s1, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Sr2", 0, 1, 1, 2,
+                                          MeasurementBoardChannels.s2, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "Sr2Ref2", 0, 1, 1, 3,
+                                          MeasurementBoardChannels.s2, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Pc1", 0, 2, 1, 2,
+                                          MeasurementBoardChannels.pc1, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "Pc1Ref2", 0, 2, 1, 3,
+                                          MeasurementBoardChannels.pc1, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Nc", 0, 3, 1, 2,
+                                          MeasurementBoardChannels.nc, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "NcRef2", 0, 3, 1, 3,
+                                          MeasurementBoardChannels.nc, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Acc", 0, 4, 1, 2,
+                                          MeasurementBoardChannels.acc, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "AccRef2", 0, 4, 1, 3,
+                                          MeasurementBoardChannels.acc, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Pc2", 0, 5, 1, 2,
+                                          MeasurementBoardChannels.pc2, MeasurementBoardChannels.ref1 };
+            yield return new object[] { "Pc2Ref2", 0, 5, 1, 3,
+                                          MeasurementBoardChannels.pc2, MeasurementBoardChannels.ref2 };
+            yield return new object[] { "Aux2", 0, 6, 0, 7,
+                                          MeasurementBoardChannels.aux2_pos, MeasurementBoardChannels.aux2_neg };
+            yield return new object[] { "InternalShunt", 1, 0, 1, 1,
+                                          MeasurementBoardChannels.ishnt_pos, MeasurementBoardChannels.ishnt_neg };
+            yield return new object[] { "Pcr", 1, 4, 1, 5,
+                                          MeasurementBoardChannels.pcr_pos, MeasurementBoardChannels.pcr_neg };
+            yield return new object[] { "ExternalShunt", 1, 6, 1, 7,
+                                          MeasurementBoardChannels.eshnt_pos, MeasurementBoardChannels.eshnt_neg };
+        }
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
-        [TestCase(4.0f, -4.0f, 20)]
-        [TestCase(-4.0f, 4.0f, 5)]
-        [TestCase(4.0f, 4.0f, 5)]
+        [Test, TestCaseSource("MeasurementTestCaseSource")]
+        public void CheckAllTest(string description, int dac0, int channel0, int dac1, int channel1, MeasurementBoardChannels firstLatch, MeasurementBoardChannels secondLatch,
+                                 float testVoltA, float testVoltB, int n)
+        {
+            TestContext.WriteLine($"{description} {firstLatch} {secondLatch}");
+
+            var expectedVolts = testVoltA - testVoltB;
+
+            debugBoard.DacSetVoltCommand(dac0, channel0, testVoltA);
+            debugBoard.DacSetVoltCommand(dac1, channel1, testVoltB);
+
+            var result = measurementBoard.RelayCommand(firstLatch, secondLatch);
+            Assert.IsTrue(result.IsSuccess);
+
+            result = measurementBoard.AdcReadVoltageCommand(n);
+            Assert.IsTrue(result.IsSuccess);
+            CheckResults(expectedVolts, n, result);
+
+            result = measurementBoard.RelayResetCommand();
+            Assert.IsTrue(result.IsSuccess);
+        }
+
+        [Category("Measurement")]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckSr1Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -140,9 +183,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckSr1Ref2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -157,9 +200,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckSr2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -174,9 +217,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckSr2Ref2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -191,9 +234,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckPc1Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -208,9 +251,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckPc1Ref2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -225,9 +268,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckNcTest(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -242,9 +285,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckNcRef2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -259,9 +302,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckAccTest(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -276,9 +319,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckAccRef2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -293,9 +336,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckPc2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -310,9 +353,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckPc2Ref2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -327,9 +370,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckAux2Test(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -344,9 +387,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckInternalShuntTest(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -361,9 +404,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckPcrTest(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
@@ -378,9 +421,9 @@ namespace Validation
             Assert.IsTrue(result.IsSuccess);
             CheckResults(expectedVolts, n, result);
         }
-        [Test]
+
         [Category("Measurement")]
-        [TestCase(4.0f, -4.0f, 5)]
+        [Test, TestCaseSource("MeasurementIndividualTestCaseSource")]
         public void CheckExternalShuntTest(float testVoltA, float testVoltB, int n)
         {
             var expectedVolts = testVoltA - testVoltB;
