@@ -11,19 +11,30 @@ namespace PacketCommunication
     public class Server
     {
         UdpClient udpServer;
-        public Server(int port)
+        public Server(Action<IAsyncResult> callback, int port = 11000)
         {
-            udpServer = new UdpClient(11000);
+            udpServer = new UdpClient(port);
+            Callback = callback;
+            Port = port;
         }
+
+        public Action<IAsyncResult> Callback { get; }
+        public int Port { get; }
+
         public void Start()
         {
-            while (true)
-            {
-                var remoteEP = new IPEndPoint(IPAddress.Any, 11000);
-                var data = udpServer.Receive(ref remoteEP); // listen on port 11000
-                Console.Write("receive data from " + remoteEP.ToString());
-                udpServer.Send(new byte[] { 1 }, 1, remoteEP); // reply back
-            }
+            // Receive a message and write it to the console.
+            IPEndPoint e = new IPEndPoint(IPAddress.Any, Port);
+            UdpClient c = new UdpClient(e);
+
+            // Timeout in milliseconds
+            //c.Client.ReceiveTimeout = 10000;
+
+            UdpState s = new UdpState();
+            s.Endpoint = e;
+            s.Client = c;
+
+            c.BeginReceive(new AsyncCallback(Callback), s);
         }
     }
 }
