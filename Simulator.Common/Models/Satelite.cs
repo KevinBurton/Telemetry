@@ -8,14 +8,10 @@ namespace Simulator.Common.Models
     {
         public SateliteCommon Common { get; } = new();
         public List<SateliteMeasurementItem> Items { get; } = new ();
-        public uint CRC { get; protected set; }
-        public int Padding { get; protected set; }
-        public string BitString { get; protected set; }
-        public byte[] Block { get; protected set; }
         public Satelite()
         {
         }
-        public void Initialize()
+        public override void Initialize()
         {
             // Make sure we send only 5 measurements
             // Fill in the missing elements
@@ -32,15 +28,7 @@ namespace Simulator.Common.Models
 
             AddCrc();
         }
-        private void AddCrc()
-        {
-            var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(4));
-            CRC = Crc32.Compute(message);
-            BitString = BuildBitString();
-            Block = ConvertToByteArray(BitString);
-        }
-        private string BuildBitString()
+        public override string BuildBitString()
         {
             var result = "";
             result += Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');

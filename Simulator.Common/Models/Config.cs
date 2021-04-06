@@ -11,14 +11,10 @@ namespace Simulator.Common.Models
     {
         public ConfigCommon Common { get; } = new();
         public List<ConfigItem> Items { get; } = new();
-        public uint CRC { get; protected set; }
-        public int Padding { get; protected set; }
-        public string BitString { get; protected set; }
-        public byte[] Block { get; protected set; }
         public Config()
         {
         }
-        public void Initialize()
+        public override void Initialize()
         {
             // Size of all the bytes without the dynamic portion
             var BlockLength = 12 + Items.Count * 2 + 1;
@@ -35,15 +31,7 @@ namespace Simulator.Common.Models
                 BlockLength += Padding;
             }
         }
-        private void AddCrc()
-        {
-            var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(4));
-            CRC = Crc32.Compute(message);
-            BitString = BuildBitString();
-            Block = ConvertToByteArray(BitString);
-        }
-        private string BuildBitString()
+        public override string BuildBitString()
         {
             var result = "";
 

@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Utility.DamienG.Security.Cryptography;
 
 namespace Simulator.Common.Models
 {
-    public class TSMBase
+    public abstract class TSMBase
     {
-        public static byte[] ConvertToByteArray(string inputBitString)
+        public abstract string BuildBitString();
+        public abstract void Initialize();
+        internal protected void AddCrc()
+        {
+            var initialString = BuildBitString();
+            var message = ConvertToByteArray(initialString.Substring(4));
+            CRC = Crc32.Compute(message);
+            BitString = BuildBitString();
+            //var splitString = new string(SplitString(BitString).ToArray());
+            Block = ConvertToByteArray(BitString);
+        }
+        internal string BitString { get; set; }
+        internal int Padding { get; set; }
+        public byte[] Block { get; protected set; }
+        internal protected uint CRC { get; protected set; }
+        internal protected static byte[] ConvertToByteArray(string inputBitString)
         {
             List<byte> byteList = new List<byte>();
             for (int i = inputBitString.Length - 1; i >= 0; i -= 8)

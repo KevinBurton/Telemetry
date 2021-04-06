@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Utility.DamienG.Security.Cryptography;
 
 namespace Simulator.Common.Models
 {
@@ -11,14 +8,10 @@ namespace Simulator.Common.Models
     {
         public LTECommon Common { get; } = new();
         public List<LTEMeasurementItem> Items { get; } = new();
-        public uint CRC { get; protected set; }
-        public int Padding { get; protected set; }
-        public string BitString { get; protected set; }
-        public byte[] Block { get; protected set; }
         public LTE()
         {
         }
-        public void Initialize()
+        public override void Initialize()
         {
             // Pad to 16 byte boundary for encoding
             Padding = (32 + Items.Count * 4) % 16;
@@ -29,16 +22,7 @@ namespace Simulator.Common.Models
 
             AddCrc();
         }
-        private void AddCrc()
-        {
-            var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(4));
-            CRC = Crc32.Compute(message);
-            BitString = BuildBitString();
-            //var splitString = new string(SplitString(BitString).ToArray());
-            Block = ConvertToByteArray(BitString);
-        }
-        private string BuildBitString()
+        public override string BuildBitString()
         {
             var result = "";
             result += Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');

@@ -2,7 +2,6 @@ C:\Users\Kevin\source\repos\Telemetry\Utility\bin\Debug\net5.0\Utility.deps.json
 C:\Users\Kevin\source\repos\Telemetry\Utility\bin\Debug\net5.0\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Utility\bin\Debug\net5.0\ref\Utility.dll
 C:\Users\Kevin\source\repos\Telemetry\Utility\bin\Debug\net5.0\Utility.pdb
-C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.csprojAssemblyReference.cache
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.AssemblyInfoInputs.cache
 C:\Users\Kevin\source\repos\Telemetry\Utility\obj\Debug\net5.0\Utility.AssemblyInfo.cs

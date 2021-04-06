@@ -9,14 +9,10 @@ namespace Simulator.Common.Models
     {
         public LogCommon Common { get; } = new();
         public List<string> Items { get; } = new List<string>();
-        public uint CRC { get; protected set; }
-        public int Padding { get; protected set; }
-        public string BitString { get; protected set; }
-        public byte[] Block { get; protected set; }
         public Log()
         {
         }
-        public void Initialize()
+        public override void Initialize()
         {
             int messageByteCount = Items.Count * 4;
             // Pad to 16 byte boundary for encoding
@@ -27,15 +23,7 @@ namespace Simulator.Common.Models
             }
             AddCrc();
         }
-        private void AddCrc()
-        {
-            var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(4));
-            CRC = Crc32.Compute(message);
-            BitString = BuildBitString();
-            Block = ConvertToByteArray(BitString);
-        }
-        private string BuildBitString()
+        public override string BuildBitString()
         {
             var result = "";
 
