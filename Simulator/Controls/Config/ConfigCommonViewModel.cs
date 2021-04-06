@@ -10,7 +10,6 @@ namespace Simulator.Controls
         public ConfigCommonViewModel(ConfigCommon common)
         {
             Common = common;
-            MessageTypeValues = MessageTypeDescription.ObservableCollection();
         }
         public uint SerialNumber
         {
@@ -27,19 +26,9 @@ namespace Simulator.Controls
         }
         public string SerialNumberBitString => Convert.ToString((uint)(SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
 
-        public ObservableCollection<MessageTypeDescription> MessageTypeValues { get; }
         public byte MessageType
         {
             get => Common.MessageType;
-            set
-            {
-                if (Common.MessageType != value)
-                {
-                    Common.MessageType = value;
-                    RaisePropertyChanged();
-                    RaisePropertyChanged("MessageTypeBitString");
-                }
-            }
         }
         public string MessageTypeBitString => Convert.ToString((byte)(MessageType & 0xFF), 2).PadLeft(8, '0');
 

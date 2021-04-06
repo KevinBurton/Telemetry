@@ -162,6 +162,16 @@
           "ref/netstandard1.3/_._": {}
         }
       },
+      "PacketCommunication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/PacketCommunication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PacketCommunication.dll": {}
+        }
+      },
       "Simulator.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -1082,6 +1092,11 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "PacketCommunication/1.0.0": {
+      "type": "project",
+      "path": "../PacketCommunication/PacketCommunication.csproj",
+      "msbuildProject": "../PacketCommunication/PacketCommunication.csproj"
+    },
     "Simulator.Common/1.0.0": {
       "type": "project",
       "path": "../Simulator.Common/Simulator.Common.csproj",
@@ -1095,6 +1110,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "PacketCommunication >= 1.0.0",
       "Simulator.Common >= 1.0.0",
       "Utility >= 1.0.0"
     ]
@@ -1133,6 +1149,9 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
+            "C:\\Users\\Kevin\\source\\repos\\Telemetry\\PacketCommunication\\PacketCommunication.csproj": {
+              "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\PacketCommunication\\PacketCommunication.csproj"
+            },
             "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.Common\\Simulator.Common.csproj": {
               "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\Simulator.Common\\Simulator.Common.csproj"
             },

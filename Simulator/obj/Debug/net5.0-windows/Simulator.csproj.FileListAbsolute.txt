@@ -6,8 +6,10 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulat
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\ref\Simulator.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.pdb
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\PacketCommunication.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.Common.dll
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.dll
+C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\PacketCommunication.pdb
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Simulator.Common.pdb
 C:\Users\Kevin\source\repos\Telemetry\Simulator\bin\Debug\net5.0-windows\Utility.pdb
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.csprojAssemblyReference.cache
@@ -31,6 +33,9 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteCommonView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteMeasurementView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformatedView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformattedCommonView.g.cs
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformattedMessageView.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator_Content.g.cs
@@ -43,6 +48,9 @@ C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Control
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEMeasurementView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\LTE\LTEView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Satelite\SateliteView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformatedView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformattedCommonView.baml
+C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Controls\Unformatted\UnformattedMessageView.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\MainWindow.baml
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.g.resources
 C:\Users\Kevin\source\repos\Telemetry\Simulator\obj\Debug\net5.0-windows\Simulator.GeneratedMSBuildEditorConfig.editorconfig

@@ -13,7 +13,6 @@ namespace Simulator.Common.Models
         public List<LTEMeasurementItem> Items { get; } = new();
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
-        public int BlockLength { get; protected set; }
         public string BitString { get; protected set; }
         public byte[] Block { get; protected set; }
         public LTE()
@@ -22,12 +21,11 @@ namespace Simulator.Common.Models
         public void Initialize()
         {
             // Pad to 16 byte boundary for encoding
-            Padding = (32 + Items.Count * 4 + 3) % 16;
+            Padding = (32 + Items.Count * 4) % 16;
             if (Padding != 0)
             {
                 Padding = 16 - Padding;
             }
-            BlockLength = Padding + 36 + Items.Count * 4 + 3;
 
             AddCrc();
         }

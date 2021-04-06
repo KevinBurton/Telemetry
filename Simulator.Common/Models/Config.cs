@@ -14,20 +14,21 @@ namespace Simulator.Common.Models
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
         public string BitString { get; protected set; }
-        public int BlockLength { get; protected set; }
         public byte[] Block { get; protected set; }
         public Config()
         {
         }
         public void Initialize()
         {
+            // Size of all the bytes without the dynamic portion
             var BlockLength = 12 + Items.Count * 2 + 1;
+            // Add in the dynamic portion
             BlockLength += Items.Aggregate(0, (a, b) =>
             {
-                return b.Payload.StringToByteArray().Count() + 2;
+                return b.Payload.StringToByteArray().Count();
             });
             //Make encryptable area lie on a 16-byte boundary
-            Padding = (BlockLength - 8) % 16;
+            Padding = (BlockLength - 4) % 16;
             if (Padding != 0)
             {
                 Padding += 16 - Padding;

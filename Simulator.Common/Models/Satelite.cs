@@ -7,17 +7,9 @@ namespace Simulator.Common.Models
     public class Satelite : TSMBase
     {
         public SateliteCommon Common { get; } = new();
-        public List<SateliteMeasurementItem> Items { get; } = new List<SateliteMeasurementItem>()
-        {
-            new SateliteMeasurementItem(),
-            new SateliteMeasurementItem(),
-            new SateliteMeasurementItem(),
-            new SateliteMeasurementItem(),
-            new SateliteMeasurementItem()
-        };
+        public List<SateliteMeasurementItem> Items { get; } = new ();
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
-        public int BlockLength { get; protected set; }
         public string BitString { get; protected set; }
         public byte[] Block { get; protected set; }
         public Satelite()
@@ -25,9 +17,18 @@ namespace Simulator.Common.Models
         }
         public void Initialize()
         {
-            // Pad to 16 byte boundary for encoding
+            // Make sure we send only 5 measurements
+            // Fill in the missing elements
+            for(int i = Items.Count; i < 5; i++)
+            {
+                Items.Add(new SateliteMeasurementItem());
+            }
+            // Remove items above 5
+            for(int i = 5; i < Items.Count; i++)
+            {
+                Items.RemoveAt(i);
+            }
             Padding = 0;
-            BlockLength = 32 + Items.Count * 4;
 
             AddCrc();
         }

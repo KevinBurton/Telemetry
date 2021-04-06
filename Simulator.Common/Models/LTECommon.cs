@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Simulator.Common.Models
+﻿namespace Simulator.Common.Models
 {
     public class LTECommon
     {
         public uint SerialNumber { get; set; }
-        public byte MessageType { get; set; }
+        public byte MessageType { get; } = 1;
         public uint TimeStamp { get; set; }
         public string GNSS { get; set; }
         public byte FWMajorRev { get; set; }

@@ -24,7 +24,7 @@ namespace PacketCommunication
         public void Start()
         {
             // Receive a message and write it to the console.
-            IPEndPoint e = new IPEndPoint(IPAddress.Any, Port);
+            IPEndPoint e = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
             UdpClient c = new UdpClient(e);
 
             // Timeout in milliseconds

@@ -10,21 +10,29 @@ namespace PacketCommunication
 {
     public class Client
     {
-        UdpClient client;
-        public Client ()
+        public Action<IAsyncResult> Callback { get; }
+
+        public Client (Action<IAsyncResult> callback)
         {
-            client = new UdpClient();
+            Callback = callback;
+            UdpClient = new UdpClient();
         }
+
+        private UdpClient UdpClient { get; set; }
         public void Send(string address, int port, byte[] data)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(address), port); // endpoint where server is listening
-            client.Connect(ep);
+            UdpClient.Connect(ep);
             // send data
-            client.Send(data,data.Length);
+            UdpClient.Send(data,data.Length);
 
+            var s = new UdpState()
+            {
+                Client = UdpClient,
+                Endpoint = ep
+            };
             // then receive data
-            var receivedData = client.Receive(ref ep);
-            Console.Write("receive data from " + ep.ToString());
+            var receivedData = UdpClient.BeginReceive(new AsyncCallback(Callback), s);
         }
     }
 }

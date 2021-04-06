@@ -12,7 +12,6 @@ namespace Simulator.Common.Models
         public uint CRC { get; protected set; }
         public int Padding { get; protected set; }
         public string BitString { get; protected set; }
-        public int BlockLength { get; protected set; }
         public byte[] Block { get; protected set; }
         public Log()
         {
@@ -26,7 +25,6 @@ namespace Simulator.Common.Models
             {
                 Padding = 16 - Padding;
             }
-            BlockLength = Padding + 12 + messageByteCount;
             AddCrc();
         }
         private void AddCrc()
