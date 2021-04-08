@@ -27,9 +27,6 @@ namespace PacketCommunication
             IPEndPoint e = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
             UdpClient c = new UdpClient(e);
 
-            // Timeout in milliseconds
-            //c.Client.ReceiveTimeout = 10000;
-
             UdpState s = new UdpState();
             s.Endpoint = e;
             s.Client = c;

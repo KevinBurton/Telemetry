@@ -1,8 +1,10 @@
-﻿namespace CLI
+﻿using System.Collections.Generic;
+
+namespace CLI
 {
     public interface ICLIConnection
     {
-        public string[] Read();
+        public IEnumerable<string> Read();
         public void Send(string values);
     }
 }

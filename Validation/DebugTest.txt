@@ -10,6 +10,8 @@ pot reset
 .
 pot set (\d+|\d+\.\d*)
 .
+pot set temperature (\d+|\d+\.\d*)
+.
 serial inject_urc (.*)
 .
 file ls (-{1}[A-Za-z0-9]+) ([A-Za-z0-9/]+)

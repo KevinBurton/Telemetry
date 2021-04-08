@@ -25,7 +25,7 @@ namespace CLI
         string Command { get; set; }
         public DebugMeasurementShared Shared { get; }
 
-        public string[] Read()
+        public IEnumerable<string> Read()
         {
             var result = LookForMatch(Command);
             if(Command.Contains("adc read"))
@@ -52,7 +52,7 @@ namespace CLI
                     resultList.Add($"{value + (i%2 == 0 ? -diff : diff)}");
                 }
                 resultList.Add(".");
-                return resultList.ToArray();
+                return resultList;
             }
             else if(Command.Contains("dac set"))
             {

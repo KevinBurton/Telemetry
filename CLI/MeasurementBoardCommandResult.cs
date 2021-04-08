@@ -1,12 +1,15 @@
-﻿namespace CLI
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace CLI
 {
     public class MeasurementBoardCommandResult : ICLICommandResult
     {
-        public MeasurementBoardCommandResult(string[] result)
+        public MeasurementBoardCommandResult(IEnumerable<string> result)
         {
             Result = result;
         }
-        public string[] Result { get; }
-        public bool IsSuccess => Result != null && Result.Length > 0 && Result[Result.Length - 1][0] == '.';
+        public IEnumerable<string> Result { get; }
+        public bool IsSuccess => Result != null && Result.Count() > 0 && Result.Last().StartsWith('.');
     }
 }
