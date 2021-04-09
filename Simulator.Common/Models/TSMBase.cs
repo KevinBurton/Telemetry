@@ -11,7 +11,7 @@ namespace Simulator.Common.Models
         internal protected void AddCrc()
         {
             var initialString = BuildBitString();
-            var message = ConvertToByteArray(initialString.Substring(4));
+            var message = ConvertToByteArray(initialString[..4]);
             CRC = Crc32.Compute(message);
             BitString = BuildBitString();
             //var splitString = new string(SplitString(BitString).ToArray());

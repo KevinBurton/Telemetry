@@ -11,7 +11,7 @@ namespace Utility
 		{
 			for (int i = 0; i < str.Length; i += 2)
 			{
-				yield return str.Substring(i, 2);
+				yield return str[i..(i+2)];
 			}
 		}
 		public static IEnumerable<byte> StringToByteArray(this string str)

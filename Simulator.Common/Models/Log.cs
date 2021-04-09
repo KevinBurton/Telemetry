@@ -34,11 +34,11 @@ namespace Simulator.Common.Models
 
             if (Items != null && Items.Count > 0)
             {
-                for (int i = 0; i < Items.Count; i++)
+                for (var i = 0; i < Items.Count; i++)
                 {
                     var pad = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
                     var values = Encoding.ASCII.GetBytes(Items[i]);
-                    for (int j = 0; j < values.Length && j < pad.Length; j++)
+                    for (var j = 0; j < values.Length && j < pad.Length; j++)
                     {
                         pad[j] = values[j];
                     }
