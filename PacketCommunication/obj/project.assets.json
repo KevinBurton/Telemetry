@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\PacketCommunication\\PacketCommunication.csproj",
+      "projectUniqueName": "C:\\Users\\Kevin\\source\\repos\\301212-tsm_test_comm\\src\\PacketCommunication\\PacketCommunication.csproj",
       "projectName": "PacketCommunication",
-      "projectPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\PacketCommunication\\PacketCommunication.csproj",
+      "projectPath": "C:\\Users\\Kevin\\source\\repos\\301212-tsm_test_comm\\src\\PacketCommunication\\PacketCommunication.csproj",
       "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kevin\\source\\repos\\Telemetry\\PacketCommunication\\obj\\",
+      "outputPath": "C:\\Users\\Kevin\\source\\repos\\301212-tsm_test_comm\\src\\PacketCommunication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
