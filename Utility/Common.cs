@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Utility
 {
-    public static class Utility
+    public static class Common
     {
         public static int ParseIntegerValue(string sv)
         {
@@ -140,6 +140,69 @@ namespace Utility
             }
             Console.WriteLine("===================================================");
             Console.ReadLine();
+        }
+        public static double Mean(List<float> values)
+        {
+            var count = 0;
+            var sum = 0.0;
+            foreach(var value in values)
+            {
+                count++;
+                sum += value;
+            }
+            return sum / count;
+        }
+        public static double StandardDeviation(List<float> values)
+        {
+            var count = 0;
+            var mean = Mean(values);
+            var sum = 0.0;
+            foreach(var value in values)
+            {
+                count++;
+                var diff = value - mean;
+                sum += diff * diff;
+            }
+            return Math.Sqrt(sum / (count-1));
+        }
+        public static (double, double) ConfidenceInterval(double mean, double sd, int n)
+        {
+            // 99% confidence
+            var factor = 2.576 * (sd / Math.Sqrt(n));
+            return (mean + factor, mean - factor);
+        }
+        //https://www.tandfonline.com/doi/pdf/10.1080/23311916.2018.1558687
+        public static double CallendarVanDusen(double rt)
+        {
+            var r0 = 100;
+
+            var a = 3.9083e-3;
+            var b = -5.775e-7;
+            var c = -4.1830e-12;
+            // Unused coefficents
+            //var alpha = -4.1830e-12;
+            //var beta = 0.10863;
+            //var delta = 1.49990;
+            if(rt >= 100)
+            {
+                var t1 = ((rt/100)-1)/(a+100*b);
+                var tn = t1;
+                var t = t1;
+                var n = 1;
+                do
+                {
+                    t = (1 + a*tn + b * tn* tn + c *tn * tn * tn * (tn - 100) - (rt/r0));
+                    t /= (a + 2 * b * tn - 300 * c * tn * tn + 4 * c * tn * tn * tn);
+                    tn = tn - t;
+                    n ++;
+                } while(n < 3);
+                return tn;
+            }
+            else
+            {
+                var t = a*a - 4.0*b*(1.0 - rt/r0);
+                return (Math.Sqrt(t) - a)/(2.0*b);
+            }
         }
     }
 }

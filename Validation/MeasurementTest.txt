@@ -18,7 +18,7 @@ adc toggle fsc
 .
 adc setofc (\d+)
 .Wrote 1000 to offset registers successfully 
-adc setfsc (\d+|\d+\.\d*)
+adc setfsc (-?\d*(?:\.\d*)?)
 .Wrote 1.1 to the gain calibration register (FSC Enabled:1) 
 adc setfs master
 .
@@ -144,6 +144,9 @@ rtd get kelvin
 .
 rtd get fahrenheit 
 70
+. 
+rtd get celsius 
+0
 . 
 ble status 
 Off, Disconnected, Strength: --dB

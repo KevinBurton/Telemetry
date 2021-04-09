@@ -682,6 +682,12 @@ namespace CLI
             return Receive();
         }
 
+        public ICLICommandResult RtdGetCelsiusCommand()
+        {
+            Send("rtd get celsius");
+            return Receive();
+        }
+
         public ICLICommandResult RtdGetKelvinCommand()
         {
             Send("rtd get kelvin");

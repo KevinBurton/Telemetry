@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using Utility;
 
 namespace CLI
 {
@@ -25,10 +26,22 @@ namespace CLI
         string Command { get; set; }
         public DebugMeasurementShared Shared { get; }
 
-        public string[] Read()
+        public IEnumerable<string> Read()
         {
             var result = LookForMatch(Command);
-            if(Command.Contains("adc read"))
+            if(Command.StartsWith("rtd get"))
+            {
+                // Handle rtd get special
+                // The assumption is that there is only
+                // a '.' success indicator
+                var ohms = Shared.Potentiometer;
+                var t = Common.CallendarVanDusen(ohms);
+                var resultList = new List<string>();
+                resultList.Add($"{t}");
+                resultList.Add(".");
+                return resultList;
+            }
+            else if(Command.StartsWith("adc read"))
             {
                 // Handle adc read special
                 // The assumption is that there is only
@@ -52,7 +65,7 @@ namespace CLI
                     resultList.Add($"{value + (i%2 == 0 ? -diff : diff)}");
                 }
                 resultList.Add(".");
-                return resultList.ToArray();
+                return resultList;
             }
             else if(Command.Contains("dac set"))
             {
@@ -81,22 +94,40 @@ namespace CLI
         }
         public void Send(string command)
         {
-            var commandRegex = new Regex(@"relay (\d+) (\d+)");
-            var match = commandRegex.Match(command);
-            if (match.Success)
+            Command = command;
+            if (command.StartsWith("relay"))
             {
-                // Handle relay commands special
-                var dac = int.Parse(match.Groups[1].Value);
-                var channel = int.Parse(match.Groups[2].Value);
-                Shared.DacRelay = dac;
-                Shared.ChannelRelay = channel;
+                var commandRegex = new Regex(@"(?:relay)\s+(\d+)\s+(\d+).*");
+                var match = commandRegex.Match(command);
+                if (match.Success)
+                {
+                    // Handle relay commands special
+                    var dac = int.Parse(match.Groups[2].Value);
+                    var channel = int.Parse(match.Groups[3].Value);
+                    Shared.DacRelay = dac;
+                    Shared.ChannelRelay = channel;
+                }
+
             }
-            if(command == "relay reset")
+            if (command.StartsWith("pot set"))
+            {
+                var commandRegex = new Regex(@"(?:pot\s+set\s+)(\d+)\s+(-?\d*(?:\.\d*)?)");
+                var match = commandRegex.Match(command);
+                if (match.Success)
+                {
+                    var pot = int.Parse(match.Groups[1].Value);
+                    var ohms = float.Parse(match.Groups[2].Value);
+                    if(pot == 1)
+                    {
+                        Shared.Potentiometer = ohms;
+                    }
+                }
+            }
+            if(command.StartsWith("relay reset"))
             {
                 // Handle relay reset command special
                 Shared.RelayReset();
             }
-            Command = command;
         }
         string[] LookForMatch(string command)
         {

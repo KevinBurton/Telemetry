@@ -51,9 +51,9 @@ namespace CLI
             return Receive();
         }
 
-        public ICLICommandResult PotSetCommand(float value)
+        public ICLICommandResult PotSetCommand(int pot, float value)
         {
-            Send($"pot set {value}");
+            Send($"pot set {pot} {value}");
             return Receive();
         }
 

@@ -1,14 +1,14 @@
 dac reset
 .
-dac set (\d+) (\d+) counts (-?(\d+|\d+\.\d*))
+dac set (\d+) (\d+) counts (-?\d*(?:\.\d*)?)
 .
-dac set (\d+) (\d+) volts (-?(\d+|-?\d+\.\d*))
+dac set (\d+) (\d+) volts (-?\d*(?:\.\d*)?)
 .
 nkc
 .
 pot reset
 .
-pot set (\d+|\d+\.\d*)
+pot set (\d+) (-?\d*(?:\.\d*)?)
 .
 serial inject_urc (.*)
 .

@@ -1,10 +1,7 @@
 ﻿using CLI;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Utility;
 
 namespace Validation
 {
@@ -34,36 +31,6 @@ namespace Validation
                 measurementBoard.RelayResetCommand();
             }
         }
-        double Mean(List<float> values)
-        {
-            var count = 0;
-            var sum = 0.0;
-            foreach(var value in values)
-            {
-                count++;
-                sum += value;
-            }
-            return sum / count;
-        }
-        double StandardDeviation(List<float> values)
-        {
-            var count = 0;
-            var mean = Mean(values);
-            var sum = 0.0;
-            foreach(var value in values)
-            {
-                count++;
-                var diff = value - mean;
-                sum += diff * diff;
-            }
-            return Math.Sqrt(sum / (count-1));
-        }
-        (double, double) ConfidenceInterval(double mean, double sd, int n)
-        {
-            // 99% confidence
-            var factor = 2.576 * (sd / Math.Sqrt(n));
-            return (mean + factor, mean - factor);
-        }
         void CheckResults(double expectedVolts, int n, ICLICommandResult result)
         {
             var measurements = new List<float>();
@@ -74,11 +41,11 @@ namespace Validation
                     measurements.Add(float.Parse(r));
                 }
             }
-            var mean = Mean(measurements);
-            var sd = StandardDeviation(measurements);
+            var mean = Common.Mean(measurements);
+            var sd = Common.StandardDeviation(measurements);
             double upper;
             double lower;
-            (upper, lower) = ConfidenceInterval(mean, sd, n);
+            (upper, lower) = Common.ConfidenceInterval(mean, sd, n);
             Assert.IsTrue(expectedVolts < upper && expectedVolts > lower);
         }
         private static IEnumerable<TestCaseData> MeasurementTestCaseSource()
@@ -87,9 +54,9 @@ namespace Validation
             {
                 foreach(var testValue in MeasurementValueParmeters())
                 {
-                    var z = new object[test.Length + testValue.Length];
-                    test.CopyTo(z, 0);
-                    testValue.CopyTo(z, test.Length);
+                    var z = new object[test.Objects.Length + testValue.Objects.Length];
+                    test.Objects.CopyTo(z, 0);
+                    testValue.Objects.CopyTo(z, test.Objects.Length);
                     yield return new TestCaseData(z);
                 }
             }
@@ -102,47 +69,47 @@ namespace Validation
             }
 
         }
-        private static IEnumerable<object[]> MeasurementValueParmeters()
+        private static IEnumerable<MeasurementValueParameter> MeasurementValueParmeters()
         {
-            yield return new object[] { 4.0f, -4.0f, 5 };
-            yield return new object[] { 4.0f, -4.0f, 20 };
-            yield return new object[] { -4.0f, 4.0f, 5 };
-            yield return new object[] { 4.0f, 4.0f, 5 };
+            yield return new MeasurementValueParameter { FirstVoltage = 4.0f, SecondVoltage = -4.0f, Count = 5 };
+            yield return new MeasurementValueParameter { FirstVoltage = 4.0f, SecondVoltage = -4.0f, Count = 20 };
+            yield return new MeasurementValueParameter { FirstVoltage = -4.0f, SecondVoltage = 4.0f, Count = 5 };
+            yield return new MeasurementValueParameter { FirstVoltage = 4.0f, SecondVoltage = 4.0f, Count = 5 };
         }
-        private static IEnumerable<object[]> MeasurementTestTypeParameters()
+        private static IEnumerable<MeasurementTestTypeParameter> MeasurementTestTypeParameters()
         {
-            yield return new object[] { "Sr1", 0, 0, 1, 2,
-                                          MeasurementBoardChannels.s1, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "Sr1Ref2", 0, 0, 1, 3,
-                                          MeasurementBoardChannels.s1, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Sr2", 0, 1, 1, 2,
-                                          MeasurementBoardChannels.s2, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "Sr2Ref2", 0, 1, 1, 3,
-                                          MeasurementBoardChannels.s2, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Pc1", 0, 2, 1, 2,
-                                          MeasurementBoardChannels.pc1, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "Pc1Ref2", 0, 2, 1, 3,
-                                          MeasurementBoardChannels.pc1, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Nc", 0, 3, 1, 2,
-                                          MeasurementBoardChannels.nc, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "NcRef2", 0, 3, 1, 3,
-                                          MeasurementBoardChannels.nc, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Acc", 0, 4, 1, 2,
-                                          MeasurementBoardChannels.acc, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "AccRef2", 0, 4, 1, 3,
-                                          MeasurementBoardChannels.acc, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Pc2", 0, 5, 1, 2,
-                                          MeasurementBoardChannels.pc2, MeasurementBoardChannels.ref1 };
-            yield return new object[] { "Pc2Ref2", 0, 5, 1, 3,
-                                          MeasurementBoardChannels.pc2, MeasurementBoardChannels.ref2 };
-            yield return new object[] { "Aux2", 0, 6, 0, 7,
-                                          MeasurementBoardChannels.aux2_pos, MeasurementBoardChannels.aux2_neg };
-            yield return new object[] { "InternalShunt", 1, 0, 1, 1,
-                                          MeasurementBoardChannels.ishnt_pos, MeasurementBoardChannels.ishnt_neg };
-            yield return new object[] { "Pcr", 1, 4, 1, 5,
-                                          MeasurementBoardChannels.pcr_pos, MeasurementBoardChannels.pcr_neg };
-            yield return new object[] { "ExternalShunt", 1, 6, 1, 7,
-                                          MeasurementBoardChannels.eshnt_pos, MeasurementBoardChannels.eshnt_neg };
+            yield return new MeasurementTestTypeParameter { Description = "Sr1", Dac0 = 0, Channel0 = 0, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.s1, MeasurementBoardChannel1 = MeasurementBoardChannels.s1 };
+            yield return new MeasurementTestTypeParameter { Description = "Sr1Ref2", Dac0 = 0, Channel0 = 0, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.s1, MeasurementBoardChannel1 = MeasurementBoardChannels.s1 };
+            yield return new MeasurementTestTypeParameter { Description = "Sr2", Dac0 = 0, Channel0 = 1, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.s2, MeasurementBoardChannel1 = MeasurementBoardChannels.s2 };
+            yield return new MeasurementTestTypeParameter { Description = "Sr2Ref2", Dac0 = 0, Channel0 = 1, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.s2, MeasurementBoardChannel1 = MeasurementBoardChannels.s2 };
+            yield return new MeasurementTestTypeParameter { Description = "Pc1", Dac0 = 0, Channel0 = 2, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.pc1, MeasurementBoardChannel1 = MeasurementBoardChannels.pc1 };
+            yield return new MeasurementTestTypeParameter { Description = "Pc1Ref2", Dac0 = 0, Channel0 = 2, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.pc1, MeasurementBoardChannel1 = MeasurementBoardChannels.pc1 };
+            yield return new MeasurementTestTypeParameter { Description = "Nc", Dac0 = 0, Channel0 = 3, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.nc, MeasurementBoardChannel1 = MeasurementBoardChannels.nc };
+            yield return new MeasurementTestTypeParameter { Description = "NcRef2", Dac0 = 0, Channel0 = 3, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.nc, MeasurementBoardChannel1 = MeasurementBoardChannels.nc };
+            yield return new MeasurementTestTypeParameter { Description = "Acc", Dac0 = 0, Channel0 = 4, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.acc, MeasurementBoardChannel1 = MeasurementBoardChannels.acc };
+            yield return new MeasurementTestTypeParameter { Description = "AccRef2", Dac0 = 0, Channel0 = 4, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.acc, MeasurementBoardChannel1 = MeasurementBoardChannels.acc };
+            yield return new MeasurementTestTypeParameter { Description = "Pc2", Dac0 = 0, Channel0 = 5, Dac1 = 1, Channel1 = 2,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.pc2, MeasurementBoardChannel1 = MeasurementBoardChannels.pc2 };
+            yield return new MeasurementTestTypeParameter { Description = "Pc2Ref2", Dac0 = 0, Channel0 = 5, Dac1 = 1, Channel1 = 3,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.pc2, MeasurementBoardChannel1 = MeasurementBoardChannels.pc2 };
+            yield return new MeasurementTestTypeParameter { Description = "Aux2", Dac0 = 0, Channel0 = 6, Dac1 = 0, Channel1 = 7,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.aux2_pos, MeasurementBoardChannel1 = MeasurementBoardChannels.aux2_pos };
+            yield return new MeasurementTestTypeParameter { Description = "InternalShunt", Dac0 = 1, Channel0 = 0, Dac1 = 1, Channel1 = 1,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.ishnt_pos, MeasurementBoardChannel1 = MeasurementBoardChannels.ishnt_pos };
+            yield return new MeasurementTestTypeParameter { Description = "Pcr", Dac0 = 1, Channel0 = 4, Dac1 = 1, Channel1 = 5,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.pcr_pos, MeasurementBoardChannel1 = MeasurementBoardChannels.pcr_pos };
+            yield return new MeasurementTestTypeParameter { Description = "ExternalShunt", Dac0 = 1, Channel0 = 6, Dac1 = 1, Channel1 = 7,
+                                          MeasurementBoardChannel0 = MeasurementBoardChannels.eshnt_pos, MeasurementBoardChannel1 = MeasurementBoardChannels.eshnt_pos };
         }
         [Category("Measurement")]
         [Test, TestCaseSource("MeasurementTestCaseSource")]

@@ -13,14 +13,16 @@ namespace Simulator.Common.Models
         }
         public override void Initialize()
         {
+            const int MAX_ITEMS = 5;
+
             // Make sure we send only 5 measurements
             // Fill in the missing elements
-            for(int i = Items.Count; i < 5; i++)
+            for(int i = Items.Count; i < MAX_ITEMS; i++)
             {
                 Items.Add(new SateliteMeasurementItem());
             }
             // Remove items above 5
-            for(int i = 5; i < Items.Count; i++)
+            for(int i = MAX_ITEMS; i < Items.Count; i++)
             {
                 Items.RemoveAt(i);
             }

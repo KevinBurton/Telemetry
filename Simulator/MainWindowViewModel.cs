@@ -1,8 +1,11 @@
-﻿using PacketCommunication;
+﻿using Microsoft.Extensions.Options;
+using PacketCommunication;
+using Simulator.Common;
 using Simulator.Common.Models;
 using Simulator.Controls;
 using Simulator.ViewModel.Command;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 
@@ -10,7 +13,7 @@ namespace Simulator
 {
     public class MainWindowViewModel
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(IOptions<SateliteConfiguration> settings)
         {
             LTEViewModel = new LTEViewModel(lteModel);
             SateliteViewModel = new SateliteViewModel(sateliteModel);
@@ -19,6 +22,7 @@ namespace Simulator
 
             SendCommand = new DelegateCommand(Send);
             SendSateliteCommand = new DelegateCommand(SendSatelite);
+            Settings = settings;
         }
 
         LTE lteModel = new();
@@ -34,6 +38,8 @@ namespace Simulator
         public DelegateCommand SendSateliteCommand { get; }
         public string Success { get; set; }
         public string Error { get; set;}
+        public IOptions<SateliteConfiguration> Settings { get; }
+
         public void OnReceiveCallback(IAsyncResult ar)
         {
             UdpClient u = ((UdpState)(ar.AsyncState)).Client;
@@ -47,64 +53,23 @@ namespace Simulator
                 byte[] receiveBytes = u.EndReceive(ar, ref e);
 
                 // Process the received bytes
-                if(receiveBytes.Length > 4)
+                if(receiveBytes.Length > 8)
                 {
-                    switch(receiveBytes[3])
+                    if(MessageTypeMetrics.KnownMessageType(receiveBytes[3]))
                     {
-                        case 0x1:
-                            // LTE Measurement
-                            if(receiveBytes.Length < 32)
-                            {
-                                // Error Not enough bytes to contain the header
-                                errorMessage = $"Received {receiveBytes.Length} bytes identified as an LTE Measurement message but there are not enought bytes for the header";
-                                break;
-                            }
-                            successMessage = $"Received {receiveBytes.Length} bytes identified as an LTE Measurement message";
-                            break;
-                        case 0x2:
-                            // Satelite Measurement
-                            if(receiveBytes.Length < 8)
-                            {
-                                // Error Not enough bytes to contain the header
-                                errorMessage = $"Received {receiveBytes.Length} bytes identified as an Satelite Measurement message but there are not enought bytes for the header";
-                                break;
-                            }
-                            successMessage = $"Received {receiveBytes.Length} bytes identified as an Satelite Measurement message";
-                            break;
-                        case 0x3:
-                            // Log Structure
-                            if(receiveBytes.Length < 8)
-                            {
-                                // Error Not enough bytes to contain the header
-                                errorMessage = $"Received {receiveBytes.Length} bytes identified as an Log Structure message but there are not enought bytes for the header";
-                                break;
-                            }
-                            successMessage = $"Received {receiveBytes.Length} bytes identified as a Log Stucture message";
-                            break;
-                        case 0x4:
-                            // Configuration
-                            if(receiveBytes.Length < 8)
-                            {
-                                // Error Not enough bytes to contain the header
-                                errorMessage = $"Received {receiveBytes.Length} bytes identified as an Configuration message but there are not enought bytes for the header";
-                                break;
-                            }
-                            successMessage = $"Received {receiveBytes.Length} bytes identified as a Configuration message";
-                            break;
-                        case 0x5:
-                            // Unformatted 1KB Block
-                            if(receiveBytes.Length < 8)
-                            {
-                                // Error Not enough bytes to contain the header
-                                errorMessage = $"Received {receiveBytes.Length} bytes identified as an Unformatted 1KB Block message but there are not enought bytes for the header";
-                                break;
-                            }
-                            successMessage = $"Received {receiveBytes.Length} bytes identified as as Unformatted 1KB Block message";
-                            break;
-                        default:
-                            // Error. Unrecognized message type
-                            errorMessage = $"Received {receiveBytes.Length} bytes but could not determine the message type {receiveBytes[3]}";
-                            break;
+                        MessageTypeCharacteristics characteristics = MessageTypeMetrics.Characteristics(receiveBytes[3]);
+                        if (receiveBytes.Length < characteristics.HeaderLength)
+                        {
+                            errorMessage = $"Received {receiveBytes.Length} bytes identified as an {characteristics.Description}  message but there are not enought bytes for the header";
+                        }
+                        else
+                        {
+                            successMessage = $"Received {receiveBytes.Length} bytes identified as an {characteristics.Description} message";
+                        }
+                    }
+                    else
+                    {
+                            errorMessage = $"Received {receiveBytes.Length} bytes that shows an unknown message type {receiveBytes[3]}";
                     }
                 }
                 else
@@ -118,6 +83,10 @@ namespace Simulator
 
                 Error = errorMessage;
                 Success = successMessage;
+            }
+            catch(KeyNotFoundException ex)
+            {
+                Error = $"Key not found exception received {ex.Message}";
             }
             catch(SocketException ex)
             {
@@ -133,7 +102,7 @@ namespace Simulator
             var client = new Client(OnReceiveCallback);
 
             System.Diagnostics.Debug.WriteLine($"Sending {lteModel.Block.Length} bytes of LTE data");
-            client.Send("127.0.0.1", 11000, lteModel.Block);
+            client.Send(Settings.Value.Address, Settings.Value.Port, lteModel.Block);
 
         }
         public void SendSatelite()
@@ -143,7 +112,7 @@ namespace Simulator
             var client = new Client(OnReceiveCallback);
 
             System.Diagnostics.Debug.WriteLine($"Sending {sateliteModel.Block.Length} bytes of Satelite data");
-            client.Send("127.0.0.1", 11000, sateliteModel.Block);
+            client.Send(Settings.Value.Address, Settings.Value.Port, sateliteModel.Block);
         }
     }
 }

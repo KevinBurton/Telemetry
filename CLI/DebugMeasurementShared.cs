@@ -118,5 +118,7 @@ namespace CLI
         public ushort SetCounts => (ushort)(Settings[DacValues[0], ChannelValues[0]].Counts - Settings[DacValues[1], ChannelValues[1]].Counts);
         public float SetVolts => Settings[DacValues[0], ChannelValues[0]].Volts - Settings[DacValues[1], ChannelValues[1]].Volts;
         public CLIDacChannels[,] Settings { get; }
+        public float Potentiometer { get; set; }
+        public float Temperature { get; set; }
     }
 }

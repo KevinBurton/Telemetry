@@ -1,12 +1,15 @@
-﻿namespace CLI
+﻿using System.Linq;
+using System.Collections.Generic;
+
+namespace CLI
 {
     public class DebugBoardCommandResult : ICLICommandResult
     {
-        public DebugBoardCommandResult(string[] result)
+        public DebugBoardCommandResult(IEnumerable<string> result)
         {
             Result = result;
         }
-        public string[] Result { get; }
-        public bool IsSuccess => Result != null && Result.Length > 0 && Result[Result.Length - 1][0] == '.';
+        public IEnumerable<string> Result { get; }
+        public bool IsSuccess => Result != null && Result.Count() > 0 && Result.Last().StartsWith('.');
     }
 }

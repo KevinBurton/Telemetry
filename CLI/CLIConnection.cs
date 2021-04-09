@@ -20,7 +20,7 @@ namespace CLI
             }
             Write(command);
         }
-        public string[] Read()
+        public IEnumerable<string> Read()
         {
             List<string> response = new List<string>();
             var currentLine = ReadLine();
@@ -31,7 +31,7 @@ namespace CLI
                 currentLine = ReadLine();
             }
             response.Add(currentLine);
-            return response.ToArray();
+            return response;
         }
     }
 }

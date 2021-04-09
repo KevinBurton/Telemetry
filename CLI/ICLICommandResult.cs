@@ -1,8 +1,10 @@
-﻿namespace CLI
+﻿using System.Collections.Generic;
+
+namespace CLI
 {
     public interface ICLICommandResult
     {
-        string[] Result { get; }
+        IEnumerable<string> Result { get; }
         bool IsSuccess { get; }
     }
 }
