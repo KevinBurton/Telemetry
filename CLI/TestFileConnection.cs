@@ -35,7 +35,7 @@ namespace CLI
                 // The assumption is that there is only
                 // a '.' success indicator
                 var ohms = Shared.Potentiometer;
-                var t = Common.CallendarVanDusen(ohms);
+                var t = new Pt100().Celsius(ohms);
                 var resultList = new List<string>();
                 resultList.Add($"{t}");
                 resultList.Add(".");

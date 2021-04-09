@@ -14,6 +14,7 @@ namespace Validation
     {
         MeasurementBoard measurementBoard;
         DebugBoard debugBoard;
+        Pt100 rtd;
 
         [SetUp]
         public void Setup()
@@ -23,6 +24,7 @@ namespace Validation
             measurementBoard = new MeasurementBoard(measurementBoardConnection);
             var debugBoardConnection = new TestFileConnection("DebugTest.txt", shared);
             debugBoard = new DebugBoard(debugBoardConnection);
+            rtd = new Pt100();
             debugBoard.PotSetCommand(0, 10);
             debugBoard.PotSetCommand(2, 10);
         }
@@ -34,6 +36,17 @@ namespace Validation
         {
             var delta = Math.Abs(.001*expected);
             var t = Common.CallendarVanDusen(ohms);
+
+            Assert.IsTrue(Math.Abs(t - expected) < delta, $"Expected {expected} for {ohms} but got {t}. Delta {delta}");
+        }
+        [Test]
+        //http://www.elettronicapratica.altervista.org/Dispense/RTD_PT100_Conversion_Chart.pdf
+        [TestCaseSource("PotTestCaseSource")]
+        public void TableTests(double ohms, double expected)
+        {
+            var delta = Math.Abs(.0005*expected);
+
+            var t = rtd.Celsius((float)ohms);
 
             Assert.IsTrue(Math.Abs(t - expected) < delta, $"Expected {expected} for {ohms} but got {t}. Delta {delta}");
         }
