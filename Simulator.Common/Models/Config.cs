@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Utility;
-using Utility.DamienG.Security.Cryptography;
-using System.Linq;
 
 namespace Simulator.Common.Models
 {
@@ -33,36 +32,36 @@ namespace Simulator.Common.Models
         }
         public override string BuildBitString()
         {
-            var result = "";
+            var sb = new StringBuilder();
 
-            result += Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
-            result += Convert.ToString(Common.MessageType, 2).PadLeft(8, '0');
-            result += Convert.ToString((uint)(Common.EffectiveTimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
-            result += Convert.ToString((byte)0, 2).PadLeft(8, '0');
+            sb.Append(Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0'));
+            sb.Append(Convert.ToString(Common.MessageType, 2).PadLeft(8, '0'));
+            sb.Append(Convert.ToString((uint)(Common.EffectiveTimeStamp & 0xFFFFFF), 2).PadLeft(24, '0'));
+            sb.Append(Convert.ToString((byte)0, 2).PadLeft(8, '0'));
 
             if (Items != null && Items.Count > 0)
             {
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    result += Convert.ToString((byte)(Items[i].Length & 0xFF), 2).PadLeft(8, '0');
-                    result += Convert.ToString((byte)(Items[i].Parameter & 0xFF), 2).PadLeft(8, '0');
-                    result += Items[i].Payload.StringToByteArray().Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(Items[i].Length & 0xFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(Items[i].Parameter & 0xFF), 2).PadLeft(8, '0'));
+                    sb.Append(Items[i].Payload.StringToByteArray().Aggregate(string.Empty, (a, b) => a + Convert.ToString((byte)(b & 0xFF), 2).PadLeft(8, '0')));
                 }
 
                 // Add byte with length of 0
-                result += "00000000";
+                sb.Append("00000000");
             }
 
 
             // Add padding
             for (int i = 0; i < Padding; i++)
             {
-                result += "00000000";
+                sb.Append("00000000");
             }
 
-            result += Convert.ToString(CRC, 2).PadLeft(32, '0');
+            sb.Append(Convert.ToString(CRC, 2).PadLeft(32, '0'));
 
-            return result;
+            return sb.ToString();
         }
         public override string ToString()
         {

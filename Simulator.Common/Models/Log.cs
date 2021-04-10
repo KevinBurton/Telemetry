@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Utility.DamienG.Security.Cryptography;
+using System.Linq;
 
 namespace Simulator.Common.Models
 {
@@ -25,12 +25,12 @@ namespace Simulator.Common.Models
         }
         public override string BuildBitString()
         {
-            var result = "";
+            var sb = new StringBuilder();
 
-            result += Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0');
-            result += Convert.ToString(Common.MessageType, 2).PadLeft(8, '0');
-            result += Convert.ToString((uint)(Common.TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0');
-            result += Convert.ToString((byte)0, 2).PadLeft(8, '0');
+            sb.Append(Convert.ToString((uint)(Common.SerialNumber & 0xFFFFFF), 2).PadLeft(24, '0'));
+            sb.Append(Convert.ToString(Common.MessageType, 2).PadLeft(8, '0'));
+            sb.Append(Convert.ToString((uint)(Common.TimeStamp & 0xFFFFFF), 2).PadLeft(24, '0'));
+            sb.Append(Convert.ToString((byte)0, 2).PadLeft(8, '0'));
 
             if (Items != null && Items.Count > 0)
             {
@@ -38,22 +38,21 @@ namespace Simulator.Common.Models
                 {
                     var pad = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
                     var values = Encoding.ASCII.GetBytes(Items[i]);
-                    for (var j = 0; j < values.Length && j < pad.Length; j++)
-                    {
-                        pad[j] = values[j];
-                    }
-                    result += Convert.ToString((byte)(pad[0] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[1] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[2] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[3] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[4] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[5] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[6] & 0xFFFF), 2).PadLeft(8, '0') +
-                              Convert.ToString((byte)(pad[7] & 0xFFFF), 2).PadLeft(8, '0');
+
+                    pad = pad.Select((v,j) => j < values.Count() ? values[j] : v).ToArray();
+
+                    sb.Append(Convert.ToString((byte)(pad[0] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[1] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[2] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[3] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[4] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[5] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[6] & 0xFFFF), 2).PadLeft(8, '0'));
+                    sb.Append(Convert.ToString((byte)(pad[7] & 0xFFFF), 2).PadLeft(8, '0'));
                 }
             }
-            result += Convert.ToString(CRC, 2).PadLeft(32, '0');
-            return result;
+            sb.Append(Convert.ToString(CRC, 2).PadLeft(32, '0'));
+            return sb.ToString();
         }
         public override string ToString()
         {
